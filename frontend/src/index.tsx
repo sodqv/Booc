@@ -3,11 +3,24 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App.tsx';
 import reportWebVitals from './reportWebVitals.tsx';
+import {
+  createBrowserRouter,
+  RouterProvider
+} from 'react-router-dom';
+
+import Test from './component/login/Login_root.tsx';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Test />,
+  }
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router}/>
   </React.StrictMode>
 );
 
