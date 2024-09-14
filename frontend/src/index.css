@@ -11,3 +11,66 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.Table {
+  background-color: brown;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.OtherPage {
+  background-color: white;
+  width: 10%;
+  height: 80%;
+}
+
+.Binder {
+  background-color: black;
+  width: 3%;
+  height: 80%;
+}
+
+.Intro_Logo {
+  margin-right: 5%;
+  margin-left: 5%;
+  margin-top: 5%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Page {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 60%;
+  height: 80%;
+}
+
+.LoginFields {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 5%;
+  margin-left: 5%;
+  gap: 4px;
+}
+
+.PageButtons{
+  display: flex;
+  justify-content: space-between;
+  height: 6%;
+}
+
+.left, .right{
+  width: 40%;
+  max-width: 150px;
+}
