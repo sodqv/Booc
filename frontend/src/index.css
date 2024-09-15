@@ -27,7 +27,7 @@ code {
 
 .OtherPage {
   background-color: white;
-  width: 10%;
+  width: 17%;
   height: 80%;
 }
 
@@ -45,6 +45,12 @@ code {
   justify-content: space-between;
 }
 
+.SignUpText{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
 .Page {
   background-color: white;
   display: flex;
@@ -52,6 +58,10 @@ code {
   justify-content: space-between;
   width: 60%;
   height: 80%;
+}
+
+.Table#SignUpPage{
+  flex-direction: row-reverse;
 }
 
 .LoginFields {
@@ -70,7 +80,32 @@ code {
   height: 6%;
 }
 
-.left, .right{
+.leftButton, .rightButton{
   width: 40%;
   max-width: 150px;
+}
+
+.Eraser{
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  width: 2%;
+  height: 3%;
+}
+
+.Tip{
+  width: 10px;
+  height: 10px;
+  color: white;
+  z-index: 1;
+}
+
+Base{
+  width: 10px;
+  height: 10px;
+  color: red;
+  z-index: 1;
 }

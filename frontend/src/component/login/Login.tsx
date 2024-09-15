@@ -2,8 +2,11 @@ import * as React from 'react';
 import Textfield, {TextFieldPassword} from '../TextField.tsx';
 import {Link} from "react-router-dom";
 
+interface LoginPageProps{
+    clickhandler: () => void;
+}
 
-export default function Login_page(){
+export default function Login_page({clickhandler} : LoginPageProps){
     return(
         <div className='Page'>
             <div className='Intro_Logo'>
@@ -19,9 +22,9 @@ export default function Login_page(){
                 <Link to=''>Reset password</Link>
             </div>
             <div className='PageButtons'>
-                <button className='left'>← Sign up</button>
-                <button className='right'>Login →</button>
+                <button className='leftButton' onClick={clickhandler}>← Sign up</button>
+                <button className='rightButton'>Login →</button>
             </div>
-        </div>
+        </div>     
     )
 }

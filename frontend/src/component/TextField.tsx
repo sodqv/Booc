@@ -2,7 +2,7 @@ import * as React from 'react';
 import TextField from '@mui/material/TextField';
 
 //Content is whatever is going to be writted on the field before the user does anything
-export default function TextFieldOutlined({content}){
+export default function TextFieldOutlined({content} : {content:string}){
     return <TextField id="outlined-basic" label={content} variant="outlined" />
   }
 
