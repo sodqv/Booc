@@ -11,12 +11,17 @@ import {
 
 import Test from './component/login/Login_root.js';
 
+
+//testa den här i
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Test />,
   }
 ]);
+
+
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
