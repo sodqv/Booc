@@ -28,7 +28,8 @@ chrome-user-data
 *.swo
 
 
-
+compiled/
+node_modules/
 
 
 # dependencies
