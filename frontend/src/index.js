@@ -9,8 +9,9 @@ import {
   RouterProvider
 } from 'react-router-dom';
 
-import Test from './component/login/Login_root.js';
+//import Test from './component/login/Login_root.js';
 
+import Test from './component/forms/create_new_event.js'
 
 //testa den här i
 const router = createBrowserRouter([
