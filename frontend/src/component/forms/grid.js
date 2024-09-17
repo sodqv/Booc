@@ -10,6 +10,8 @@ import BasicDatePicker from "./date_picker";
 import TimePickerValue from "./time_picker";
 import MultilineTextField from "./multiline_text_field";
 import ToggleButtons from "./toggle_buttons";
+import CheckboxesRepeat from "./checkboxes_repeat";
+import CheckboxesVisibility from "./checkboxes_visibility";
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -76,6 +78,20 @@ export default function BasicGrid() {
             <Item>
                 <Typography sx = {{textAlign: 'left'}}>Color</Typography>
                 <ToggleButtons />
+            </Item>
+        </Grid>
+
+        <Grid sx={{ display: 'grid', width: '695px', gridTemplateColumns: 'repeat(1, 1fr)'}}>
+            <Item>
+                <Typography sx = {{textAlign: 'left'}}>Repeat</Typography>
+                <CheckboxesRepeat />
+            </Item>
+        </Grid>
+
+        <Grid sx={{ display: 'grid', width: '695px', gridTemplateColumns: 'repeat(1, 1fr)'}}>
+            <Item>
+                <Typography sx = {{textAlign: 'left'}}>Visibility</Typography>
+                <CheckboxesVisibility />
             </Item>
         </Grid>
 
