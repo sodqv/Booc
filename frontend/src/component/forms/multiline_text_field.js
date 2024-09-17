@@ -6,7 +6,7 @@ export default function MultilineTextField() {
   return (
     <Box
       component="form"
-      sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' } }}
+      sx={{ '& .MuiTextField-root': { m: 1, width: '95%' } }}
       noValidate
       autoComplete="off"
     >
@@ -15,7 +15,7 @@ export default function MultilineTextField() {
           id="outlined-multiline-static"
           multiline
           rows={4}
-          defaultValue="Default Value"
+          defaultValue=""
         />
       </div>
     </Box>
