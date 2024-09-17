@@ -6,11 +6,11 @@ export default function BasicTextField() {
   return (
     <Box
       component="form"
-      sx={{ '& > :not(style)': { m: 1, width: '25ch' } }}
+      sx={{ '& > :not(style)': { m: 1, width: '95%' } }}
       noValidate
       autoComplete="off"
     >
-      <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+      <TextField id="outlined-basic" variant="outlined"  />
     </Box>
   );
 }

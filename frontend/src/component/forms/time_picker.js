@@ -5,7 +5,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 
-export default function TimePickerValue() {
+export default function TimePickerValue({ label }) {
   const [value, setValue] = React.useState(dayjs('2022-04-17T15:30'));
 
   return (
@@ -13,7 +13,7 @@ export default function TimePickerValue() {
       <DemoContainer components={['TimePicker', 'TimePicker']}>
 
         <TimePicker
-          label="Controlled picker"
+          label={label}
           value={value}
           onChange={(newValue) => setValue(newValue)}
         />
