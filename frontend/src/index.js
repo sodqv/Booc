@@ -10,7 +10,7 @@ import {
 } from 'react-router-dom';
 
 
-import Test from './component/profile/profile.js'
+import Test from './component/feed/Feed.js'
 
 //testa den här i
 const router = createBrowserRouter([
