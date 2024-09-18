@@ -20,13 +20,20 @@ function createData(
 }
 
 const rows = [
-  createData('Meeting', 'Dentist', '', '', '', 'Party', ''),
-  createData('Meeting', 'Dentist', '', '', '', 'Party', ''),
-  createData('Meeting', 'Dentist', '', '', '', 'Party', ''),
-  createData('Meeting', 'Dentist', '', '', '', 'Party', ''),
-  createData('Meeting', 'Dentist', '', '', '', 'Party', ''),
-  createData('Meeting', 'Dentist', '', '', '', 'Party', ''),
-  createData('Meeting', 'Dentist', '', '', '', 'Party', '')
+  createData('Meeting', 'Dentist', '', '', '', 'Dinner'),
+  createData('', 'Meeting', '', '', '', '', ''),
+  createData('Meeting', '', '', 'Meeting', '', '', ''),
+  createData('Meeting', '', '', '', '', '', ''),
+  createData('', '', '', '', 'Hairdresser', '', ''),
+  createData('', 'Workout', '', 'Meeting', '', 'Party'),
+  createData('', '', '', '', '', 'Party'),
+  createData('Meeting', 'Dentist', '', '', '', 'Dinner'),
+  createData('Meeting', 'Dentist', '', '', '', 'Dinner'),
+  createData('Meeting', 'Dentist', '', '', '', 'Dinner'),
+  createData('Meeting', 'Dentist', '', '', '', 'Dinner'),
+  createData('Meeting', 'Dentist', '', '', '', 'Dinner'),
+  createData('Meeting', 'Dentist', '', '', '', 'Dinner'),
+  createData('Meeting', 'Dentist', '', '', '', 'Dinner')
 ];
 
 export default function BasicTable() {
@@ -35,13 +42,13 @@ export default function BasicTable() {
       <Table sx={{ minWidth: 400 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell align="center">Monday</TableCell>
-            <TableCell align="center">Tuesday</TableCell>
-            <TableCell align="center">Wednesday</TableCell>
-            <TableCell align="center">Thursday</TableCell>
-            <TableCell align="center">Friday</TableCell>
-            <TableCell align="center">Saturday</TableCell>
-            <TableCell align="center">Sunday</TableCell>
+            <TableCell align="center" sx={{ fontWeight: 'bold', padding: '2px', fontSize: '11px' }}>Monday</TableCell>
+            <TableCell align="center" sx={{ fontWeight: 'bold', padding: '2px', fontSize: '11px' }}>Tuesday</TableCell>
+            <TableCell align="center" sx={{ fontWeight: 'bold', padding: '2px', fontSize: '11px' }}>Wednesday</TableCell>
+            <TableCell align="center" sx={{ fontWeight: 'bold', padding: '2px', fontSize: '11px' }}>Thursday</TableCell>
+            <TableCell align="center" sx={{ fontWeight: 'bold', padding: '2px', fontSize: '11px' }}>Friday</TableCell>
+            <TableCell align="center" sx={{ fontWeight: 'bold', padding: '2px', fontSize: '11px' }}>Saturday</TableCell>
+            <TableCell align="center" sx={{ fontWeight: 'bold', padding: '2px', fontSize: '11px' }}>Sunday</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -53,13 +60,13 @@ export default function BasicTable() {
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>
-              <TableCell align="center">{row.monday}</TableCell>
-              <TableCell align="center">{row.tuesday}</TableCell>
-              <TableCell align="center">{row.wednesday}</TableCell>
-              <TableCell align="center">{row.thursday}</TableCell>
-              <TableCell align="center">{row.friday}</TableCell>
-              <TableCell align="center">{row.saturday}</TableCell>
-              <TableCell align="center">{row.sunday}</TableCell>
+              <TableCell align="center" sx={{ padding: '1px', fontSize: '7px',   }}>{row.monday}</TableCell>
+              <TableCell align="center" sx={{ padding: '1px', fontSize: '7px',   }}>{row.tuesday}</TableCell>
+              <TableCell align="center" sx={{ padding: '1px', fontSize: '7px',   }}>{row.wednesday}</TableCell>
+              <TableCell align="center" sx={{ padding: '1px', fontSize: '7px',  }}>{row.thursday}</TableCell>
+              <TableCell align="center" sx={{ padding: '1px', fontSize: '7px',  }}>{row.friday}</TableCell>
+              <TableCell align="center" sx={{ padding: '1px', fontSize: '7px',  }}>{row.saturday}</TableCell>
+              <TableCell align="center" sx={{ padding: '1px', fontSize: '7px', }}>{row.sunday}</TableCell>
             </TableRow>
           ))}
         </TableBody>

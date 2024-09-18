@@ -4,20 +4,13 @@ import './index.css';
 import reportWebVitals from './reportWebVitals.js';
 import Profile from './component/profile/profile.js';
 
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <Profile />  {/* Render the Profile component */}
-  </React.StrictMode>
-);
-
-/*import {
+/*import reportWebVitals from './reportWebVitals.js';
+import {
   createBrowserRouter,
   RouterProvider
 } from 'react-router-dom';
 
-import Test from './component/login/Login_root.js';
+import Test from './component/profile/profile.js';
 
 const router = createBrowserRouter([
   {
@@ -26,6 +19,15 @@ const router = createBrowserRouter([
   }
 ]);
 */
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <Profile />  {/* Render the Profile component */}
+    </React.StrictMode>
+  );
+  
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

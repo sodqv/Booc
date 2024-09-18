@@ -3,6 +3,7 @@ import { Box, Typography } from '@mui/material';
 import ImageAvatars from './avatars'; 
 import SimpleContainer from './header'; 
 import BasicTable from './table'; 
+import TimeTable from './timeTable';
 
 export default function Profile() {
     return (
@@ -33,7 +34,7 @@ export default function Profile() {
     >     
     {/* Left text */}
     <Typography 
-        variant="h6"
+        variant="h6" 
         sx={{
             marginRight: '1020px',
             marginTop: '10px',
@@ -79,20 +80,46 @@ export default function Profile() {
 
       {/* Box for BasicTable positioned below the header */}
       <Box
-        sx={{
-          position: 'fixed',  // Fixed positioning
-          top: '75px',          // Positioned below the header (adjust as needed)
-          right: '0px',          // Fixed position with some margin from the left
-          width: '1000px',       // Fixed width for the table container
-          height: '600px',       // Fixed height for the table container
-          backgroundColor: '#D1C481',  // Background color (adjust as needed)
-          padding: 3,            // Padding inside the container
-          boxSizing: 'border-box', // Ensure padding is included in width/height
-          overflowY: 'auto',     // Scroll if content overflows vertically
-        }}
-      >
-        <BasicTable />
-      </Box>
+            sx={{
+                position: 'fixed',  // Fixed positioning
+                top: '75px',        // Positioned below the header
+                right: '0px',       // Fixed position with some margin from the left
+                width: '1000px',    // Fixed width for the container
+                height: '600px',    // Fixed height for the container
+                backgroundColor: '#D1C481', // Background color
+                padding: 1.5,
+                boxSizing: 'border-box', // Ensure padding is included in width/height
+                overflow: 'hidden', // Hide overflow to control scroll
+                display: 'flex',   // Use flexbox for layout
+                flexDirection: 'row', // Arrange items in a row
+            }}
+        >
+          {/* Container for TimeTable*/}
+          <Box
+                sx={{
+                    width: '5%',    // Adjust width as needed
+                    height: '100%',
+                    padding: 1,
+                    paddingTop: 3,
+                    paddingRight: 0,
+                    overflowY: 'auto', // Scroll if content overflows vertically
+                }}
+            >
+                <TimeTable />
+            </Box>
+            {/* Container for BasicTable */}
+            <Box
+                sx={{
+                    width: '95%',    // Adjust width as needed
+                    height: '100%',
+                    padding: 1,
+                    paddingLeft: 0,
+                    overflowY: 'auto', // Scroll if content overflows vertically
+                }}
+            >
+                <BasicTable />
+            </Box>
+        </Box>
     </Box>
   );
 }
