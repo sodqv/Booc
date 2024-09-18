@@ -31,7 +31,7 @@ const router = createBrowserRouter([
 ]);
 
 //testa den här i
-const Testrouter = createBrowserRouter([
+const testrouter = createBrowserRouter([
   {
     path: "/",
     element: <Test />,
