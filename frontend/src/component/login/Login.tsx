@@ -1,12 +1,16 @@
 import * as React from 'react';
 import Textfield, {TextFieldPassword} from '../TextField.tsx';
-import {Link} from "react-router-dom";
+import {Link, redirect, useNavigate} from "react-router-dom";
 
-interface LoginPageProps{
-    clickhandler: () => void;
-}
+export default function Login_page(){
+    let navigate = useNavigate();
 
-export default function Login_page({clickhandler} : LoginPageProps){
+    const changeToSignUpPage = () => {
+        let path = "/SignUp";
+        navigate(path);
+    }
+
+
     return(
         <div className='Page'>
             <div className='Intro_Logo'>
@@ -22,7 +26,7 @@ export default function Login_page({clickhandler} : LoginPageProps){
                 <Link to=''>Reset password</Link>
             </div>
             <div className='PageButtons'>
-                <button className='leftButton' onClick={clickhandler}>← Sign up</button>
+                <button className='leftButton' onClick={changeToSignUpPage}>← Sign up</button>
                 <button className='rightButton'>Login →</button>
             </div>
         </div>     

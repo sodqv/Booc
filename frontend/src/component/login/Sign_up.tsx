@@ -1,14 +1,16 @@
 import * as React from 'react';
 import Textfield, {TextFieldPassword} from '../TextField.tsx';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 //import QualityBtn from '../ButtonComponent.tsx'
 import { Button } from '@mui/material';
 
-interface signUpPageProps{
-    clickhandler: () => void;
-}
+export default function Sign_up_page(){
+    let navigate = useNavigate();
+    const changeToLoginPage = () => {
+        let path = "/";
+        navigate(path);
+    }
 
-export default function Sign_up_page({clickhandler} : signUpPageProps){
     return(
         <div className='Page' id='SignUpPage'>
             <div className='SignUpText'>
@@ -24,7 +26,7 @@ export default function Sign_up_page({clickhandler} : signUpPageProps){
             </div>
             <div className='PageButtons'>
                 <button className='leftButton' >← Complete sign up</button>
-                <button className='rightButton' onClick={clickhandler}>Login page→</button>
+                <button className='rightButton' onClick={changeToLoginPage}>Login page→</button>
             </div>
         </div>
     )
