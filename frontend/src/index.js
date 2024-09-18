@@ -10,7 +10,7 @@ import {
 } from 'react-router-dom';
 
 
-import Test from './component/forms/create_new_event.js'
+import Test from './component/profile/profile.js'
 
 //testa den här i
 const router = createBrowserRouter([
