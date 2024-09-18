@@ -19,25 +19,6 @@ export default function ToggleButtons() {
       onChange={handleAlignment}
       aria-label="color selection"
     >
-        
-      <ToggleButton value="yellow"
-      sx = {{
-        width: 28,
-        height: 28,
-        borderRadius: '50%',
-        border: 'none',
-        minWidth: 0,
-        padding: 0,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: 'transparent',
-        '&:hover': {backgroundColor: 'transparent', border: 'none'},
-        '&&. Mui-selected': {backgroundColor: 'transparent', border: 'none'}
-      }}>
-        <CircleIcon sx = {{ color: 'yellow' }}/>
-      </ToggleButton>
-
 
       <ToggleButton value="orange"
             sx = {{
@@ -75,6 +56,65 @@ export default function ToggleButtons() {
               }}>
         <CircleIcon sx = {{ color: 'red' }}/>
       </ToggleButton>
+
+
+      <ToggleButton value="green"
+            sx = {{
+                width: 28,
+                height: 28,
+                borderRadius: '50%',
+                border: 'none',
+                minWidth: 0,
+                padding: 0,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: 'transparent',
+                '&:hover': {backgroundColor: 'transparent', border: 'none'},
+                '&:Mui-selected': {backgroundColor: 'transparent', border: 'none'}
+              }}>
+        <CircleIcon sx = {{ color: 'green' }}/>
+      </ToggleButton>
+
+
+      <ToggleButton value="blue"
+            sx = {{
+                width: 28,
+                height: 28,
+                borderRadius: '50%',
+                border: 'none',
+                minWidth: 0,
+                padding: 0,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: 'transparent',
+                '&:hover': {backgroundColor: 'transparent', border: 'none'},
+                '&:Mui-selected': {backgroundColor: 'transparent', border: 'none'}
+              }}>
+        <CircleIcon sx = {{ color: 'blue' }}/>
+      </ToggleButton>
+
+
+      <ToggleButton value="purple"
+            sx = {{
+                width: 28,
+                height: 28,
+                borderRadius: '50%',
+                border: 'none',
+                minWidth: 0,
+                padding: 0,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: 'transparent',
+                '&:hover': {backgroundColor: 'transparent', border: 'none'},
+                '&:Mui-selected': {backgroundColor: 'transparent', border: 'none'}
+              }}>
+        <CircleIcon sx = {{ color: 'purple' }}/>
+      </ToggleButton>
+
+
 
     </ToggleButtonGroup>
   );

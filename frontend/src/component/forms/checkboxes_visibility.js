@@ -1,30 +1,24 @@
 import * as React from 'react';
-import Checkbox from '@mui/material/Checkbox';
-import FormGroup from '@mui/material/FormGroup';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 
-export default function CheckboxesVisibility() {
+export default function RowRadioButtonsVisibility() {
   return (
-    <FormControl component="fieldset">
-      <FormGroup aria-label="position" row>
+    <FormControl>
+      <FormLabel id="demo-row-radio-buttons-group-label"></FormLabel>
+      <RadioGroup
+        row
+        aria-labelledby="demo-row-radio-buttons-group-label"
+        name="row-radio-buttons-group"
+      >
+        <FormControlLabel value="private" control={<Radio />} label="Private" />
+        <FormControlLabel value="public" control={<Radio />} label="Public" />
 
-        <FormControlLabel
-          value="private"
-          control={<Checkbox />}
-          label="Private"
-          labelPlacement="start"
-        />
-
-        <FormControlLabel
-          value="public"
-          control={<Checkbox />}
-          label="Public"
-          labelPlacement="start"
-        />
-
-      </FormGroup>
+      </RadioGroup>
     </FormControl>
   );
 }
+

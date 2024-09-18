@@ -12,6 +12,8 @@ import MultilineTextField from "./multiline_text_field";
 import ToggleButtons from "./toggle_buttons";
 import CheckboxesRepeat from "./checkboxes_repeat";
 import CheckboxesVisibility from "./checkboxes_visibility";
+import ButtonDirectionStack from "./button_stack";
+import DateTimeDirectionStack from "./date_time_stack";
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -29,69 +31,75 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function BasicGrid() {
   return (
-    <div style={{width: '100%'}}>
+    <div style={{width: '100%', height: '100%'}}>
+
         <Grid sx={{ display: 'grid', columnGap: 10, rowGap: 5, gridTemplateColumns: 'repeat(1, 1fr)'}}>
             <Item>
-                <Typography textAlign={'center'}>Create New Event</Typography>
+                <Typography textAlign={'center'} sx={{ fontWeight: 'bold', fontSize: 20, marginTop: -2 }}>Create New Event</Typography>
             </Item>
         </Grid>
 
+
         <Grid sx={{ display: 'grid', width: '695px', gridTemplateColumns: 'repeat(1, 1fr)'}}>
             <Item>
-                <Typography sx = {{textAlign: 'left'}}>Title</Typography>
+                <Typography sx = {{ textAlign: 'left', fontWeight: 'bold' }}>Title</Typography>
                 <BasicTextField />
             </Item>
         </Grid>
+
 
         <Item>
             <Grid sx={{ display: 'grid', columnGap: 1, gridTemplateColumns: 'repeat(3, 1fr)'}}>
-                <Item>
-                    <Typography sx = {{textAlign: 'left'}}>Date</Typography>
-                    <BasicDatePicker />
-                </Item>
-
-                <Item sx = {{marginTop: '25px'}}>
-                    <TimePickerValue label = "From"/>
-                </Item>
-
-                <Item sx = {{marginTop: '25px'}}>
-                    <TimePickerValue label = "To" />
-                </Item>
+                <DateTimeDirectionStack />
             </Grid>
         </Item>
 
+
         <Grid sx={{ display: 'grid', width: '695px', gridTemplateColumns: 'repeat(1, 1fr)'}}>
             <Item>
-                <Typography sx = {{textAlign: 'left'}}>Location</Typography>
+                <Typography sx = {{ textAlign: 'left', fontWeight: 'bold' }}>Location</Typography>
                 <BasicTextField />
             </Item>
         </Grid>
 
+
         <Grid sx={{ display: 'grid', width: '695px', gridTemplateColumns: 'repeat(1, 1fr)'}}>
             <Item>
-                <Typography sx = {{textAlign: 'left'}}>Description</Typography>
+                <Typography sx = {{ textAlign: 'left', fontWeight: 'bold' }}>Description</Typography>
                 <MultilineTextField />
             </Item>
         </Grid>
 
+
         <Grid sx={{ display: 'grid', width: '695px', gridTemplateColumns: 'repeat(1, 1fr)'}}>
             <Item>
-                <Typography sx = {{textAlign: 'left'}}>Color</Typography>
+                <Typography sx = {{ textAlign: 'left', fontWeight: 'bold' }}>Color</Typography>
                 <ToggleButtons />
             </Item>
         </Grid>
 
+
         <Grid sx={{ display: 'grid', width: '695px', gridTemplateColumns: 'repeat(1, 1fr)'}}>
             <Item>
-                <Typography sx = {{textAlign: 'left'}}>Repeat</Typography>
+                <Typography sx = {{ textAlign: 'left', fontWeight: 'bold' }}>Repeat</Typography>
                 <CheckboxesRepeat />
             </Item>
         </Grid>
 
+
         <Grid sx={{ display: 'grid', width: '695px', gridTemplateColumns: 'repeat(1, 1fr)'}}>
             <Item>
-                <Typography sx = {{textAlign: 'left'}}>Visibility</Typography>
+                <Typography sx = {{ textAlign: 'left', fontWeight: 'bold' }}>Visibility</Typography>
                 <CheckboxesVisibility />
+            </Item>
+        </Grid>
+
+
+        <Grid sx={{ display: 'grid', width: '695px', gridTemplateColumns: 'repeat(1, 1fr)'}}>
+            <Item>
+                <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                    <ButtonDirectionStack />
+                </Box>
             </Item>
         </Grid>
 
