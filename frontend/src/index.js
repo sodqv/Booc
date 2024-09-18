@@ -1,26 +1,42 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-
-
+import App from './App.js';
 import reportWebVitals from './reportWebVitals.js';
 import {
   createBrowserRouter,
   RouterProvider
 } from 'react-router-dom';
-
-
+import LoginRoot from './component/login/Login_root.js';
+import Login from "./component/login/Login.js"
+import SignUp from "./component/login/Sign_up.js"
 import Test from './component/feed/Feed.js'
 
-//testa den här i
 const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <LoginRoot />,
+    children:[
+      {
+        index: true,
+        //path:"Login",
+        element: <Login />,
+      },
+      {
+        path:"SignUp",
+        element: <SignUp />,
+      }
+    ],
+  }
+]);
+
+//testa den här i
+const Testrouter = createBrowserRouter([
   {
     path: "/",
     element: <Test />,
   }
 ]);
-
-
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
