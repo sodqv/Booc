@@ -10,6 +10,11 @@ export default function Login_page(){
         navigate(path);
     }
 
+    const changeToProfile = () => {
+        let path = "/Profile";
+        navigate(path);
+    }
+
 
     return(
         <div className='Page'>
@@ -27,7 +32,7 @@ export default function Login_page(){
             </div>
             <div className='PageButtons'>
                 <button className='leftButton' onClick={changeToSignUpPage}>← Sign up</button>
-                <button className='rightButton'>Login →</button>
+                <button className='rightButton' onClick={changeToProfile}>Login →</button>
             </div>
         </div>     
     )

@@ -10,6 +10,8 @@ import {
 import LoginRoot from './component/login/Login_root.js';
 import Login from "./component/login/Login.js"
 import SignUp from "./component/login/Sign_up.js"
+import Profile from "./component/profile/Profile.js"
+import Feed from "./component/feed/Feed.js"
 import Test from './component/feed/Feed.js'
 
 const router = createBrowserRouter([
@@ -27,6 +29,14 @@ const router = createBrowserRouter([
         element: <SignUp />,
       }
     ],
+  },
+  {
+    path: "/Profile",
+    element: <Profile />
+  },
+  {
+    path: "/Feed",
+    element: <Feed />
   }
 ]);
 
