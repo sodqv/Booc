@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App.tsx';
-import reportWebVitals from './reportWebVitals.tsx';
+import App from './App.js';
+import reportWebVitals from './reportWebVitals.js';
 import {
   createBrowserRouter,
   RouterProvider
 } from 'react-router-dom';
 
-import LoginRoot from './component/login/Login_root.tsx';
-import Login from "./component/login/Login.tsx"
-import SignUp from "./component/login/Sign_up.tsx"
+import LoginRoot from './component/login/Login_root.js';
+import Login from "./component/login/Login.js"
+import SignUp from "./component/login/Sign_up.js"
 
 const router = createBrowserRouter([
   {

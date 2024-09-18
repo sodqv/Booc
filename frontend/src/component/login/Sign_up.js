@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Textfield, {TextFieldPassword} from '../TextField.tsx';
+import Textfield, {TextFieldPassword} from '../TextField.js';
 import {Link, useNavigate} from "react-router-dom";
 //import QualityBtn from '../ButtonComponent.tsx'
 import { Button } from '@mui/material';

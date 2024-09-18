@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Textfield, {TextFieldPassword} from '../TextField.tsx';
+import Textfield, {TextFieldPassword} from '../TextField.js';
 import {Link, redirect, useNavigate} from "react-router-dom";
 
 export default function Login_page(){

@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
-import Textfield, {TextFieldPassword} from '../TextField.tsx';
+import Textfield, {TextFieldPassword} from '../TextField.js';
 import {Link, Outlet, useLocation} from "react-router-dom";
-import Login_page from './Login.tsx';
-import Sign_up_page from './Sign_up.tsx';
 
 export default function Root(){
     const location = useLocation();
