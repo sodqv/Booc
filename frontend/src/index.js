@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App.js'
+
 
 import reportWebVitals from './reportWebVitals.js';
 import {
@@ -9,10 +9,8 @@ import {
   RouterProvider
 } from 'react-router-dom';
 
-//import Test from './component/login/Login_root.js';
 
 import Test from './component/forms/create_new_event.js'
-//import Test from './component/forms/container.js';
 
 //testa den här i
 const router = createBrowserRouter([

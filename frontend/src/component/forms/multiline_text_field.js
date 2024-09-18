@@ -16,6 +16,7 @@ export default function MultilineTextField() {
           multiline
           rows={4}
           defaultValue=""
+          sx={{ backgroundColor: '#ffffffff' }}
         />
       </div>
     </Box>

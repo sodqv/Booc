@@ -6,8 +6,6 @@ import Grid from '@mui/material/Grid2';
 
 import BasicTextField from "./text_field";
 import { Typography } from '@mui/material';
-import BasicDatePicker from "./date_picker";
-import TimePickerValue from "./time_picker";
 import MultilineTextField from "./multiline_text_field";
 import ToggleButtons from "./toggle_buttons";
 import CheckboxesRepeat from "./checkboxes_repeat";
@@ -17,7 +15,7 @@ import DateTimeDirectionStack from "./date_time_stack";
 
 
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: '#fff',
+  backgroundColor: '#f5ebe0',
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: 'left',
@@ -42,14 +40,14 @@ export default function BasicGrid() {
 
         <Grid sx={{ display: 'grid', width: '695px', gridTemplateColumns: 'repeat(1, 1fr)'}}>
             <Item>
-                <Typography sx = {{ textAlign: 'left', fontWeight: 'bold' }}>Title</Typography>
+                <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536' }}>Title</Typography>
                 <BasicTextField />
             </Item>
         </Grid>
 
 
         <Item>
-            <Grid sx={{ display: 'grid', columnGap: 1, gridTemplateColumns: 'repeat(3, 1fr)'}}>
+            <Grid sx={{ display: 'grid', columnGap: 1, gridTemplateColumns: 'repeat(3, 1fr)' }}>
                 <DateTimeDirectionStack />
             </Grid>
         </Item>
@@ -57,7 +55,7 @@ export default function BasicGrid() {
 
         <Grid sx={{ display: 'grid', width: '695px', gridTemplateColumns: 'repeat(1, 1fr)'}}>
             <Item>
-                <Typography sx = {{ textAlign: 'left', fontWeight: 'bold' }}>Location</Typography>
+                <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536' }}>Location</Typography>
                 <BasicTextField />
             </Item>
         </Grid>
@@ -65,7 +63,7 @@ export default function BasicGrid() {
 
         <Grid sx={{ display: 'grid', width: '695px', gridTemplateColumns: 'repeat(1, 1fr)'}}>
             <Item>
-                <Typography sx = {{ textAlign: 'left', fontWeight: 'bold' }}>Description</Typography>
+                <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536' }}>Description</Typography>
                 <MultilineTextField />
             </Item>
         </Grid>
@@ -73,7 +71,7 @@ export default function BasicGrid() {
 
         <Grid sx={{ display: 'grid', width: '695px', gridTemplateColumns: 'repeat(1, 1fr)'}}>
             <Item>
-                <Typography sx = {{ textAlign: 'left', fontWeight: 'bold' }}>Color</Typography>
+                <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536' }}>Color</Typography>
                 <ToggleButtons />
             </Item>
         </Grid>
@@ -81,7 +79,7 @@ export default function BasicGrid() {
 
         <Grid sx={{ display: 'grid', width: '695px', gridTemplateColumns: 'repeat(1, 1fr)'}}>
             <Item>
-                <Typography sx = {{ textAlign: 'left', fontWeight: 'bold' }}>Repeat</Typography>
+                <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536' }}>Repeat</Typography>
                 <CheckboxesRepeat />
             </Item>
         </Grid>
@@ -89,7 +87,7 @@ export default function BasicGrid() {
 
         <Grid sx={{ display: 'grid', width: '695px', gridTemplateColumns: 'repeat(1, 1fr)'}}>
             <Item>
-                <Typography sx = {{ textAlign: 'left', fontWeight: 'bold' }}>Visibility</Typography>
+                <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536' }}>Visibility</Typography>
                 <CheckboxesVisibility />
             </Item>
         </Grid>

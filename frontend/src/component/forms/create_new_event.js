@@ -1,14 +1,8 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 
-
-import BasicTextField from "./text_field";
-import BasicDatePicker from "./date_picker";
-import TimePickerValue from "./time_picker";
-import MultilineTextField from "./multiline_text_field";
 import BasicGrid from "./grid";
 
 const style = {
@@ -19,7 +13,7 @@ const style = {
   width: '90vw',
   maxWidth: '800px',
   height: '80vh',
-  bgcolor: 'background.paper',
+  bgcolor: '#f5ebe0',
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
@@ -45,8 +39,8 @@ export default function BasicModal() {
       >
         <Box sx={style}>
 
-
           <BasicGrid />
+
         </Box>
       </Modal>
     </div>

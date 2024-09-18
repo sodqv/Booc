@@ -3,12 +3,11 @@ import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
-import BasicButtons from "./button";
 import TimePickerValue from "./time_picker";
 import BasicDatePicker from "./date_picker";
 
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: '#fff',
+  backgroundColor: 'f5ebe0',
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: 'center',
@@ -26,7 +25,7 @@ export default function DateTimeDirectionStack() {
       <Stack direction="row" spacing={1} alignItems="flex-start" >
 
         <Item>
-            <Typography sx = {{ textAlign: 'left', fontWeight: 'bold' }}>Date</Typography>
+            <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536' }}>Date</Typography>
             <BasicDatePicker />
         </Item>
 

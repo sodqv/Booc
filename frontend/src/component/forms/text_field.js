@@ -10,7 +10,7 @@ export default function BasicTextField() {
       noValidate
       autoComplete="off"
     >
-      <TextField id="outlined-basic" variant="outlined"  />
+      <TextField id="outlined-basic" variant="outlined"  sx={{ backgroundColor: '#ffffffff' }} />
     </Box>
   );
 }

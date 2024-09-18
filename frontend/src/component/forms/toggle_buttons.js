@@ -3,7 +3,6 @@ import * as React from 'react';
 import CircleIcon from '@mui/icons-material/Circle';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import { yellow } from '@mui/material/colors';
 
 export default function ToggleButtons() {
   const [alignment, setAlignment] = React.useState('left');
