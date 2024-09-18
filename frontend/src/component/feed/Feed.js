@@ -8,15 +8,16 @@ import CheckboxListSecondary from './list';
 import LetterAvatars from './avatar';
 // Self created
 import Meating from './meating';
+import Header from './header';
 
 function Feed() {
   return (
     <div className="Feed">
-        
-        <div className="header">
+        <Header/>
+        {/* <div className="header">
             <h1>Booc</h1>
             <div className='avatar'><LetterAvatars/></div>
-        </div>
+        </div> */}
 
         <div className="grid-container">
             <div className="contacts">
