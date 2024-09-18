@@ -28,7 +28,8 @@ chrome-user-data
 *.swo
 
 
-
+compiled/
+node_modules/
 
 
 # dependencies
@@ -85,3 +86,6 @@ yarn-error.log*
 
 *.old
 *.pack
+
+compiled/
+node_modules/

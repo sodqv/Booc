@@ -7,10 +7,10 @@ import {
   createBrowserRouter,
   RouterProvider
 } from 'react-router-dom';
-
 import LoginRoot from './component/login/Login_root.js';
 import Login from "./component/login/Login.js"
 import SignUp from "./component/login/Sign_up.js"
+import Test from './component/feed/Feed.js'
 
 const router = createBrowserRouter([
   {
@@ -29,6 +29,15 @@ const router = createBrowserRouter([
     ],
   }
 ]);
+
+//testa den här i
+const Testrouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <Test />,
+  }
+]);
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

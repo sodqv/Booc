@@ -18,8 +18,5 @@ export default function Root(){
                 <div className='Base'/>
             </div>
         </div>
-       
-
-        
     );
 }

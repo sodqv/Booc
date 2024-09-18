@@ -1,0 +1,95 @@
+*{
+    margin: 0px;
+}
+h2 {
+    font-size: 40px;
+    margin-bottom: 10px;
+    text-decoration: underline; 
+}
+/* Make site cover the entire page */
+body{
+    height: 100%;
+}
+.Feed{
+    height: 100vh;
+}
+div{
+    box-sizing: border-box;
+}
+
+/* Header */
+.header {
+    background-color: rgba(198, 197, 255, 0.8);
+    padding: 10px;
+    height: 7%;
+    border-bottom: 1px solid black;
+    display: relative;
+}
+.header > .avatar{
+    position: absolute;
+    top: 10px;
+    right: 15px;
+}
+
+/* Grid layout */
+.grid-container {
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+    background-color: aqua;
+    height: 93%;
+}
+.grid-container > div {
+    background-color: rgba(255, 197, 197);
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 30px;
+}
+
+/* Left grid */
+.list {
+    height: 50%;
+    text-align: left;
+    position: relative;
+}
+.list > h2 {
+    margin-bottom: 10px;
+    text-decoration: underline;
+}
+.list > button {
+    position: absolute;
+    top: 10px;
+    right: 0px;
+    border-radius: 20px;
+    font-size: 30px;
+    padding: 5px;
+    height: 40px;
+}
+
+/* Middle grid */
+.meatings {
+    border-right: 1px solid;
+    border-left: 1px solid;
+}
+.meating {
+    border: 1px solid black;
+    text-align: left;
+    margin: 20px 0;
+    padding-left: 10px;
+}
+.meating > h3{
+    width: fit-content;
+}
+
+/* Styling scrolbar */
+::-webkit-scrollbar { /* width */
+    width: 7px;
+}
+::-webkit-scrollbar-track { /* Track */
+    background: #f1f1f1; 
+}
+::-webkit-scrollbar-thumb { /* Handle */
+    background: #888; 
+}
+::-webkit-scrollbar-thumb:hover { /* Handle on hover */
+    background: #555; 
+}
