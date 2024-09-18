@@ -5,22 +5,14 @@ import Stack from '@mui/material/Stack';
 
 export default function ImageAvatars() {
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'right',
-        alignItems: 'right',
-        height: '80vh', // Full viewport height
-      }}
-    >
+    <Box>
       <Stack direction="row" spacing={3}>
         <Avatar 
           alt="Avatar" 
           src="/static/images/avatars/image.png" 
-          sx={{ width: 60, height: 60 }}
-        />
-        
+          sx={{ width: 40, height: 40 }}
+        /> 
       </Stack>
-      </Box>
+    </Box>
   );
 }

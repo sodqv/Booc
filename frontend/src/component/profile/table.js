@@ -39,7 +39,7 @@ const rows = [
 export default function BasicTable() {
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 400 }} aria-label="simple table">
+      <Table sx={{ minWidth: 400, bgcolor: '#f5ebe0' }} aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell align="center" sx={{ fontWeight: 'bold', padding: '2px', fontSize: '11px' }}>Monday</TableCell>

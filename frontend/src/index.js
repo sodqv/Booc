@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals.js';
 import Profile from './component/profile/profile.js';
-
-/*import reportWebVitals from './reportWebVitals.js';
+/*
 import {
   createBrowserRouter,
   RouterProvider
@@ -17,16 +16,13 @@ const router = createBrowserRouter([
     path: "/",
     element: <Test />,
   }
-]);
-*/
+]); */
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <Profile />  {/* Render the Profile component */}
-    </React.StrictMode>
-  );
-  
+    <Profile />
+);
+
 
 
 // If you want to start measuring performance in your app, pass a function
