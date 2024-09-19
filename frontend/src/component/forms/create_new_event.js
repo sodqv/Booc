@@ -9,9 +9,9 @@ import Grid from '@mui/material/Grid2';
 import BasicTextField from "./text_field";
 import { Typography } from '@mui/material';
 import MultilineTextField from "./multiline_text_field";
-import ToggleButtons from "./toggle_buttons";
-import CheckboxesRepeat from "./checkboxes_repeat";
-import CheckboxesVisibility from "./checkboxes_visibility";
+import ToggleButtons from "./color_picker";
+import RepeatCheckboxes from "./repeat_checkboxes";
+import VisibilityPicker from "./visibility_picker";
 import ButtonDirectionStack from "./button_stack";
 import BasicDatePicker from "./date_picker";
 import BasicTimePicker from "./time_picker";
@@ -132,7 +132,7 @@ export default function BasicModal() {
             <Grid sx={{ display: 'grid', width: '100%', gridTemplateColumns: 'repeat(1, 1fr)'}}>
                 <Item>
                     <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536' }}>Repeat</Typography>
-                    <CheckboxesRepeat />
+                    <RepeatCheckboxes />
                 </Item>
             </Grid>
 
@@ -141,7 +141,7 @@ export default function BasicModal() {
             <Grid sx={{ display: 'grid', width: '100%', gridTemplateColumns: 'repeat(1, 1fr)'}}>
                 <Item>
                     <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536' }}>Visibility</Typography>
-                    <CheckboxesVisibility />
+                    <VisibilityPicker />
                 </Item>
             </Grid>
 
