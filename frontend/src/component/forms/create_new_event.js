@@ -13,7 +13,8 @@ import ToggleButtons from "./toggle_buttons";
 import CheckboxesRepeat from "./checkboxes_repeat";
 import CheckboxesVisibility from "./checkboxes_visibility";
 import ButtonDirectionStack from "./button_stack";
-import DateTimeDirectionStack from "./date_time_stack";
+import BasicDatePicker from "./date_picker";
+import BasicTimePicker from "./time_picker";
 
 
 const style = {
@@ -64,7 +65,7 @@ export default function BasicModal() {
       >
 
         <Box sx={style}>
-          <div style={{width: '100%', height: '100%'}}>
+          <div style={{width: '100%', height: '100%', paddingLeft: '10px'}}>
 
             {/* Header - Create New Event */}
             <Grid sx={{ display: 'grid', columnGap: 10, rowGap: 5, gridTemplateColumns: 'repeat(1, 1fr)'}}>
@@ -75,7 +76,7 @@ export default function BasicModal() {
 
 
             {/* Title */}
-            <Grid sx={{ display: 'grid', width: '695px', gridTemplateColumns: 'repeat(1, 1fr)'}}>
+            <Grid sx={{ display: 'grid', width: '100%', gridTemplateColumns: 'repeat(1, 1fr)'}}>
                 <Item>
                     <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536' }}>Title</Typography>
                     <BasicTextField />
@@ -84,15 +85,24 @@ export default function BasicModal() {
 
 
             {/* Date */}
-            <Item>
-                <Grid sx={{ display: 'grid', columnGap: 1, gridTemplateColumns: 'repeat(3, 1fr)' }}>
-                    <DateTimeDirectionStack />
-                </Grid>
-            </Item>
+            <Grid sx={{ display: 'grid', width: '100%', gridTemplateColumns: 'repeat(1, 1fr)'}}>
+                <Item>
+                    <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536', marginLeft: 0 }}>Date</Typography>
+                </Item>
+            </Grid>
+
+            <Grid sx={{ display: 'grid', columnGap: 1, width: '100%', gridTemplateColumns: 'repeat(3, auto)', paddingLeft: '16px', paddingRight: '30px' }}>
+
+                <BasicDatePicker />
+                <BasicTimePicker  />
+                <BasicTimePicker />
+
+            </Grid>
+ 
 
 
             {/* Location */}
-            <Grid sx={{ display: 'grid', width: '695px', gridTemplateColumns: 'repeat(1, 1fr)'}}>
+            <Grid sx={{ display: 'grid', width: '100%', gridTemplateColumns: 'repeat(1, 1fr)', paddingTop: '15px'}}>
                 <Item>
                     <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536' }}>Location</Typography>
                     <BasicTextField />
@@ -101,7 +111,7 @@ export default function BasicModal() {
 
 
             {/* Description */}
-            <Grid sx={{ display: 'grid', width: '695px', gridTemplateColumns: 'repeat(1, 1fr)'}}>
+            <Grid sx={{ display: 'grid', width: '100%', gridTemplateColumns: 'repeat(1, 1fr)'}}>
                 <Item>
                     <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536' }}>Description</Typography>
                     <MultilineTextField />
@@ -110,7 +120,7 @@ export default function BasicModal() {
 
 
             {/* Color */}
-            <Grid sx={{ display: 'grid', width: '695px', gridTemplateColumns: 'repeat(1, 1fr)'}}>
+            <Grid sx={{ display: 'grid', width: '100%', gridTemplateColumns: 'repeat(1, 1fr)'}}>
                 <Item>
                     <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536' }}>Color</Typography>
                     <ToggleButtons />
@@ -119,7 +129,7 @@ export default function BasicModal() {
 
 
             {/* Repeat */}
-            <Grid sx={{ display: 'grid', width: '695px', gridTemplateColumns: 'repeat(1, 1fr)'}}>
+            <Grid sx={{ display: 'grid', width: '100%', gridTemplateColumns: 'repeat(1, 1fr)'}}>
                 <Item>
                     <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536' }}>Repeat</Typography>
                     <CheckboxesRepeat />
@@ -128,7 +138,7 @@ export default function BasicModal() {
 
 
             {/* Visibility */}
-            <Grid sx={{ display: 'grid', width: '695px', gridTemplateColumns: 'repeat(1, 1fr)'}}>
+            <Grid sx={{ display: 'grid', width: '100%', gridTemplateColumns: 'repeat(1, 1fr)'}}>
                 <Item>
                     <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536' }}>Visibility</Typography>
                     <CheckboxesVisibility />
@@ -137,7 +147,7 @@ export default function BasicModal() {
 
 
             {/* Buttons - Cancel and Create */}
-            <Grid sx={{ display: 'grid', width: '695px', gridTemplateColumns: 'repeat(1, 1fr)'}}>
+            <Grid sx={{ display: 'grid', width: '100%', gridTemplateColumns: 'repeat(1, 1fr)', paddingBottom: '15px'}}>
                 <Item>
                     <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                         <ButtonDirectionStack handleClose={handleClose}/>
