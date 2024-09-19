@@ -13,7 +13,7 @@ code {
 }
 
 .Table {
-  background-color: brown;
+  background-color: #edccb7;
   position: absolute;
   top: 0;
   right: 0;
@@ -26,15 +26,18 @@ code {
 }
 
 .OtherPage {
-  background-color: white;
+  background-color: #f5ebe0;
   width: 17%;
   height: 80%;
+  box-shadow: 10px 10px 10px gray;
 }
 
 .Binder {
-  background-color: black;
+  background-color: #d66536;
   width: 3%;
   height: 80%;
+  box-shadow: 10px 10px 10px gray;
+  border-radius: 3px 3px 3px 3px;
 }
 
 .Intro_Logo {
@@ -52,12 +55,14 @@ code {
 }
 
 .Page {
-  background-color: white;
+  background-color: #f5ebe0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 60%;
   height: 80%;
+  box-shadow: 10px 10px 10px gray;
+  border-radius: 3px 3px 3px 3px;
 }
 
 .Table#SignUpPage{
