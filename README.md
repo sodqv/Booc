@@ -2,8 +2,8 @@
 This is an app where you can create and schedule meetings and events. Don't miss any events by following people and get a notice when someone uploads a new event. Keep track of everything on your personal page.
 
 
-List of members - Group 3
-=======
+Group 3 - List of members
+---------
 Github handle - Firstname Lastname
 
 * Sneakycloud - Eddie Olofsgård
