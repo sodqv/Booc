@@ -4,7 +4,7 @@ import CircleIcon from '@mui/icons-material/Circle';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
-export default function ToggleButtons() {
+export default function ColorPicker() {
   const [alignment, setAlignment] = React.useState('left');
 
   const handleAlignment = (event, newAlignment) => {
@@ -19,6 +19,8 @@ export default function ToggleButtons() {
       aria-label="color selection"
     >
 
+
+      {/* Orange */}
       <ToggleButton value="orange"
             sx = {{
                 width: 28,
@@ -32,12 +34,13 @@ export default function ToggleButtons() {
                 justifyContent: 'center',
                 backgroundColor: 'transparent',
                 '&:hover': {backgroundColor: 'transparent', border: 'none'},
-                '& .Mui-selected': {backgroundColor: 'transparent', border: 'none'}
+                '& .Mui-selected': {backgroundColor: 'transparent', border: 'none'},
               }}>
         <CircleIcon sx = {{ color: 'orange' }}/>
       </ToggleButton>
 
 
+      {/* Red */}
       <ToggleButton value="red"
             sx = {{
                 width: 28,
@@ -57,6 +60,7 @@ export default function ToggleButtons() {
       </ToggleButton>
 
 
+      {/* Green */}
       <ToggleButton value="green"
             sx = {{
                 width: 28,
@@ -76,6 +80,7 @@ export default function ToggleButtons() {
       </ToggleButton>
 
 
+      {/* Blue */}
       <ToggleButton value="blue"
             sx = {{
                 width: 28,
@@ -95,6 +100,7 @@ export default function ToggleButtons() {
       </ToggleButton>
 
 
+      {/* Purple */}
       <ToggleButton value="purple"
             sx = {{
                 width: 28,

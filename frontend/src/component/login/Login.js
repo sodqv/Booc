@@ -23,7 +23,11 @@ export default function Login_page(){
                     <h1>Booc</h1>
                     <p>A new chapter</p>  
                 </div>
-                <img src="TestLogo.png" alt='WeDoNotNeedSleep'/>
+                <img 
+                    src="/assets/free_book_image.png" 
+                    alt='WeDoNotNeedSleep' 
+                    style={{ position: 'relative', width: '150px', height: 'auto', top: '10px', right: '20px' }}
+                />
             </div>
             <div className='LoginFields'>
                 <Textfield content={"Email/Username"}/>
