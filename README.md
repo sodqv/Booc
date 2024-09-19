@@ -33,14 +33,3 @@ Main Entities
 ----------
 users, events, groups
 
-Language
------------
-
-Build system
------------
-
-Project management
-=======
-
-
-
