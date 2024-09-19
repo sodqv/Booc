@@ -2,14 +2,14 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
-import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid2';
+import { styled } from '@mui/material/styles';
+import { Typography } from '@mui/material';
 
 import BasicTextField from "./text_field";
-import { Typography } from '@mui/material';
-import MultilineTextField from "./multiline_text_field";
-import ToggleButtons from "./color_picker";
+import TextFieldMultiline from "./text_field_multiline";
+import ColorPicker from "./color_picker";
 import RepeatCheckboxes from "./repeat_checkboxes";
 import VisibilityPicker from "./visibility_picker";
 import ButtonDirectionStack from "./button_stack";
@@ -67,12 +67,14 @@ export default function BasicModal() {
         <Box sx={style}>
           <div style={{width: '100%', height: '100%', paddingLeft: '10px'}}>
 
+
             {/* Header - Create New Event */}
             <Grid sx={{ display: 'grid', columnGap: 10, rowGap: 5, gridTemplateColumns: 'repeat(1, 1fr)'}}>
                 <Item>
                     <Typography textAlign={'center'} sx={{ fontWeight: 'bold', fontSize: 20, marginTop: -2 }}>Create New Event</Typography>
                 </Item>
             </Grid>
+
 
 
             {/* Title */}
@@ -84,6 +86,7 @@ export default function BasicModal() {
             </Grid>
 
 
+
             {/* Date */}
             <Grid sx={{ display: 'grid', width: '100%', gridTemplateColumns: 'repeat(1, 1fr)'}}>
                 <Item>
@@ -92,11 +95,9 @@ export default function BasicModal() {
             </Grid>
 
             <Grid sx={{ display: 'grid', columnGap: 1, width: '100%', gridTemplateColumns: 'repeat(3, auto)', paddingLeft: '16px', paddingRight: '30px' }}>
-
                 <BasicDatePicker />
                 <BasicTimePicker  />
                 <BasicTimePicker />
-
             </Grid>
  
 
@@ -110,22 +111,25 @@ export default function BasicModal() {
             </Grid>
 
 
+
             {/* Description */}
             <Grid sx={{ display: 'grid', width: '100%', gridTemplateColumns: 'repeat(1, 1fr)'}}>
                 <Item>
                     <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536' }}>Description</Typography>
-                    <MultilineTextField />
+                    <TextFieldMultiline />
                 </Item>
             </Grid>
+
 
 
             {/* Color */}
             <Grid sx={{ display: 'grid', width: '100%', gridTemplateColumns: 'repeat(1, 1fr)'}}>
                 <Item>
                     <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536' }}>Color</Typography>
-                    <ToggleButtons />
+                    <ColorPicker />
                 </Item>
             </Grid>
+
 
 
             {/* Repeat */}
@@ -137,6 +141,7 @@ export default function BasicModal() {
             </Grid>
 
 
+
             {/* Visibility */}
             <Grid sx={{ display: 'grid', width: '100%', gridTemplateColumns: 'repeat(1, 1fr)'}}>
                 <Item>
@@ -144,6 +149,7 @@ export default function BasicModal() {
                     <VisibilityPicker />
                 </Item>
             </Grid>
+
 
 
             {/* Buttons - Cancel and Create */}
@@ -154,6 +160,7 @@ export default function BasicModal() {
                     </Box>
                 </Item>
             </Grid>
+
 
 
           </div>

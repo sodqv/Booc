@@ -9,6 +9,8 @@ export default function RepeatCheckboxes() {
     <FormControl component="fieldset">
       <FormGroup aria-label="position" row >
 
+
+        {/* Never */}
         <FormControlLabel 
           value="never"
           control={<Checkbox />}
@@ -16,33 +18,46 @@ export default function RepeatCheckboxes() {
           labelPlacement="start"
         />
 
-        <FormControlLabel sx={{ paddingLeft: '15px' }}
+
+        {/* Daily */}
+        <FormControlLabel 
+          sx={{ paddingLeft: '15px' }}
           value="daily"
           control={<Checkbox />}
           label="Daily"
           labelPlacement="start"
         />
 
-        <FormControlLabel sx={{ paddingLeft: '15px' }}
+
+        {/* Weekly */}
+        <FormControlLabel 
+          sx={{ paddingLeft: '15px' }}
           value="weekly"
           control={<Checkbox />}
           label="Weekly"
           labelPlacement="start"
         />
 
-        <FormControlLabel sx={{ paddingLeft: '15px' }}
+
+        {/* Monthly */}
+        <FormControlLabel 
+          sx={{ paddingLeft: '15px' }}
           value="monthly"
           control={<Checkbox />}
           label="Monthly"
           labelPlacement="start"
         />
 
-        <FormControlLabel sx={{ paddingLeft: '15px' }}
+
+        {/* Yearly */}
+        <FormControlLabel 
+          sx={{ paddingLeft: '15px' }}
           value="yearly"
           control={<Checkbox />}
           label="Yearly"
           labelPlacement="start"
         />
+
 
       </FormGroup>
     </FormControl>
