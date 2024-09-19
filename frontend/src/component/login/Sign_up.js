@@ -25,8 +25,8 @@ export default function Sign_up_page(){
                 <TextFieldPassword />
             </div>
             <div className='PageButtons'>
-                <button className='leftButton' >← Complete sign up</button>
-                <button className='rightButton' onClick={changeToLoginPage}>Login page→</button>
+                <button className='leftButton' >Complete sign up</button>
+                <button className='rightButton' onClick={changeToLoginPage}>Login page →</button>
             </div>
         </div>
     )

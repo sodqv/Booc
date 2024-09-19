@@ -30,6 +30,7 @@ code {
   width: 17%;
   height: 80%;
   box-shadow: 10px 10px 10px gray;
+  padding: 10px;
 }
 
 .Binder {
@@ -63,6 +64,7 @@ code {
   height: 80%;
   box-shadow: 10px 10px 10px gray;
   border-radius: 3px 3px 3px 3px;
+  padding: 10px;
 }
 
 .Table#SignUpPage{
