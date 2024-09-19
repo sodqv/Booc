@@ -30,7 +30,9 @@ export default function BasicModal() {
 
   return (
     <div>
-      <Button onClick={handleOpen}>Create New Event</Button>
+      <Button onClick={handleOpen} sx={{ width: '245px', padding: '8px', backgroundColor: '#d66536', color: '#f5ebe0' }}>
+          Create New Event
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}

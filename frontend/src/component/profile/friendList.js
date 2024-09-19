@@ -24,7 +24,7 @@ export default function FriendList() {
   };
 
   return (
-    <List dense sx={{ top: 200, width: '100%', maxWidth: 360, overflow: 'auto', maxHeight: '300px' }}> {/* */}
+    <List dense sx={{ top: 200, width: '100%', maxWidth: 360, overflow: 'auto', maxHeight: '200px' }}> {/* */}
       {[0, 1, 2, 3, 4, 5, 6, 7].map((value) => { // Adding more lines
         const labelId = `checkbox-list-secondary-label-${value}`;
         return (

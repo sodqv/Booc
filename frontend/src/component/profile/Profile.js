@@ -4,6 +4,8 @@ import ImageAvatars from './avatars';
 import BasicTable from './table'; 
 import TimeTable from './timeTable';
 import FriendList from './friendList';
+import BasicModal from '../forms/create_new_event';
+import BasicDateCalendar from './calendar';
 
 export default function Profile() {
     return (
@@ -11,9 +13,9 @@ export default function Profile() {
         sx={{
             // Fix the basic display
             position: 'fixed',
-            height: '800px',  
-            width: '1280px', 
-            backgroundColor: '#f5ebe0',
+            height: '100%',  
+            width: '100%', 
+            backgroundColor: 'black',
             // No scrolling able
             overflow: 'hidden', 
             display: 'flex',
@@ -57,25 +59,24 @@ export default function Profile() {
         }}
     >
         Username
-        </Typography>
-        <ImageAvatars />
+    </Typography>
+    <ImageAvatars />
 
     </Box>
 
     {/* Header */}
     <Box
         sx={{
-            position: 'fixed',    // Keep the header fixed
-            top: 0,               // Align to the top of the page
-            left: 0,              // Align to the left edge
-            width: '100%',        // Ensure header fills the entire width of the page
-            height: '60px',       // Fixed height for the header
-            backgroundColor: '#718eaf', // Background color for the header
+            position: 'absolute',    
+            top: 0,               
+            left: 0,
+            width: '100%',
+            height: '20%',
+            backgroundColor: '#f2dabf',
             zIndex: 0,  
-            boxShadow: '0px 2px 5px rgba(0,0,0,0.1)', // Optional shadow for the header
-            display: 'flex',      // Use flexbox for centering content
-            alignItems: 'center', // Vertically center items in the header
-            justifyContent: 'center', // Horizontally center items in the header
+            display: 'flex', 
+            alignItems: 'center',
+            justifyContent: 'center',
         }}
     >
     </Box>
@@ -83,46 +84,78 @@ export default function Profile() {
     {/* Left box */}
     <Box
         sx={{
-            position: 'left',  // Fixed positioning
-            top: '0px',        // Positioned below the header
-            right: '0px',       // Fixed position with some margin from the left
-            width: '280px',    // Fixed width for the container
-            height: '680px',    // Fixed height for the container
-            backgroundColor: '#929673',       // Fixed height for the header
+            position: 'relative',
+            top: '20%',
+            right: '0px',
+            width: '248px',
+            height: '648px',
+            backgroundColor: '#f5ebe0', 
             zIndex: 0,  
-            display: 'flex',      // Use flexbox for centering content
-            alignItems: 'left', // Vertically center items in the header
-            justifyContent: 'left', // Horizontally center items in the header
+            flexDirection: 'column', 
+            padding: '16px',
         }}
     >
-        <FriendList/>
+        <Box
+            sx={{
+                width: '235px', // Adjust the width of the calendar
+                height: '200px', // Adjust the height of the calendar
+                backgroundColor: '#f5f5f5', // Add a background color
+                borderRadius: '3px', // Add rounded corners
+                padding: '6px',
+            }}
+        >
+            <BasicDateCalendar/>
+        </Box>
+
+        <Box
+            sx={{
+            position: 'fixed',
+            top: '145px',
+            left: '2px',
+            width: '245px',
+            padding: '16px',
+        }}
+        >
+            <FriendList/>
+
+            <Box
+            sx={{
+            position: 'fixed',
+            top: '300px',
+            left: '2px',
+            width: '245px',
+            padding: '16px',
+        }}
+        >
+            <BasicModal/>
+        </Box>
+        </Box>
     </Box>
 
-    {/* Box for BasicTable positioned below the header */}
+    {/* Box for Schedule */}
     <Box
         sx={{
-            position: 'fixed',  // Fixed positioning
-            top: '60px',        // Positioned below the header
-            right: '0px',       // Fixed position with some margin from the left
-            width: '1000px',    // Fixed width for the container
-            height: '600px',    // Fixed height for the container
-            backgroundColor: '#D1C481', // Background color
+            position: 'absolute',
+            top: '10%',
+            right: '0px',
+            width: '1000px',
+            height: '600px',
+            backgroundColor: '#f5ebe0',
             padding: 1.5,
-            boxSizing: 'border-box', // Ensure padding is included in width/height
-            overflow: 'hidden', // Hide overflow to control scroll
-            display: 'flex',   // Use flexbox for layout
-            flexDirection: 'row', // Arrange items in a row
+            boxSizing: 'border-box',
+            overflow: 'hidden',
+            display: 'flex',  
+            flexDirection: 'row', 
         }}
     >
           {/* Container for TimeTable*/}
           <Box
                 sx={{
-                    width: '5%',    // Adjust width as needed
+                    width: '5%',
                     height: '100%',
                     padding: 1,
                     paddingTop: 3,
                     paddingRight: 0,
-                    overflowY: 'auto', // Scroll if content overflows vertically
                 }}
             >
                 <TimeTable />
@@ -130,11 +163,10 @@ export default function Profile() {
             {/* Container for BasicTable */}
             <Box
                 sx={{
-                    width: '95%',    // Adjust width as needed
+                    width: '95%', 
                     height: '100%',
                     padding: 1,
                     paddingLeft: 0,
-                    overflowY: 'auto', // Scroll if content overflows vertically
                 }}
             >
                 <BasicTable />

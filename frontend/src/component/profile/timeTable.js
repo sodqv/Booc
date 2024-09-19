@@ -32,7 +32,7 @@ function createData(time) {
     return (
       <TableContainer component={Paper} 
       sx={{
-        backgroundColor: '#D1C481', // Match the background color of the box
+        backgroundColor: '#f5ebe0', // Match the background color of the box
         boxShadow: 'none', // Remove any box shadow if present
         border: 'none', // Remove any border if present
         padding: 0,
