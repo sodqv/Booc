@@ -6,17 +6,14 @@ import Typography from '@mui/material/Typography';
 import TimePickerValue from "./time_picker";
 import BasicDatePicker from "./date_picker";
 
-const Item = styled(Paper)(({ theme }) => ({
+const Item = styled('div')(({ theme }) => ({
+  
   backgroundColor: 'f5ebe0',
-  ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: 'center',
-  color: theme.palette.text.secondary,
   boxShadow: 'none',
   border: 'none',
-  ...theme.applyStyles('dark', {
-    backgroundColor: '#1A2027',
-  }),
+
 }));
 
 export default function DateTimeDirectionStack() {

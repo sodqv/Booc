@@ -17,6 +17,7 @@ export default function TimePickerValue({ label }) {
           label={label}
           value={value}
           onChange={(newValue) => setValue(newValue)}
+          sx={{ backgroundColor: '#ffffffff' }}
         />
       </DemoContainer>
     </LocalizationProvider>
