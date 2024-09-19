@@ -9,7 +9,7 @@ export default function ImageAvatars() {
       <Stack direction="row" spacing={3}>
         <Avatar 
           alt="Avatar" 
-          src="/static/images/avatars/image.png" 
+          src="/static/images/1.png" 
           sx={{ width: 40, height: 40 }}
         /> 
       </Stack>
