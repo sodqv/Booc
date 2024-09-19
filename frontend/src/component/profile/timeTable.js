@@ -11,21 +11,21 @@ function createData(time) {
   }
   
   const rows = [
-    createData('00:04'),
-    createData('00:06'),
-    createData('00:08'),
-    createData('00:09'),
-    createData('00:10'),
-    createData('00:11'),
-    createData('00:12'),
-    createData('00:13'),
-    createData('00:14'),
-    createData('00:15'),
-    createData('00:16'),
-    createData('00:17'),
-    createData('00:18'),
-    createData('00:20'),
-    createData('00:22')
+    createData('04:00'),
+    createData('06:00'),
+    createData('08:08'),
+    createData('09:09'),
+    createData('10:00'),
+    createData('11:00'),
+    createData('12:00'),
+    createData('13:00'),
+    createData('14:00'),
+    createData('15:00'),
+    createData('16:00'),
+    createData('17:00'),
+    createData('18:00'),
+    createData('20:00'),
+    createData('22:00')
   ];
   
   export default function TimeTable() {
