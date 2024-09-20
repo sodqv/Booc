@@ -56,7 +56,7 @@ export default function Header() {
                 {/* Avatar */}
                 <Avatar 
                     alt="Amy Sharp" 
-                    src="/static/images/1.jpg"
+                    src="/static/images/9.jpg"
                     sx={{
                         marginTop: '7.5px',
                         bgcolor: 'purple',

@@ -47,12 +47,14 @@ code {
   margin-top: 5%;
   display: flex;
   justify-content: space-between;
+  position: relative;
 }
 
 .SignUpText{
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin-top: 25px;
 }
 
 .Page {

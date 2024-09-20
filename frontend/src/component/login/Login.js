@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Textfield, {TextFieldPassword} from '../TextField.js';
 import {Link, redirect, useNavigate} from "react-router-dom";
+import { colors } from '@mui/material';
 
 export default function Login_page(){
     let navigate = useNavigate();
@@ -26,13 +27,13 @@ export default function Login_page(){
                 <img 
                     src="/assets/free_book_image.png" 
                     alt='WeDoNotNeedSleep' 
-                    style={{ position: 'relative', width: '150px', height: 'auto', top: '10px', right: '20px' }}
+                    style={{ position: 'absolute', width: '150px', height: 'auto', top: '0px', right: '0px' }}
                 />
             </div>
             <div className='LoginFields'>
                 <Textfield content={"Email/Username"}/>
                 <TextFieldPassword />
-                <Link to=''>Reset password</Link>
+                <Link to=''>Reset password </Link>
             </div>
             <div className='PageButtons'>
                 <button className='leftButton' onClick={changeToSignUpPage}>← Sign up</button>
