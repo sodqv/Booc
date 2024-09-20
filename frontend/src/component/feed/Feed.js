@@ -12,35 +12,39 @@ import Header from './header';
 
 function Feed() {
   return (
-    <div className="Feed">
+    <div style={{ height: '100vh', width: '100%' }}>
         <Header/>
-        {/* <div className="header">
-            <h1>Booc</h1>
-            <div className='avatar'><LetterAvatars/></div>
-        </div> */}
 
-        <div className="grid-container">
-            <div className="contacts">
-                <div className='list'>
-                    <h2>Friends</h2>
-                    <CheckboxListSecondary/>
+        <div className="grid-container" style={{
+                display: 'grid',
+                gridTemplateColumns: '25% 50% 25%',
+                height: 'calc(100vh - 60px)'
+            }}>
+            <div className="contacts" >
+                <div className='list' style={{ height: 'calc((100vh - 80px)/2)' }}>
+                    <h3>Friends</h3>
+                    <div style={{ height: '100%', overflow: 'auto' }}>
+                        <CheckboxListSecondary/>
+                    </div>
                     <BasicButtons/>
                 </div>
-                <div className='list'>
-                    <h2>Groups</h2>
-                    <CheckboxListSecondary/>
-                    <BasicButtons/>
+                <div className='list' style={{ height: 'calc((100vh - 80px)/2)' }}>
+                    <h3>Groups</h3>
+                    <div style={{ height: '100%', overflow: 'auto' }}>
+                        <CheckboxListSecondary/>
+                    </div>
+                    <BasicButtons />
                 </div>
             </div>
 
             <div className="meatings">
-                <h2>Monday</h2>
+                <h3>Monday</h3>
                 <Meating/>
                 <Meating/>
             </div>
 
             <div className="info">
-                <h2>Info</h2>
+                <h3>Info</h3>
             </div>
         </div>
 

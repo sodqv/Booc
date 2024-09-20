@@ -23,10 +23,10 @@ export default function Header() {
                 <Typography variant="h5" sx={{ float: 'left', marginRight: '20px', fontWeight: 'bold' }}>
                     BOOC
                 </Typography> 
-                <Typography variant="button text" sx={{ float: 'left', marginRight: '15px', marginTop: '7px', textDecoration: 'underline'}}>
+                <Typography variant="button text" sx={{ float: 'left', marginRight: '15px', marginTop: '7px'}}>
                     FEED
                 </Typography> 
-                <Typography variant="button text" sx={{ float: 'left', marginTop: '7px', }}>
+                <Typography variant="button text" sx={{ float: 'left', marginTop: '7px', textDecoration: 'underline' }}>
                     PROFILE
                 </Typography> 
             </Box>

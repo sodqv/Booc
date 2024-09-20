@@ -24,7 +24,7 @@ export default function CheckboxListSecondary() {
   };
 
   return (
-    <List dense sx={{ width: '100%', maxWidth: 360, overflow: 'auto', maxHeight: '400px' }}>
+    <List dense sx={{ width: '100%', maxWidth: 360, overflow: 'auto' }}>
       {[0, 1, 2, 3, 4, 5, 6, 7].map((value) => { // Adding more lines
         const labelId = `checkbox-list-secondary-label-${value}`;
         return (
@@ -44,6 +44,7 @@ export default function CheckboxListSecondary() {
                 onChange={handleToggle(value)}
                 checked={checked.includes(value)}
                 inputProps={{ 'aria-labelledby': labelId }}
+                sx={{color: 'black', '&.Mui-checked': {color: '#d66536'}}}
               />
             }
             disablePadding
