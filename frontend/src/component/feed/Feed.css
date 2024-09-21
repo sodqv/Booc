@@ -2,11 +2,9 @@
     margin: 0px;
 }
 h2 {
-    font-size: 40px;
-    margin-bottom: 10px;
+/*     margin-bottom: 10px; */
     text-decoration: underline; 
 }
-/* Make site cover the entire page */
 
 div{
     box-sizing: border-box;
@@ -17,7 +15,7 @@ div{
     background-color: #f5ebe0;
     text-align: center;
     padding: 10px 20px;
-    font-size: 30px;
+    /* font-size: 30px; */
 }
 
 /* Left grid */
@@ -27,12 +25,12 @@ div{
     position: relative;
     padding-bottom: 70px;
 }
-.list > h3 {
-    margin-bottom: 10px;
+.list > h2 {
+    margin-bottom: 15px;
 }
 .list > button {
     position: absolute;
-    top: 7px;
+    top: 5px;
     right: 0px;
     border-radius: 3;
     font-size: 30px;
@@ -44,22 +42,14 @@ div{
 
 /* Middle grid */
 .meatings {
-    border-right: 1px solid;
-    border-left: 1px solid;
-}
-.meating {
-    border: 1px solid black;
-    text-align: left;
-    margin: 20px 0;
-    padding-left: 10px;
-}
-.meating > h3{
-    width: fit-content;
+    border-right: 2px solid rgba(0, 0, 0, 0.2);
+    border-left: 2px solid rgba(0, 0, 0, 0.2);
+    overflow: auto;
 }
 
 /* Styling scrolbar */
 ::-webkit-scrollbar { /* width */
-    width: 7px;
+    width: 4px;
 }
 ::-webkit-scrollbar-track { /* Track */
     background: #f1f1f1; 
