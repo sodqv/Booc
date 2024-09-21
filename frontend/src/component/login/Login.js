@@ -31,8 +31,8 @@ export default function Login_page(){
                 />
             </div>
             <div className='LoginFields'>
-                <Textfield content={"Email/Username"}/>
-                <TextFieldPassword />
+                <Textfield id="outlined-basic" label={"Email/Username"} variant="outlined" />
+                <Textfield id="outlined-password-input" label="Password" type="password" autoComplete="current-password"/>
                 <Link to=''>Reset password </Link>
             </div>
             <div className='PageButtons'>
