@@ -13,7 +13,7 @@ import Header from './header';
 function Feed() {
   return (
     <div style={{ height: '100vh', width: '100%' }}>
-        <Header/>
+        <Header page={'Feed'}/>
 
         <div className="grid-container" style={{
                 display: 'grid',

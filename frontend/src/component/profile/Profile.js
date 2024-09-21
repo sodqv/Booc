@@ -6,7 +6,7 @@ import TimeTable from './timeTable';
 import FriendList from './friendList';
 import BasicModal from '../forms/create_new_event';
 import BasicDateCalendar from './calendar';
-import Header from './header';
+import Header from '../feed/header';
 
 export default function Profile() {
     return (
@@ -18,7 +18,7 @@ export default function Profile() {
             // No scrolling able
             // overflow: 'hidden', 
         }} >
-            <Header/>
+            <Header page={'Profile'}/>
             {/* Grid layout */}
             <div style={{
                 display: 'grid',

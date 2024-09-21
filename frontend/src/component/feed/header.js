@@ -1,9 +1,35 @@
-import React from 'react';
+import { React, useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
+import {Link, redirect, useNavigate} from "react-router-dom";
 
 
-export default function Header() {
+export default function Header( {page} ) {
+    const styleBtn={
+        marginTop: '7px',
+        backgroundColor: '#718eaf',
+        border: 'none',
+        cursor: 'pointer',
+        fontWeight: 'bold',
+        fontSize: '20px',
+        float: 'left',
+        marginRight: '15px'
+    }
+
+    const [hoverF, setHoverF] = useState(false);
+    const [hoverP, setHoverP] = useState(false);
+
+    let navigate = useNavigate();
+
+    const changeToFeed = () => {
+        let path = "/Feed";
+        navigate(path);
+    }
+    const changeToProfile = () => {
+        let path = "/Profile";
+        navigate(path);
+    }
+
     return (
         <div style={{
             position: 'relative',    // Keep the header fixed
@@ -15,22 +41,39 @@ export default function Header() {
         }}>
             {/* Left text */}
             <Box sx={{
-                        marginLeft: '10px',
-                        marginTop: '10px',
-                        color: '#333',
-                        fontWeight: 'bold'
+                    marginLeft: '10px',
+                    marginTop: '10px',
+                    color: '#333',
+                    fontWeight: 'bold'
                 }}>
                 <Typography variant="h5" sx={{ float: 'left', marginRight: '20px', fontWeight: 'bold' }}>
                     BOOC
                 </Typography> 
-                <Typography variant="button text" sx={{ float: 'left', marginRight: '15px', marginTop: '7px', textDecoration: 'underline'}}>
+                <button 
+                    onClick={changeToFeed}
+                    onMouseEnter={() => setHoverF(true)}
+                    onMouseLeave={() => setHoverF(false)}
+                    style={{
+                        ...styleBtn,
+                        borderBottom: page == 'Feed' ? '3px solid #333333' : 'none',
+                        color: hoverF ? 'black' : '#333333'
+                    }}
+                >
                     FEED
-                </Typography> 
-                <Typography variant="button text" sx={{ float: 'left', marginTop: '7px', }}>
+                </button>
+                <button 
+                    onClick={changeToProfile}
+                    onMouseEnter={() => setHoverP(true)}
+                    onMouseLeave={() => setHoverP(false)}
+                    style={{
+                        ...styleBtn,
+                        borderBottom: page == 'Profile' ? '3px solid #333333' : 'none',
+                        color: hoverP ? 'black' : '#333333'
+                    }}
+                >
                     PROFILE
-                </Typography> 
+                </button>
             </Box>
-            
 
             {/* Right text */}
             <Box
@@ -56,7 +99,7 @@ export default function Header() {
                 {/* Avatar */}
                 <Avatar 
                     alt="Amy Sharp" 
-                    src="/static/images/avatar/9.jpg"
+                    src="/static/images/9.jpg"
                     sx={{
                         marginTop: '7.5px',
                         bgcolor: 'purple',
