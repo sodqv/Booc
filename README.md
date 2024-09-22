@@ -21,7 +21,7 @@ Tools
 Starting app on client
 ---------
 1. Clone repository.
-2. Go into "Frontend" folder.
+2. Go into "frontend" folder.
 3. Open cmd (in the current directory) and enter "npm ci". (This requires node.js)
 4. then enter "npm start" in cmd.
 
