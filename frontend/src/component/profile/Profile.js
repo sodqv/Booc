@@ -7,16 +7,15 @@ import FriendList from './friendList';
 import BasicModal from '../forms/create_new_event';
 import BasicDateCalendar from './calendar';
 import Header from '../feed/header';
+import CheckboxListSecondary from '../../modelData/Feed/list';
+
 
 export default function Profile() {
     return (
         <div style={{
             // Fix the basic display
             height: '100vh',  
-            width: '100%', 
-            backgroundColor: 'black',
-            // No scrolling able
-            // overflow: 'hidden', 
+            width: '100%'
         }} >
             <Header page={'Profile'}/>
             {/* Grid layout */}
@@ -30,29 +29,29 @@ export default function Profile() {
                 <div
                     style={{
                         backgroundColor: '#f5ebe0',  
-                        padding: '16px'
+                        padding: '16px',
+                        height: 'calc((100vh - 60px))',
+                        overflow: 'hidden',
+                        paddingBottom: '380px'
                     }}
                 >
                     {/* Calender */}
                     <BasicDateCalendar/>
 
                     {/* Form button */}
-                    <div style={{ margin: '10px 0'}}>
+                    <div style={{ margin: '15px 0'}}>
                         <BasicModal/>
                     </div>
 
                     {/* List */}
-                    <FriendList/>
-
+                    <div style={{ height: '100%', overflow: 'auto' }}>
+                        <FriendList/>
+                    </div>
                 </div>
 
                 {/* Box for Schedule */}
                 <div
                     style={{
-                        // position: 'absolute',
-                        // top: '10%',
-                        // right: '0px',
-                        // width: '1000px',
                         height: '100%',
                         backgroundColor: '#f5ebe0',
                         padding: 1.5,

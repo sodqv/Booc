@@ -31,11 +31,11 @@ export default function CheckboxListSecondary() {
           <ListItem
             sx={{ // Styling list elements
               width: 95/100 , 
-              margin: '0px 0px 10px 0px', 
+              margin: '0px 5px 10px 5px', 
               padding: '5px', 
               bgcolor: 'rgba(255, 255, 255, 0.7)',
               boxShadow: 3,
-              borderRadius: 4
+              borderRadius: 2
             }}
             key={value}
             secondaryAction={
