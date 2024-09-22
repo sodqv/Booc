@@ -1,8 +1,8 @@
 import React from 'react';
 import { Box } from '@mui/material'; //Typography
 // import ImageAvatars from './avatars'; 
-import BasicTable from './table'; 
-import TimeTable from './timeTable';
+import BasicTable from '../../modelData/Profile/table'; 
+import TimeTable from '../../modelData/Profile/timeTable';
 import FriendList from './friendList';
 import BasicModal from '../forms/create_new_event';
 import BasicDateCalendar from './calendar';
