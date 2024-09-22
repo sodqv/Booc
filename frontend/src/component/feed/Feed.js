@@ -13,7 +13,7 @@ import Header from './header';
 function Feed() {
   return (
     <div style={{ height: '100vh', width: '100%' }}>
-        <Header/>
+        <Header page={'Feed'}/>
 
         <div className="grid-container" style={{
                 display: 'grid',
@@ -22,14 +22,14 @@ function Feed() {
             }}>
             <div className="contacts" >
                 <div className='list' style={{ height: 'calc((100vh - 80px)/2)' }}>
-                    <h3>Friends</h3>
+                    <h2>Friends</h2>
                     <div style={{ height: '100%', overflow: 'auto' }}>
                         <CheckboxListSecondary/>
                     </div>
                     <BasicButtons/>
                 </div>
                 <div className='list' style={{ height: 'calc((100vh - 80px)/2)' }}>
-                    <h3>Groups</h3>
+                    <h2>Groups</h2>
                     <div style={{ height: '100%', overflow: 'auto' }}>
                         <CheckboxListSecondary/>
                     </div>
@@ -38,13 +38,17 @@ function Feed() {
             </div>
 
             <div className="meatings">
-                <h3>Monday</h3>
+                <h2>Monday</h2>
+                <Meating/>
+                <Meating/>
+                <Meating/>
+                <Meating/>
                 <Meating/>
                 <Meating/>
             </div>
 
             <div className="info">
-                <h3>Info</h3>
+                <h2>Info</h2>
             </div>
         </div>
 
