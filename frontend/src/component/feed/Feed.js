@@ -4,10 +4,10 @@ import React from 'react';
 // MUI
 //import BasicTabs from './tabs';
 import BasicButtons from './button';
-import CheckboxListSecondary from './list';
+import CheckboxListSecondary from '../../modelData/Feed/list';
 import LetterAvatars from './avatar';
 // Self created
-import Meating from './meating';
+import Meating from '../../modelData/Feed/meating';
 import Header from './header';
 
 function Feed() {
