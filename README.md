@@ -18,6 +18,16 @@ Tools
 [Material UI Components](https://mui.com/material-ui/all-components)
 
 
+Starting app on client
+---------
+1. Clone repository.
+2. Go into "Frontend" folder.
+3. Open cmd (in the current directory) and enter "npm start". (This requires node.js)
+
+Starting server
+---------
+TBA
+
 Preliminary List of Features
 ----------
 - user accounts
