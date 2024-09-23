@@ -6,8 +6,8 @@ import {Link, redirect, useNavigate} from "react-router-dom";
 
 export default function Header( {page} ) {
     const styleBtn={
-        marginTop: '7px',
-        backgroundColor: '#718eaf',
+        marginTop: '10px',
+        backgroundColor: '#d66536',
         border: 'none',
         cursor: 'pointer',
         fontWeight: 'bold',
@@ -35,28 +35,28 @@ export default function Header( {page} ) {
             position: 'relative',    // Keep the header fixed
             width: '100%',        // Ensure header fills the entire width of the page
             height: '60px',       // Fixed height for the header
-            backgroundColor: '#718eaf', // Background color for the header
+            backgroundColor: '#d66536', // Background color for the header
             boxShadow: '0px 2px 5px rgba(0,0,0,0.3)', // Optional shadow for the header
             display: 'flex',      // Use flexbox for centering content
         }}>
             {/* Left text */}
             <Box sx={{
                     marginLeft: '10px',
-                    marginTop: '10px',
-                    color: '#333',
+                    marginTop: '7px',
+                    color: 'white',
                     fontWeight: 'bold'
                 }}>
-                <Typography variant="h5" sx={{ float: 'left', marginRight: '20px', fontWeight: 'bold' }}>
+                <h1 style={{ float: 'left', marginRight: '20px', fontSize: '30px' }}>
                     BOOC
-                </Typography> 
+                </h1> 
                 <button 
                     onClick={changeToFeed}
                     onMouseEnter={() => setHoverF(true)}
                     onMouseLeave={() => setHoverF(false)}
                     style={{
                         ...styleBtn,
-                        borderBottom: page == 'Feed' ? '3px solid #333333' : 'none',
-                        color: hoverF ? 'black' : '#333333'
+                        borderBottom: page == 'Feed' ? '3px solid white' : 'none',
+                        color: hoverF ? 'black' : 'white'
                     }}
                 >
                     FEED
@@ -67,8 +67,8 @@ export default function Header( {page} ) {
                     onMouseLeave={() => setHoverP(false)}
                     style={{
                         ...styleBtn,
-                        borderBottom: page == 'Profile' ? '3px solid #333333' : 'none',
-                        color: hoverP ? 'black' : '#333333'
+                        borderBottom: page == 'Profile' ? '3px solid white' : 'none',
+                        color: hoverP ? 'black' : 'white'
                     }}
                 >
                     PROFILE
@@ -85,24 +85,23 @@ export default function Header( {page} ) {
             }}>  
                 
                 {/* Username */}
-                <Typography 
-                    variant="h6"
-                    sx={{
+                <h2 
+                    style={{
                         float: 'left', 
                         marginRight: '10px',
                         marginTop: '10px',
                         fontWeight: 'bold',
-                        color: '#333',
+                        color: 'white',
                 }}>
                     Username
-                </Typography>
+                </h2>
                 {/* Avatar */}
                 <Avatar 
                     alt="Amy Sharp" 
                     src="/static/images/9.jpg"
                     sx={{
                         marginTop: '7.5px',
-                        bgcolor: 'purple',
+                        bgcolor: 'none',
                         height: '45px',
                         width: '45px'
                     }}/>
