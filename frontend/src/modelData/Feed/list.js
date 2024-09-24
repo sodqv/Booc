@@ -24,7 +24,7 @@ export default function CheckboxListSecondary() {
   };
 
   return (
-    <List dense sx={{ width: '100%', maxWidth: 360, overflow: 'auto' }}>
+    <List dense sx={{ width: '100%',  overflow: 'auto' }}>
       {[0, 1, 2, 3, 4, 5, 6, 7].map((value) => { // Adding more lines
         const labelId = `checkbox-list-secondary-label-${value}`;
         return (
@@ -53,7 +53,7 @@ export default function CheckboxListSecondary() {
                <ListItemAvatar> {/* Profile pic */}
                 <Avatar
                   alt={`Avatar n°${value + 1}`}
-                  src={`/static/images/avatar/${value + 1}.jpg`}
+                  src={`/static/images/${value + 1}.jpg`}
                 />
               </ListItemAvatar>
               <ListItemText id={labelId} primary={`Person ${value + 1}`} /> {/* Name */}

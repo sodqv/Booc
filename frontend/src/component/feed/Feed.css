@@ -12,10 +12,8 @@ div{
     background-color: #f5ebe0;
     text-align: center;
     padding: 10px 20px;
-    /* font-size: 30px; */
 }
 .grid-container > h2 {
-    /*     margin-bottom: 10px; */
     text-decoration: underline; 
 }
      
@@ -25,7 +23,7 @@ div{
     overflow: hidden;
     text-align: left;
     position: relative;
-    padding-bottom: 70px;
+    /* padding-bottom: 70px; */
 }
 .list > h2 {
     margin-bottom: 15px;

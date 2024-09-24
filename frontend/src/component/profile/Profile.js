@@ -1,9 +1,7 @@
 import React from 'react';
-import { Box } from '@mui/material'; //Typography
 // import ImageAvatars from './avatars'; 
 import BasicTable from '../../modelData/Profile/table'; 
 import TimeTable from '../../modelData/Profile/timeTable';
-import FriendList from './friendList';
 import BasicModal from '../forms/create_new_event';
 import BasicDateCalendar from './calendar';
 import Header from '../feed/header';
@@ -18,21 +16,23 @@ export default function Profile() {
             width: '100%'
         }} >
             <Header page={'Profile'}/>
+            
             {/* Grid layout */}
             <div style={{
                 display: 'grid',
-                gridTemplateColumns: '25% 75%',
+                gridTemplateColumns: '25% 3% 72%',
+                backgroundColor: '#f5ebe0',
                 height: 'calc(100vh - 60px)',
-                
+                boxSizing: 'border-box',
+                padding: '15px',
+                overflow: 'hidden',
             }}>
-                {/* Left box */}
+                {/* Container for Left box */}
                 <div
                     style={{
-                        backgroundColor: '#f5ebe0',  
-                        padding: '16px',
+                        paddingRight: '16px',
                         height: 'calc((100vh - 60px))',
-                        overflow: 'hidden',
-                        paddingBottom: '380px'
+                        boxSizing: 'border-box'
                     }}
                 >
                     {/* Calender */}
@@ -44,46 +44,31 @@ export default function Profile() {
                     </div>
 
                     {/* List */}
-                    <div style={{ height: '100%', overflow: 'auto' }}>
-                        <FriendList/>
+                    <div style={{boxSizing: 'border-box', overflow: 'auto',  height: 'calc((100vh - 460px))' }}>
+                        <CheckboxListSecondary/>
                     </div>
                 </div>
-
-                {/* Box for Schedule */}
+                
+                {/* Container for TimeTable*/}
                 <div
                     style={{
-                        height: '100%',
-                        backgroundColor: '#f5ebe0',
-                        padding: 1.5,
                         boxSizing: 'border-box',
-                        overflow: 'hidden',
-                        display: 'flex',  
-                        flexDirection: 'row'
+                        height: 'calc(100vh - 90px)',
+                        padding: '7px 5px 0 0'
                     }}
                 >
-                    {/* Container for TimeTable*/}
-                    <Box
-                        sx={{
-                            width: '5%',
-                            height: '100%',
-                            padding: 1,
-                            paddingTop: 3,
-                            paddingRight: 0,
-                        }}
-                    >
-                        <TimeTable />
-                    </Box>
-                    {/* Container for BasicTable */}
-                    <Box
-                        sx={{
-                            width: '100%', 
-                            height: '100%',
-                            padding: 1,
-                            paddingLeft: 0  
-                        }}
-                    >
-                        <BasicTable />
-                    </Box>
+                    <TimeTable />
+                </div>
+
+                {/* Container for BasicTable */}
+                <div
+                    style={{
+                        width: '100%', 
+                        height: 'calc(100vh - 90px)',
+                        boxSizing: 'border-box'  
+                    }}
+                >
+                    <BasicTable />
                 </div>
             </div>
         {/* </Box> */}

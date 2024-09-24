@@ -4,6 +4,7 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
+import TableHead from '@mui/material/TableHead';
 import Paper from '@mui/material/Paper';
 
 function createData(time) {
@@ -13,8 +14,8 @@ function createData(time) {
   const rows = [
     createData('04:00'),
     createData('06:00'),
-    createData('08:08'),
-    createData('09:09'),
+    createData('08:00'),
+    createData('09:00'),
     createData('10:00'),
     createData('11:00'),
     createData('12:00'),
@@ -32,42 +33,28 @@ function createData(time) {
     return (
       <TableContainer component={Paper} 
       sx={{
-        backgroundColor: '#f5ebe0',
+        backgroundColor: 'transparent',
         boxShadow: 'none',
-        border: 'none',
-        padding: 0,
+        border: 'none'
       }}>
-        <Table sx={{ minWidth: 10, borderCollapse: 'collapse' }} aria-label="simple table">
+        <Table sx={{ borderCollapse: 'collapse', height: 'calc(100vh - 90px)' }} aria-label="simple table">
+        
           <TableBody>
             {rows.map((row, index) => (
               <TableRow
                 key={index}
-                sx={{
-                  '&:last-child td, &:last-child th': { border: 0 },
-                  '& td': { borderBottom: 'none' }, // Remove border between rows
-                  height: '30px', // Adjust row height if needed
-                }}
+                sx={{ '&:first-child td, &:first-child th': { height: '35px' }}}
               >
                 <TableCell
                   sx={{
-                    textAlign: 'right', 
+                    textAlign: 'right',
+                    verticalAlign: 'bottom', 
                     fontSize: '11px',
-                    width: '50%', 
                     padding: '0px', 
-                    border: 'none',
-                    minWidth: 'auto',
+                    border: 'none'
                   }}
                 >
                   {row.time}
-                </TableCell>
-                <TableCell
-                  sx={{
-                    width: '50%',
-                    padding: '0px',
-                    border: 'none',
-                  }}
-                >
-                  {/* Empty cell to fill space */}
                 </TableCell>
               </TableRow>
             ))}

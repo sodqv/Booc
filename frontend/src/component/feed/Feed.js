@@ -12,32 +12,32 @@ import Header from './header';
 
 function Feed() {
   return (
-    <div style={{ height: '100vh', width: '100%' }}>
+    <div style={{ height: '100vh', width: '100%', overflow: 'hidden'  }}>
         <Header page={'Feed'}/>
 
         <div className="grid-container" style={{
                 display: 'grid',
                 gridTemplateColumns: '25% 50% 25%',
-                height: 'calc(100vh - 60px)'
+                height: 'calc(100vh - 65px)'
             }}>
             <div className="contacts" >
-                <div className='list' style={{ height: 'calc((100vh - 80px)/2)' }}>
+                <div className='list' style={{ height: 'calc((100vh - 90px)/2)', marginBottom: '10px' }}>
                     <h2>Friends</h2>
-                    <div style={{ height: '100%', overflow: 'auto' }}>
+                    <div style={{ height: 'calc((100vh - 90px)/2 - 61px)', overflow: 'auto' }}>
                         <CheckboxListSecondary/>
                     </div>
                     <BasicButtons/>
                 </div>
-                <div className='list' style={{ height: 'calc((100vh - 80px)/2)' }}>
+                <div className='list' style={{ height: 'calc((100vh - 90px)/2)' }}>
                     <h2>Groups</h2>
-                    <div style={{ height: '100%', overflow: 'auto' }}>
+                    <div style={{ height: 'calc((100vh - 90px)/2 - 61px)', overflow: 'auto' }}>
                         <CheckboxListSecondary/>
                     </div>
                     <BasicButtons />
                 </div>
             </div>
 
-            <div className="meatings">
+            <div className="meatings" >
                 <h2>Monday</h2>
                 <Meating/>
                 <Meating/>
