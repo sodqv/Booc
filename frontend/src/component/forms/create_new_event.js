@@ -158,7 +158,7 @@ export default function BasicModal() {
             {/* Add people */}
             <Grid sx={{ display: 'grid', width: '40%', gridTemplateColumns: 'repeat(1, 1fr)'}}>
                 <Item>
-                    <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536' }}>Invite People</Typography>
+                    <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536', paddingBottom: '10px' }}>Invite People</Typography>
                     <BasicSelect />
                 </Item>
             </Grid>
