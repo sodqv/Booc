@@ -15,7 +15,7 @@ import VisibilityPicker from "./visibility_picker";
 import ButtonDirectionStack from "./button_stack";
 import BasicDatePicker from "./date_picker";
 import BasicTimePicker from "./time_picker";
-import BasicSelect from "./selector";
+import Selector from "./selector";
 
 
 const style = {
@@ -158,8 +158,8 @@ export default function BasicModal() {
             {/* Add people */}
             <Grid sx={{ display: 'grid', width: '40%', gridTemplateColumns: 'repeat(1, 1fr)'}}>
                 <Item>
-                    <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536', paddingBottom: '10px' }}>Invite People</Typography>
-                    <BasicSelect />
+                    <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536', paddingBottom: '5px' }}>Invite People</Typography>
+                    <Selector />
                 </Item>
             </Grid>
 
