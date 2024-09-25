@@ -49,7 +49,7 @@ export default function Selector() {
 
   return (
     <div>
-      <FormControl sx={{ m: 1, width: 300 }}>
+      <FormControl sx={{ m: 1, width: 300, backgroundColor: '#ffff' }}>
         <InputLabel id="demo-multiple-name-label"> </InputLabel>
         <Select
           labelId="demo-multiple-name-label"
@@ -57,7 +57,7 @@ export default function Selector() {
           multiple
           value={personName}
           onChange={handleChange}
-          input={<OutlinedInput label="Name" />}
+          input={<OutlinedInput />}
           MenuProps={MenuProps}
         >
           {names.map((name) => (
