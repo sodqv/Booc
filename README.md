@@ -31,6 +31,7 @@ Starting server
 2. Go into "Backend" folder.
 3. Open cmd in current directory and enter "npm ci". (This requires node.js)
 4. Create an .env file (in the backend directory) and enter your username and password for the mongodb in the format:
+
 DB_USERNAME = {place username here}
 DB_PASSWORD = {place password here}
 5. For debugging run "SET DEBUG=backend:* & npm start" in the cmd(this has a problem with doing it in vscode) or if you are running it for production "npm start".
