@@ -12,6 +12,14 @@ code {
     monospace;
 }
 
+#error-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 15%;
+}
+
 .Table {
   background-color: #edccb7;
   position: absolute;
