@@ -10,6 +10,7 @@ import {
 import ErrorPage from './component/ErrorPage.js'
 import LoginRoot from './component/login/Login_root.js';
 import Login from "./component/login/Login.js"
+import {login as loginAction} from "./modelData/Login/loginModel.js"
 import SignUp from "./component/login/Sign_up.js"
 import Profile from "./component/profile/Profile.js"
 import Feed from "./component/feed/Feed.js"
@@ -25,6 +26,7 @@ const router = createBrowserRouter([
         index: true,
         //path:"Login",
         element: <Login />,
+        action: loginAction
       },
       {
         path:"SignUp",

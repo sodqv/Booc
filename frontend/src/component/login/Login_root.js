@@ -13,10 +13,6 @@ export default function Root(){
                 <div className='Binder'></div>
                 <Outlet />
             </div>
-            <div className='Eraser'>
-                <div className='Tip'/>
-                <div className='Base'/>
-            </div>
         </div>
     );
 }

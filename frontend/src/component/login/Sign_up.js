@@ -19,10 +19,10 @@ export default function Sign_up_page(){
             </div>
             
             <div className='LoginFields'>
-                <Textfield id="outlined-basic" label={"Email"} variant="outlined"/>
-                <Textfield id="outlined-basic" label={"Username"} variant="outlined"/>
-                <Textfield id="outlined-password-input" label="Password" type="password" autoComplete="current-password"/>
-                <Textfield id="outlined-password-input" label="Confirm password" type="password" autoComplete="current-password"/>
+                <Textfield name="email" id="outlined-basic" label={"Email"} variant="outlined"/>
+                <Textfield name="username" id="outlined-basic" label={"Username"} variant="outlined"/>
+                <Textfield name="password1" id="outlined-password-input" label="Password" type="password" autoComplete="current-password"/>
+                <Textfield name="password2" id="outlined-password-input" label="Confirm password" type="password" autoComplete="current-password"/>
             </div>
             <div className='PageButtons'>
                 <button className='leftButton' >Complete sign up</button>

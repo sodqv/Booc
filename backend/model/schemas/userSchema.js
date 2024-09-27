@@ -6,7 +6,7 @@ const userSchema = new Schema({
     username: String,
     description: {type: String, default: ""},
     password: String,
-    startingPage: Number,
+    startingPage: {type: Number, default: 0},
 },{
     collection:"Users"
 })
