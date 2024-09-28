@@ -1,11 +1,28 @@
 import * as React from 'react';
 import Textfield, {TextFieldPassword} from '../TextField.js';
-import {Link, redirect, useNavigate} from "react-router-dom";
+import {Link, redirect, useNavigate, useSubmit} from "react-router-dom";
 import { colors } from '@mui/material';
 import {Formik, Form} from "formik";
-import {login} from '../../modelData/Login/loginModel.js'
+import {login as loginModel} from '../../modelData/Login/loginModel.js'
+
+export async function loginAction({request}){
+    const formData = await request.formData();
+    const email = formData.get("email");
+    const password = formData.get("password");
+
+    const response  = await loginModel(email, password);
+    if(response === "invalid"){
+        //Set MUI prop for error to true
+        //setFailedLogin(true);
+        return null;
+    }
+    else{
+        return redirect(response);
+    }
+}
 
 export default function Login_page(){
+    //let [failedLogin, setFailedLogin] = React.useState(false);
     let navigate = useNavigate();
 
     const changeToSignUpPage = () => {
@@ -18,6 +35,7 @@ export default function Login_page(){
         navigate(path);
     }
 
+    const submit = useSubmit();
 
     return(
         <div className='Page'>
@@ -33,9 +51,9 @@ export default function Login_page(){
                 />
             </div>
 
-            <Formik initialValues={{email:"", password:""}} onSubmit={login}
+            <Formik initialValues={{email:"", password:""}} onSubmit={(values) => {submit(values, {method:"post"})} } //onSubmit={login}
                 >{({values, handleChange}) => (
-                    <Form>
+                    <Form method='post'>
                         <div className='LoginFields'>
                             <Textfield 
                                 name="email" 
@@ -44,6 +62,7 @@ export default function Login_page(){
                                 onChange={handleChange} 
                                 label="email" 
                                 id="email" 
+                                //error={failedLogin}
                                 variant="outlined" />
 
                             <Textfield
@@ -53,6 +72,7 @@ export default function Login_page(){
                                 onChange={handleChange}
                                 label="Password"
                                 id = "password"
+                                //error={failedLogin}
                                 autoComplete="current-password"/>
                             
                             <Link to=''>Reset password </Link>

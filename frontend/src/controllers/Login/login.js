@@ -3,7 +3,7 @@ import axios from 'axios';
 import {redirect} from "react-router-dom";
 
 export async function login(email, password){
-    await axios.post('http://localhost:3000/api/auth', {
+  return await axios.post('http://localhost:3000/api/auth', {
         email:email,
         password: password,
       })
@@ -14,14 +14,14 @@ export async function login(email, password){
         }
 
         //If success then redirect to next page
-        if(response.startingPage == 0){
-          return redirect("/Profile");
+        if(response.data.startingPage == 0){
+          return "/Profile";
         }
         else{
-          return redirect("/Feed");
+          return "/Feed";
         }
       })
       .catch(function(error){
-        throw error;
+        return "invalid";
       })
 }

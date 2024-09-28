@@ -1,8 +1,9 @@
 import * as React from 'react';
 import {login as loginController} from "../../controllers/Login/login"
 
-export async function login({email, password}){
-    return await loginController(email, password);
+export async function login(email, password){
+    const response = await loginController(email, password)
+    return response;
 
     
 }
