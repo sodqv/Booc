@@ -4,6 +4,20 @@ import {Link, redirect, useNavigate, useSubmit} from "react-router-dom";
 import { colors } from '@mui/material';
 import {Formik, Form} from "formik";
 import {login as loginModel} from '../../modelData/Login/loginModel.js'
+//import {isAuth} from "../../modelData/auth.js"
+
+
+export function authenticatedLoader(){
+    //Gets current users email and password and authenticates it
+    //Gets email and password (first checks if they exist)
+
+    //await authentication from api
+    //const response = Auth(email, password);
+
+    //redirect back to home page if not logged in
+    //if(response === "Not authenticated"){return redirect("/");}
+}
+
 
 export async function loginAction({request}){
     const formData = await request.formData();

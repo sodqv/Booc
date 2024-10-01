@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {signUp as signUpController} from "../../controllers/Login/login"
+import {signUp as signUpController} from "../../controllers/loginController"
 
 export async function signUp({request}){
     const formData = await request.formData();

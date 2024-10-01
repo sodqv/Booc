@@ -13,8 +13,30 @@ var usersRouter = require('./routes/users');
 var apiRouter = require("./routes/api");
 
 var app = express();
-app.use(cors());
 
+app.use(function(req, res, next){
+  //console.log(req.headers)
+  next();
+})
+
+const corsconfig = {
+  origin: "http://localhost:3000",
+  credentials: true,
+}
+
+app.options("*", cors(corsconfig))
+app.use(cors(corsconfig));
+
+
+//Implements sessions
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  saveUninitialized: false, //turns off storing empty sessions
+  resave: false,
+  cookie: {
+    maxAge: 1000*60*60*24, //24 hours
+  }
+}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -26,15 +48,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//Implements sessions
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  saveUninitialized: false, //turns off storing empty sessions
-  resave: false,
-  cookie: {
-    maxAge: 1000*60*60*24, //24 hours
-  }
-}));
+
+
+/*
+app.use((req, res, next) => {
+  console.log(req.session)
+  next();
+});
+*/
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

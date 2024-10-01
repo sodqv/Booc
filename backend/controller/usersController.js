@@ -16,8 +16,9 @@ async function authenicate(req, res){
     else{
         console.log("valid credentials");
         //Updates session
-        const recastUser = {...user};
-        req.session.user = user;
+        const recastUser = user;
+        req.session.user = {...recastUser, password:password};
+        //res.cookie("user", recastUser, );
         return res.status(200).send(user);
     }
 }
@@ -25,11 +26,19 @@ async function authenicate(req, res){
 //Check if user is logged in
 async function authStatus(req, res){
     //const {body: {email, password}} = req;
-    const user = await usersModel.getUser(req.session.email, req.session.password);
-    if(!req.session.user){
+    try{
+        //console.log(req.session.user.email);
+        //console.log(req.session.user.password);
+        const user = await usersModel.getUser(req.session.user.email, req.session.user.password);
+        console.log(user);
+        if(typeof req.session.user === "undefined"|| typeof user === "undefined" || user === "Failed to find"){
+            return res.status(401).send({msg:"Not authenticated"})
+        } 
+        return res.status(200).send({msg:"You are authenticated"});
+    }
+    catch{
         return res.status(401).send({msg:"Not authenticated"})
     }
-    return res.status(200).send({msg:"You are authenticated"});
 }
 
 //Create user

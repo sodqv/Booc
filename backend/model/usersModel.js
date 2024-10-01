@@ -9,14 +9,25 @@ async function getUser(email, password){
     startmongoose();
     const user = await users.findOne({
         "email":email,
-    })
+    });
+    const objUser = user.toObject();
+    //console.log( objUser);
 
-    if(!user){
+    if(typeof objUser === "undefined"){
         return;
     }
+    
 
-    if(await argon2.verify(user.password, password)){
-        return user;
+    console.log("2");
+    console.log(objUser.password);
+    console.log(password);
+
+    if(await argon2.verify(objUser.password, password)){
+        console.log("Yay")
+        return objUser;
+    }
+    else{
+        return "Failed to find";
     }
 }
 

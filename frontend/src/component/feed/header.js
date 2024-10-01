@@ -2,6 +2,7 @@ import { React, useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import {Link, redirect, useNavigate} from "react-router-dom";
+import { isAuth } from '../../modelData/auth';
 
 
 export default function Header( {page} ) {
@@ -27,6 +28,7 @@ export default function Header( {page} ) {
     }
     const changeToProfile = () => {
         let path = "/Profile";
+        isAuth();
         navigate(path);
     }
 
