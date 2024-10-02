@@ -18,7 +18,6 @@ import BasicTimePicker from "./time_picker";
 import Selector from "./selector";
 
 import dayjs from 'dayjs';
-//import axios from 'axios';
 import {api} from '../../controllers/axiosTemplate';
 
 
@@ -70,8 +69,28 @@ export default function BasicModal() {
     invitePeople: [],
   });
 
+
+  const initialFormData = {
+    title: '',
+    date: dayjs(),          
+    fromTime: dayjs(),      
+    toTime: dayjs(),
+    location: '',
+    description: '',
+    color: '#0000FF',      
+    repeat: ['never'],
+    visibility: 'private',
+    invitePeople: [],
+  };
+
+
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+
+  const handleClose = () => {
+    setFormData(initialFormData);   //clear the form
+    setOpen(false);
+  };
+
 
 
   //handle form input
@@ -93,6 +112,7 @@ export default function BasicModal() {
         if (response.status === 201)
         {
             alert('Event created successfully');
+            setFormData();
             handleClose();      //closes the create event form
         }
         else
