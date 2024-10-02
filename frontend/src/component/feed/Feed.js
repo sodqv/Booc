@@ -8,12 +8,12 @@ import CheckboxListSecondary from '../../modelData/Feed/list';
 import LetterAvatars from './avatar';
 // Self created
 import Meating from '../../modelData/Feed/meating';
-import Header from './header';
+import Navbar from './navbar';
 
 function Feed() {
   return (
     <div style={{ height: '100vh', width: '100%', overflow: 'hidden'  }}>
-        <Header page={'Feed'}/>
+        <Navbar page={'Feed'}/>
 
         <div className="grid-container" style={{
                 display: 'grid',

@@ -4,7 +4,7 @@ import BasicTable from '../../modelData/Profile/table';
 import TimeTable from '../../modelData/Profile/timeTable';
 import BasicModal from '../forms/create_new_event';
 import BasicDateCalendar from './calendar';
-import Header from '../feed/header';
+import Navbar from '../feed/navbar';
 import CheckboxListSecondary from '../../modelData/Feed/list';
 
 
@@ -15,7 +15,7 @@ export default function Profile() {
             height: '100vh',  
             width: '100%'
         }} >
-            <Header page={'Profile'}/>
+            <Navbar page={'Profile'}/>
             
             {/* Grid layout */}
             <div style={{
