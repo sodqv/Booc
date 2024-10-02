@@ -112,7 +112,6 @@ export default function BasicModal() {
         if (response.status === 201)
         {
             alert('Event created successfully');
-            setFormData();
             handleClose();      //closes the create event form
         }
         else
