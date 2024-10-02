@@ -235,7 +235,10 @@ export default function BasicModal() {
             <Grid sx={{ display: 'grid', width: '40%', gridTemplateColumns: 'repeat(1, 1fr)'}}>
                 <Item>
                     <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536', paddingBottom: '5px' }}>Invite People</Typography>
-                    <Selector />
+                    <Selector 
+                        value={formData.invitePeople}
+                        onChange={(newInvitePeople) => handleInput('invitePeople', newInvitePeople)}
+                    />
                 </Item>
             </Grid>
 

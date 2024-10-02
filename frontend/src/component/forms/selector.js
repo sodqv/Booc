@@ -33,15 +33,15 @@ function getStyles(name, personName, theme) {
   };
 }
 
-export default function Selector() {
+export default function Selector({ value, onChange }) {
   const theme = useTheme();
-  const [personName, setPersonName] = React.useState([]);
+  //const [personName, setPersonName] = React.useState([]);
 
   const handleChange = (event) => {
     const {
       target: { value },
     } = event;
-    setPersonName(
+    onChange(
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value,
     );
@@ -55,7 +55,7 @@ export default function Selector() {
           labelId="demo-multiple-name-label"
           id="demo-multiple-name"
           multiple
-          value={personName}
+          value={value}
           onChange={handleChange}
           input={<OutlinedInput />}
           MenuProps={MenuProps}
@@ -64,7 +64,7 @@ export default function Selector() {
             <MenuItem
               key={name}
               value={name}
-              style={getStyles(name, personName, theme)}
+              style={getStyles(name, value, theme)}
             >
               {name}
             </MenuItem>
