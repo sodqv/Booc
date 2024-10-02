@@ -4,8 +4,9 @@ import BasicTable from '../../modelData/Profile/table';
 import TimeTable from '../../modelData/Profile/timeTable';
 import BasicModal from '../forms/create_new_event';
 import BasicDateCalendar from './calendar';
-import Header from '../feed/header';
+import Navbar from '../feed/navbar';
 import CheckboxListSecondary from '../../modelData/Feed/list';
+import BasicFriendModal from '../forms/add_friend';
 
 
 export default function Profile() {
@@ -15,7 +16,7 @@ export default function Profile() {
             height: '100vh',  
             width: '100%'
         }} >
-            <Header page={'Profile'}/>
+            <Navbar page={'Profile'}/>
             
             {/* Grid layout */}
             <div style={{
@@ -41,6 +42,12 @@ export default function Profile() {
                     {/* Form button */}
                     <div style={{ margin: '15px 0'}}>
                         <BasicModal/>
+                    </div>
+
+
+                    {/* Friend button */}
+                    <div style={{ margin: '15px 0'}}>
+                        <BasicFriendModal/>
                     </div>
 
                     {/* List */}

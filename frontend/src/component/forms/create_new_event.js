@@ -18,7 +18,6 @@ import BasicTimePicker from "./time_picker";
 import Selector from "./selector";
 
 import dayjs from 'dayjs';
-//import axios from 'axios';
 import {api} from '../../controllers/axiosTemplate';
 
 
@@ -70,8 +69,28 @@ export default function BasicModal() {
     invitePeople: [],
   });
 
+
+  const initialFormData = {
+    title: '',
+    date: dayjs(),          
+    fromTime: dayjs(),      
+    toTime: dayjs(),
+    location: '',
+    description: '',
+    color: '#0000FF',      
+    repeat: ['never'],
+    visibility: 'private',
+    invitePeople: [],
+  };
+
+
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+
+  const handleClose = () => {
+    setFormData(initialFormData);   //clear the form
+    setOpen(false);
+  };
+
 
 
   //handle form input
@@ -253,7 +272,7 @@ export default function BasicModal() {
             {/* Buttons - Cancel and Create */}
             <Grid sx={{ display: 'grid', width: '100%', gridTemplateColumns: 'repeat(1, 1fr)', paddingBottom: '15px'}}>
                 <Item>
-                    <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                    <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
                         <ButtonDirectionStack handleClose={handleClose} handleSubmit={handleSubmit} />
                     </Box>
                 </Item>
