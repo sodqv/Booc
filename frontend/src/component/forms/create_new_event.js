@@ -222,7 +222,10 @@ export default function BasicModal() {
             <Grid sx={{ display: 'grid', width: '100%', gridTemplateColumns: 'repeat(1, 1fr)'}}>
                 <Item>
                     <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536' }}>Visibility</Typography>
-                    <VisibilityPicker />
+                    <VisibilityPicker 
+                        value={formData.visibility}
+                        onChange={(newVisibility) => handleInput('visibility', newVisibility)}
+                    />
                 </Item>
             </Grid>
 

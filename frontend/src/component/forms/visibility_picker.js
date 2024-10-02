@@ -5,11 +5,13 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 
-export default function VisibilityPicker() {
+export default function VisibilityPicker({ value, onChange }) {
   return (
     <FormControl>
       <FormLabel id="demo-row-radio-buttons-group-label"></FormLabel>
       <RadioGroup
+        value={value}
+        onChange={(newVisibility) => onChange(newVisibility.target.value)}
         row
         aria-labelledby="demo-row-radio-buttons-group-label"
         name="row-radio-buttons-group"
