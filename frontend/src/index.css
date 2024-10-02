@@ -77,6 +77,16 @@ code {
   padding: 10px;
 }
 
+.form {
+  background-color: #f5ebe0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 95%;
+  height: 100%;
+  padding: 10px;
+}
+
 .Table#SignUpPage{
   flex-direction: row-reverse;
   align-items: center;

@@ -67,7 +67,7 @@ export default function Login_page(){
 
             <Formik initialValues={{email:"", password:""}} onSubmit={(values) => {submit(values, {method:"post"})} } //onSubmit={login}
                 >{({values, handleChange}) => (
-                    <Form method='post'>
+                    <Form method='post' className='form'>
                         <div className='LoginFields'>
                             <Textfield 
                                 name="email" 

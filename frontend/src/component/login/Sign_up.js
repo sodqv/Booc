@@ -36,7 +36,7 @@ export default function Sign_up_page(){
             
             <Formik initialValues={{email:"", username:"", password1:"", password2:""}} onSubmit={(values) => {submit(values, {method:"post"})} } //onSubmit={login}
                 >{({values, handleChange}) => (
-                    <Form method='post'>
+                    <Form method='post' className='form'>
                         <div className='SignUpFields'>
                             <Textfield 
                                 name="email" 
