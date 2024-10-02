@@ -272,7 +272,7 @@ export default function BasicModal() {
             {/* Buttons - Cancel and Create */}
             <Grid sx={{ display: 'grid', width: '100%', gridTemplateColumns: 'repeat(1, 1fr)', paddingBottom: '15px'}}>
                 <Item>
-                    <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                    <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
                         <ButtonDirectionStack handleClose={handleClose} handleSubmit={handleSubmit} />
                     </Box>
                 </Item>

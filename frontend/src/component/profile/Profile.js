@@ -6,6 +6,7 @@ import BasicModal from '../forms/create_new_event';
 import BasicDateCalendar from './calendar';
 import Header from '../feed/header';
 import CheckboxListSecondary from '../../modelData/Feed/list';
+import BasicFriendModal from '../forms/add_friend';
 
 
 export default function Profile() {
@@ -41,6 +42,12 @@ export default function Profile() {
                     {/* Form button */}
                     <div style={{ margin: '15px 0'}}>
                         <BasicModal/>
+                    </div>
+
+
+                    {/* Friend button */}
+                    <div style={{ margin: '15px 0'}}>
+                        <BasicFriendModal/>
                     </div>
 
                     {/* List */}
