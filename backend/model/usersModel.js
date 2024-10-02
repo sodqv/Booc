@@ -17,13 +17,14 @@ async function getUser(email, password){
         return;
     }
     
-
+    /*
     console.log("2");
     console.log(objUser.password);
     console.log(password);
+    */
 
     if(await argon2.verify(objUser.password, password)){
-        console.log("Yay")
+        //console.log("Yay")
         return objUser;
     }
     else{

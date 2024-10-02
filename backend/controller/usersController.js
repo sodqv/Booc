@@ -30,7 +30,7 @@ async function authStatus(req, res){
         //console.log(req.session.user.email);
         //console.log(req.session.user.password);
         const user = await usersModel.getUser(req.session.user.email, req.session.user.password);
-        console.log(user);
+        //console.log(user);
         if(typeof req.session.user === "undefined"|| typeof user === "undefined" || user === "Failed to find"){
             return res.status(401).send({msg:"Not authenticated"})
         } 
