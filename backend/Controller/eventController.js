@@ -9,11 +9,11 @@ async function createEvent(req, res){
 
     if (result)
     {
-        return res.status(200).send({result});  // OK
+        return res.status(200).send({result});                          // 200 OK
     }
     else
     {
-        return res.status(500).send({msg:"Failed to create event"});    // Internal Server Error
+        return res.status(500).send({msg:"Failed to create event"});    // 500 Internal Server Error
     }
 }
 

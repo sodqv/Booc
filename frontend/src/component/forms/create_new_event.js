@@ -172,7 +172,7 @@ export default function BasicModal() {
                     <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536' }}>Location</Typography>
                     <BasicTextField 
                         value={formData.location}
-                        onChange={(newLocation) => handleInput('location', newLocation)}
+                        onChange={(newLocation) => handleInput('location', newLocation.target.value)}
                     />
                 </Item>
             </Grid>
@@ -185,7 +185,7 @@ export default function BasicModal() {
                     <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536' }}>Description</Typography>
                     <TextFieldMultiline 
                         value={formData.description}
-                        onChange={(newDescription) => handleInput('description', newDescription)}
+                        onChange={(newDescription) => handleInput('description', newDescription.target.value)}
                     />
                 </Item>
             </Grid>
