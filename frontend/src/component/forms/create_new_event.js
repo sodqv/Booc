@@ -64,7 +64,7 @@ export default function BasicModal() {
     location: '',
     description: '',
     color: '#0000FF',       // default color blue
-    repeat: 'never',
+    repeat: ['never'],
     visibility: 'private',
     invitePeople: [],
   });
@@ -196,7 +196,10 @@ export default function BasicModal() {
             <Grid sx={{ display: 'grid', width: '100%', gridTemplateColumns: 'repeat(1, 1fr)'}}>
                 <Item>
                     <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536' }}>Color</Typography>
-                    <ColorPicker />
+                    <ColorPicker 
+                        value={formData.color}
+                        onChange={(newColor) => handleInput('color', newColor)}
+                    />
                 </Item>
             </Grid>
 
@@ -206,7 +209,10 @@ export default function BasicModal() {
             <Grid sx={{ display: 'grid', width: '100%', gridTemplateColumns: 'repeat(1, 1fr)'}}>
                 <Item>
                     <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536' }}>Repeat</Typography>
-                    <RepeatCheckboxes />
+                    <RepeatCheckboxes 
+                        value={formData.repeat}
+                        onChange={(newRepeat) => handleInput('repeat', newRepeat)}
+                    />
                 </Item>
             </Grid>
 

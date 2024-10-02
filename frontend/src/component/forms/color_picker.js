@@ -4,24 +4,19 @@ import CircleIcon from '@mui/icons-material/Circle';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
-export default function ColorPicker() {
-  const [alignment, setAlignment] = React.useState('left');
-
-  const handleAlignment = (event, newAlignment) => {
-    setAlignment(newAlignment);
-  };
-
+export default function ColorPicker({ value, onChange }) {
   return (
     <ToggleButtonGroup
-      value={alignment}
+      value={value}
       exclusive
-      onChange={handleAlignment}
+      onChange={(event, newColor) => onChange(newColor)}
       aria-label="color selection"
     >
 
 
       {/* Orange */}
-      <ToggleButton value="orange"
+      <ToggleButton 
+            value="orange"
             sx = {{
                 width: 28,
                 height: 28,
@@ -41,7 +36,8 @@ export default function ColorPicker() {
 
 
       {/* Red */}
-      <ToggleButton value="red"
+      <ToggleButton 
+            value="red"
             sx = {{
                 width: 28,
                 height: 28,
@@ -61,7 +57,8 @@ export default function ColorPicker() {
 
 
       {/* Green */}
-      <ToggleButton value="green"
+      <ToggleButton 
+            value="green"
             sx = {{
                 width: 28,
                 height: 28,
@@ -81,7 +78,8 @@ export default function ColorPicker() {
 
 
       {/* Blue */}
-      <ToggleButton value="blue"
+      <ToggleButton 
+            value="blue"
             sx = {{
                 width: 28,
                 height: 28,
@@ -101,7 +99,8 @@ export default function ColorPicker() {
 
 
       {/* Purple */}
-      <ToggleButton value="purple"
+      <ToggleButton 
+            value="purple"
             sx = {{
                 width: 28,
                 height: 28,
