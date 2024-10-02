@@ -15,8 +15,8 @@ export async function login(email, password){
       })
       .then(function(response){
         //Test for failed login
-        if(typeof response.msg !== "undefined"){
-          throw new Error(response.msg);
+        if(typeof response.data?.msg === "undefined" || response.data?.msg === "Bad credentials"){
+          throw new Error("Response not found");
         }
 
         //If success then redirect to next page
@@ -28,6 +28,7 @@ export async function login(email, password){
         }
       })
       .catch(function(error){
+          console.log(error);
           redirect_target = "invalid";
       })
 
@@ -43,8 +44,8 @@ export async function isAuth(email, password){
       })
       .then(function(response){
         //Test for failed login
-        if(typeof response.msg !== "undefined"){
-          throw new Error(response.msg);
+        if(typeof response.data?.msg === "undefined"){
+          throw new Error(response.data.msg);
         }
         //Checks if the user was authenticated or not
         if(response.data.msg == "You are authenticated"){

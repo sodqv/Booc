@@ -79,9 +79,11 @@ code {
 
 .Table#SignUpPage{
   flex-direction: row-reverse;
+  align-items: center;
+  justify-content: center;
 }
 
-.LoginFields {
+.LoginFields, .SignUpFields {
   align-self: center;
   display: flex;
   flex-direction: column;

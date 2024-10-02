@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {signUp as signUpController} from "../../controllers/loginController"
+import {signUp as signUpController} from "../controllers/userController"
 
-export async function signUp({request}){
+export async function signUp(request){
     const formData = await request.formData();
     let email = formData.get('email');
     let username = formData.get('username');
@@ -10,9 +10,8 @@ export async function signUp({request}){
     
     //test if passwords are the same
     if(password1 !== password2){
-        return;
+        return null;
     }
-
-
-    return await signUpController(email, username, password1);
+    const response = await signUpController(email, username, password1);
+    return response;
 }

@@ -19,7 +19,8 @@ async function authenicate(req, res){
         const recastUser = user;
         req.session.user = {...recastUser, password:password};
         //res.cookie("user", recastUser, );
-        return res.status(200).send(user);
+        const {startingPage: startingPage} = recastUser;
+        return res.status(200).send({msg: "Valid crendentials", startingPage:startingPage});
     }
 }
 
@@ -45,8 +46,13 @@ async function authStatus(req, res){
 async function createUser(req, res){
     const {body: {email, username, password}} = req;
     const result = await usersModel.createUser(email, username, password);
-    if(result){
-        return res.status(200).send({result});
+    if(result === "All identifiers used"){
+        return res.status(500).send({msg:"All identifiers used for this username"});
+    }
+    //console.log(result);
+    if(typeof result !== "undefined"){
+        req.session.user = {...result, password:password};
+        return res.status(200).send({msg:"Created user"});
     }
     else{
         return res.status(500).send({msg:"Failed to create user"});

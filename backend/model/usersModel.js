@@ -10,6 +10,7 @@ async function getUser(email, password){
     const user = await users.findOne({
         "email":email,
     });
+    if(user === null){return null;}
     const objUser = user.toObject();
     //console.log( objUser);
 
@@ -36,10 +37,49 @@ async function getUser(email, password){
 async function createUser(email, username, password) {
     startmongoose();
     try{
+        //Find smallest identifier within 9999
+        var smallestAvailableIdentifier = 0;
+        console.log("Started querry");
+        try{
+            smallestAvailableIdentifier = (await users.find({"username":username}).sort({"identifier":-1}).limit(1))[0].identifier;
+
+            //BiggestIdentifier = await users.find({"username":username}).sort({"identifier":-1}).limit(1);//.identifier;
+            /*
+            console.log(BiggestIdentifier[0]);
+            console.log(typeof BiggestIdentifier[0]);
+            console.log(BiggestIdentifier[0].identifier);
+            */
+            //smallestAvailableIdentifier = BiggestIdentifier[0].identifier
+            smallestAvailableIdentifier++;
+            //console.log(smallestAvailableIdentifier);
+            if(typeof smallestAvailableIdentifier === "undefined"){
+                //console.log("became 0");
+                smallestAvailableIdentifier = 0;
+            }
+        }
+        catch(err){
+            console.log("Failed to find smallest identifier defaulting to 0");
+            //console.log(err);
+            smallestAvailableIdentifier = 0;
+        }
+        //console.log("Found smallest number: " + smallestAvailableIdentifier);
+        if(0 > smallestAvailableIdentifier){
+            //Invalid indexing has occoured
+            console.log("To low of a identifier was attempted to be assigned");
+            return "undefined"; //This should never happen
+        } 
+        else if(smallestAvailableIdentifier > 9999){
+            console.log("Too high of a identifier was attempted to be assigned");
+            return "All identifiers used"; //For the username
+        }
+        
+
+        //Create the user
         const hashedPassword  = await argon2.hash(password);
-        const newUser = new users({email, username, password:hashedPassword});
+        const newUser = new users({email, username,identifier:smallestAvailableIdentifier, password:hashedPassword});
+        //console.log(newUser);
         await newUser.save();
-        return newUser; //success
+        return newUser.toObject(); //success
     }
     catch{
         return; //failed
