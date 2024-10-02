@@ -3,7 +3,7 @@ import Textfield, {TextFieldPassword} from '../TextField.js';
 import {Link, redirect, useNavigate, useSubmit} from "react-router-dom";
 import { colors } from '@mui/material';
 import {Formik, Form} from "formik";
-import {login as loginModel} from '../../modelData/Login/loginModel.js'
+import {login as loginModel} from '../../modelData/auth.js'
 //import {isAuth} from "../../modelData/auth.js"
 
 
@@ -27,7 +27,7 @@ export async function loginAction({request}){
     const response  = await loginModel(email, password);
     if(response === "invalid"){
         //Set MUI prop for error to true
-        //setFailedLogin(true);
+
         return null;
     }
     else{
