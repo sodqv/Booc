@@ -6,7 +6,8 @@ const { Schema } = mongoose;
 const eventSchema = new Schema({
     title: {type: String, required: true},
     date: {type: Date, required: true},
-    time: {type: String, required: true},
+    fromTime: {type: String, required: true},
+    toTime: {type: String, required: true},
     location: {type: String, required: false},
     description: {type: String, required: false},
     color: {type: String, default: '#0000FF'},

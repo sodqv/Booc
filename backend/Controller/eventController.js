@@ -4,8 +4,8 @@ const eventsModel = require('../Model/eventModel');
 
 //create event
 async function createEvent(req, res){
-    const { body: { title, date, time, location, description, color, repeat, visibility, invitePeople } } = req;
-    const result = await eventsModel.createEvent(title, date, time, location, description, color, repeat, visibility, invitePeople);
+    const { body: { title, date, fromTime, toTime, location, description, color, repeat, visibility, invitePeople } } = req;
+    const result = await eventsModel.createEvent(title, date, fromTime, toTime, location, description, color, repeat, visibility, invitePeople);
 
     if (result)
     {

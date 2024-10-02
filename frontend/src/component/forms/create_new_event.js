@@ -59,7 +59,8 @@ export default function BasicModal() {
   const [formData, setFormData] = React.useState ({
     title: '',
     date: dayjs(),          // default is the current date
-    time: '',
+    fromTime: dayjs(),      // default time is the current time
+    toTime: dayjs(),
     location: '',
     description: '',
     color: '#0000FF',       // default color blue
@@ -145,8 +146,8 @@ export default function BasicModal() {
 
             <Grid sx={{ display: 'grid', columnGap: 1, width: '100%', gridTemplateColumns: 'repeat(3, auto)', paddingLeft: '16px', paddingRight: '30px' }}>
                 <BasicDatePicker value={formData.date} onChange={(newDate) => handleInput('date', newDate)} />
-                <BasicTimePicker />
-                <BasicTimePicker />
+                <BasicTimePicker label="from" value={formData.fromTime} onChange={(newTime) => handleInput('fromTime', newTime)} />
+                <BasicTimePicker label="to" value={formData.toTime} onChange={(newTime) => handleInput('toTime', newTime)}/>
             </Grid>
  
 

@@ -5,9 +5,9 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 
 
-export default function BasicTimePicker({ label }) {
+export default function BasicTimePicker({ label, value, onChange }) {
   
-  const [value, setValue] = React.useState(dayjs('2022-04-17T15:30'));
+  //const [value, setValue] = React.useState(dayjs('2022-04-17T15:30'));
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -15,7 +15,7 @@ export default function BasicTimePicker({ label }) {
         <TimePicker
           label={label}
           value={value}
-          onChange={(newValue) => setValue(newValue)}
+          onChange={onChange}
           sx={{ backgroundColor: '#ffffffff' }}
         />
 
