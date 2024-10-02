@@ -17,6 +17,9 @@ import BasicDatePicker from "./date_picker";
 import BasicTimePicker from "./time_picker";
 import Selector from "./selector";
 
+import dayjs from 'dayjs';
+import axios from 'axios';
+
 
 const style = {
   position: 'absolute',
@@ -52,8 +55,51 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function BasicModal() {
   const [open, setOpen] = React.useState(false);
+
+  const [formData, setFormData] = React.useState ({
+    title: '',
+    date: dayjs(),          // default is the current date
+    time: '',
+    location: '',
+    description: '',
+    color: '#0000FF',       // default color blue
+    repeat: 'never',
+    visibility: 'private',
+    invitePeople: [],
+  });
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+
+  //handle form input
+  const handleInput = (field, value) => {
+    setFormData({ ...formData, [field]: value });
+  }
+
+
+  //handle form submission
+  const handleSubmit = async () => {
+    try {
+        const response = await axios.post('http://localhost:6400/api/newEvent', formData);  
+
+        if (response.status === 201)
+        {
+            alert('Event created successfully');
+            handleClose();      //closes the create event form
+        }
+        else
+        {
+            alert('Failed to create event');
+        }
+    }
+    catch (error) {
+        console.error('Error when creating event:', error);
+        alert('An error occurred while creating the event');
+    }
+  };
+
+
 
   return (
     <div>
@@ -84,7 +130,7 @@ export default function BasicModal() {
             <Grid sx={{ display: 'grid', width: '100%', gridTemplateColumns: 'repeat(1, 1fr)'}}>
                 <Item>
                     <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536' }}>Title</Typography>
-                    <BasicTextField />
+                    <BasicTextField value={formData.title} onChange={(newTitle) => handleInput('title', newTitle.target.value)} />
                 </Item>
             </Grid>
 
@@ -98,8 +144,8 @@ export default function BasicModal() {
             </Grid>
 
             <Grid sx={{ display: 'grid', columnGap: 1, width: '100%', gridTemplateColumns: 'repeat(3, auto)', paddingLeft: '16px', paddingRight: '30px' }}>
-                <BasicDatePicker />
-                <BasicTimePicker  />
+                <BasicDatePicker value={formData.date} onChange={(newDate) => handleInput('date', newDate)} />
+                <BasicTimePicker />
                 <BasicTimePicker />
             </Grid>
  
@@ -169,7 +215,7 @@ export default function BasicModal() {
             <Grid sx={{ display: 'grid', width: '100%', gridTemplateColumns: 'repeat(1, 1fr)', paddingBottom: '15px'}}>
                 <Item>
                     <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                        <ButtonDirectionStack handleClose={handleClose}/>
+                        <ButtonDirectionStack handleClose={handleClose} handleSubmit={handleSubmit} />
                     </Box>
                 </Item>
             </Grid>

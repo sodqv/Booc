@@ -1,5 +1,6 @@
 var express = require('express');
 const {authenicate, authStatus, createUser, deleteUser} = require('../controller/usersController');
+const { createEvent } = require('../Controller/eventsController');
 var router = express.Router();
 
 //Authorization
@@ -9,5 +10,9 @@ router.get("/auth", authStatus);
 //Users
 router.post("/users", createUser);
 router.delete("/users", deleteUser);
+
+//Events
+router.post("/newEvent", createEvent);
+
 
 module.exports = router;

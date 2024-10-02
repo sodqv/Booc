@@ -96,7 +96,7 @@ export default function ColorPicker() {
                 '&:hover': {backgroundColor: 'transparent', border: 'none'},
                 '&:Mui-selected': {backgroundColor: 'transparent', border: 'none'}
               }}>
-        <CircleIcon sx = {{ color: 'blue' }}/>
+        <CircleIcon sx = {{ color: '#0000FF' }}/>
       </ToggleButton>
 
 
