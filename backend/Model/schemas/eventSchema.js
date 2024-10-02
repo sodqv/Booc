@@ -12,9 +12,9 @@ const eventSchema = new Schema({
     description: {type: String, required: false},
     color: {type: String, default: '#0000FF'},
     repeat: {
-        type: String,
+        type: [String],
         enum: ['never', 'daily', 'weekly', 'monthly', 'yearly'],    //repeatability options
-        default: 'never'
+        default: ['never']
     },
     visibility: {
         type: String,

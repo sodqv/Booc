@@ -18,7 +18,8 @@ import BasicTimePicker from "./time_picker";
 import Selector from "./selector";
 
 import dayjs from 'dayjs';
-import axios from 'axios';
+//import axios from 'axios';
+import {api} from '../../controllers/axiosTemplate';
 
 
 const style = {
@@ -82,7 +83,12 @@ export default function BasicModal() {
   //handle form submission
   const handleSubmit = async () => {
     try {
-        const response = await axios.post('http://localhost:6400/api/newEvent', formData);  
+
+        console.log('Form data:', formData);        //puts the new event in the console log in the browser
+
+
+
+        const response = await api.post('/api/newEvent', formData);  
 
         if (response.status === 201)
         {
@@ -95,7 +101,7 @@ export default function BasicModal() {
         }
     }
     catch (error) {
-        console.error('Error when creating event:', error);
+        console.error('Error when creating event:', error.response?.data || error.message);
         alert('An error occurred while creating the event');
     }
   };

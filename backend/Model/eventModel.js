@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Event = require("./schemas/eventSchema");
-const startmongoose = require('./mongodbStarter');
+const {startmongoose} = require('./mongodbStarter');
 
 
 
