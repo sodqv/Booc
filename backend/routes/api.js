@@ -1,6 +1,6 @@
 var express = require('express');
 const {authenicate, authStatus, createUser, deleteUser} = require('../controller/usersController');
-const { createEvent } = require('../Controller/eventsController');
+const { createEvent } = require('../Controller/eventController');
 var router = express.Router();
 
 //Authorization
