@@ -131,7 +131,10 @@ export default function BasicModal() {
             <Grid sx={{ display: 'grid', width: '100%', gridTemplateColumns: 'repeat(1, 1fr)'}}>
                 <Item>
                     <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536' }}>Title</Typography>
-                    <BasicTextField value={formData.title} onChange={(newTitle) => handleInput('title', newTitle.target.value)} />
+                    <BasicTextField 
+                        value={formData.title} 
+                        onChange={(newTitle) => handleInput('title', newTitle.target.value)} 
+                    />
                 </Item>
             </Grid>
 
@@ -145,9 +148,20 @@ export default function BasicModal() {
             </Grid>
 
             <Grid sx={{ display: 'grid', columnGap: 1, width: '100%', gridTemplateColumns: 'repeat(3, auto)', paddingLeft: '16px', paddingRight: '30px' }}>
-                <BasicDatePicker value={formData.date} onChange={(newDate) => handleInput('date', newDate)} />
-                <BasicTimePicker label="from" value={formData.fromTime} onChange={(newTime) => handleInput('fromTime', newTime)} />
-                <BasicTimePicker label="to" value={formData.toTime} onChange={(newTime) => handleInput('toTime', newTime)}/>
+                <BasicDatePicker 
+                    value={formData.date} 
+                    onChange={(newDate) => handleInput('date', newDate)} 
+                />
+                <BasicTimePicker 
+                    label="from" 
+                    value={formData.fromTime} 
+                    onChange={(newTime) => handleInput('fromTime', newTime)} 
+                />
+                <BasicTimePicker 
+                    label="to" 
+                    value={formData.toTime} 
+                    onChange={(newTime) => handleInput('toTime', newTime)}
+                />
             </Grid>
  
 
@@ -156,7 +170,10 @@ export default function BasicModal() {
             <Grid sx={{ display: 'grid', width: '100%', gridTemplateColumns: 'repeat(1, 1fr)', paddingTop: '15px'}}>
                 <Item>
                     <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536' }}>Location</Typography>
-                    <BasicTextField />
+                    <BasicTextField 
+                        value={formData.location}
+                        onChange={(newLocation) => handleInput('location', newLocation)}
+                    />
                 </Item>
             </Grid>
 
@@ -166,7 +183,10 @@ export default function BasicModal() {
             <Grid sx={{ display: 'grid', width: '100%', gridTemplateColumns: 'repeat(1, 1fr)'}}>
                 <Item>
                     <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536' }}>Description</Typography>
-                    <TextFieldMultiline />
+                    <TextFieldMultiline 
+                        value={formData.description}
+                        onChange={(newDescription) => handleInput('description', newDescription)}
+                    />
                 </Item>
             </Grid>
 

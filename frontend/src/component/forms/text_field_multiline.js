@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
-export default function TextFieldMultiline() {
+export default function TextFieldMultiline({ value, onChange }) {
   return (
     <Box
       component="form"
@@ -16,6 +16,8 @@ export default function TextFieldMultiline() {
           id="outlined-multiline-static"
           multiline
           rows={4}
+          value={value}
+          onChange={onChange}
           sx={{ backgroundColor: '#ffffffff' }}
         />
 
