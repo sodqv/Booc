@@ -37,10 +37,8 @@ export async function login(email, password){
 }
 
 //Checks your seesion cookie to see if you are logged in
-export async function isAuth(email, password){
+export async function isAuth(){
   return await api.get('/api/auth', {
-        email:email,
-        password: password,
       })
       .then(function(response){
         //Test for failed login
@@ -58,4 +56,26 @@ export async function isAuth(email, password){
       .catch(function(error){
         return("failed to get authenticated status");
       })
+}
+
+export async function logOut() {
+    return await api.delete("/api/auth", {
+    })
+    .then(function(response){
+      if(typeof response.data?.msg === "undefined"){
+        throw new Error(response.data.msg);
+      }
+
+      if(response.data.msg === "Logged out"){
+        return 1;
+      }
+      else{
+        return 0;
+      }
+    })
+    .catch(function(error){
+      console.log("The following error originates from logOut .catch:\n")
+      console.log(error);
+      return 0;
+    })
 }
