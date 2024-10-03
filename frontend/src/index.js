@@ -13,6 +13,7 @@ import Login from "./component/login/Login.js"
 import {loginAction} from "./component/login/Login.js"
 import SignUp from "./component/login/Sign_up.js"
 import {signUpAction} from "./component/login/Sign_up.js"
+import {AuthLoader} from "./component/AuthWrapper.js"
 import Profile from "./component/profile/Profile.js"
 import Feed from "./component/feed/Feed.js"
 import Test from './component/forms/create_new_event.js'
@@ -38,11 +39,13 @@ const router = createBrowserRouter([
   },
   {
     path: "/Profile",
-    element: <Profile />
+    element: <Profile />,
+    loader: AuthLoader,
   },
   {
     path: "/Feed",
-    element: <Feed />
+    element: <Feed />,
+    loader: AuthLoader,
   }
 ]);
 
