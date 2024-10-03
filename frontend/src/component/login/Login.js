@@ -92,7 +92,7 @@ export default function Login_page(){
                             <Link to=''>Reset password </Link>
                         </div>
                         <div className='PageButtons'>
-                            <button className='leftButton' onClick={changeToSignUpPage}>← Sign up</button>
+                            <button className='leftButton' type='button' onClick={changeToSignUpPage}>← Sign up</button>
                             <button className='rightButton' type="submit">Login</button>
                         </div>
                     </Form>

@@ -81,8 +81,8 @@ export default function Sign_up_page(){
                             />
                         </div>
                         <div className='PageButtons'>
-                            <button className='leftButton' >Complete sign up</button>
-                            <button className='rightButton' onClick={changeToLoginPage}>Login page →</button>
+                            <button className='leftButton' type="button">Complete sign up</button>
+                            <button className='rightButton' type="submit" onClick={changeToLoginPage}>Login page →</button>
                         </div>
                     </Form>
                 )}
