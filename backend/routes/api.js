@@ -31,9 +31,5 @@ router.get("/groups", getAllGroups);
 router.post("/newEvent", createEvent);
 //router.delete("events", deleteEvent);
 
-//Groups
-router.post("/newGroup", createGroup);
-router.delete("/groups", deleteGroup);
-
 
 module.exports = router;

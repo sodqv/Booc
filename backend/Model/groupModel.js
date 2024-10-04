@@ -8,7 +8,7 @@ async function getGroup(groupName){
     const group = await groups.findOne({
         groupName:groupName,
     });
-    
+
     if(group === null){return null;}
     const objGroup = group.toObject();
 
@@ -100,10 +100,29 @@ async function deleteGroup(groupName){
     }
 }
 
+async function checkIfOwner(groupName, username, identifier) {
+    startmongoose();
+
+    //Checks if the user is a owner of the group
+    const user = {username, identifier};
+    console.log(user);
+    const group = await groups.findOne({
+        $and: [
+            {groupName},
+            {owners: {$all: [user]}}
+        ]
+    });
+    console.log(group);
+    if(group === null){return null;}
+    return 1; //Found group where user is owner
+    
+}
+
 module.exports = {
     getGroup,
     getAllGroups,
     createGroup,
     updateGroup,
-    deleteGroup
+    deleteGroup,
+    checkIfOwner
 }

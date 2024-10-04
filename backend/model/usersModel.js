@@ -13,7 +13,7 @@ async function getUser(email, password){
     //console.log( objUser);
 
     if(typeof objUser === "undefined"){
-        return;
+        return null;
     }
     
     /*

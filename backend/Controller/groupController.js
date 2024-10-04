@@ -2,7 +2,8 @@ const {getGroup:getGroupModel,
     getAllGroups:getAllGroupsModel,
     createGroup:createGroupModel,
     updateGroup:updateGroupModel,
-    deleteGroup:deleteGroupModel} =  require("../model/groupModel")
+    deleteGroup:deleteGroupModel,
+    checkIfOwner} =  require("../model/groupModel")
 
 
 
@@ -20,40 +21,82 @@ async function getGroup(req, res){
 
 //Get all groups a person is in
 async function getAllGroups(req, res){
-    var result = await getAllGroupsModel(req.session.user.username, req.session.user.identifier);
-    if(result === null){
+    try{
+        var result = await getAllGroupsModel(req.session.user.username, req.session.user.identifier);
+        if(result === null){
+            return res.status(500).send({msg:"Failed to get groups"});
+        }
+        return res.status(200).send({msg:"Got groups", groups:result});
+    }
+    catch{
         return res.status(500).send({msg:"Failed to get groups"});
     }
-    return res.status(200).send({msg:"Got groups", groups:result});
 }
 
 //Create group
 async function createGroup(req, res){
     const {body : {groupName, members}} = req
-    const owner = [{username:req.session.user.username, identifier:req.session.user.identifier}];
-    var result = await createGroupModel(groupName, owner, members);
-    if(result === null){
+    try{
+        const owner = [{username:req.session.user.username, identifier:req.session.user.identifier}];
+        var result = await createGroupModel(groupName, owner, members);
+        if(result === null){
+            return res.status(500).send({msg:"Failed to create group"});
+        }
+        return res.status(200).send({msg:"Created group"});
+    }
+    catch{
         return res.status(500).send({msg:"Failed to create group"});
     }
-    return res.status(200).send({msg:"Created group"});
+    
 }  
 
 //Update group
 async function updateGroup(req, res){
     const {body : {groupName, owners, members}} = req
-    var result = await updateGroupModel(groupName, owners, members);
-    if(result === null){
+    try{
+        
+        if(checkIfOwner(groupName, req.session.user.username, req.session.user.identifier) === null){
+        return res.status(403).send({msg:"User does not have the authority to update group"});
+        }
+    }
+    catch(err){
+        console.log("Failed to check if the user had authority to delete");
+        console.log(err);
+    }
+
+    //Update group
+    try{
+        var result = await updateGroupModel(groupName, owners, members);
+        if(result === null){
+            return res.status(500).send({msg:"Failed to update group"});
+        }
+        return res.status(200).send({msg:"Updated group"});
+    }
+    catch(err){
+        console.log("Failed to update");
+        console.log(err);
         return res.status(500).send({msg:"Failed to update group"});
     }
-    return res.status(200).send({msg:"Updated group"});
+    
 }
 
 //Delete group
 async function deleteGroup(req, res){
     const {body : {groupName}} = req
-    //Check if the user has the authority to delete group
+    try{
+        if(checkIfOwner(groupName, req.session.user.username, req.session.user.identifier) === null){
+            console.log("User does not have the authority to delete group")
+            return res.status(403).send({msg:"User does not have the authority to delete group"});
+        }
+    }
+    catch(err){
+        console.log("Failed to check if the user had authority to delete");
+        console.log(err);
+        return res.status(500).send({msg:"Failed to check if the user had authority to delete"});
+    }
+    
 
-    //delete group§
+    //delete group
     var result = await deleteGroupModel(groupName);
     if(result === null){
         return res.status(500).send({msg:"Failed to delete group"});

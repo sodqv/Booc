@@ -32,7 +32,7 @@ async function authStatus(req, res){
         //console.log(req.session.user.password);
         const user = await usersModel.getUser(req.session.user.email, req.session.user.password);
         //console.log(user);
-        if(typeof req.session.user === "undefined"|| typeof user === "undefined" || user === "Failed to find"){
+        if(typeof req.session.user === "undefined"|| typeof user === "undefined" || user === "Failed to find" || user === null){
             return res.status(401).send({msg:"Not authenticated"})
         } 
         return res.status(200).send({msg:"You are authenticated"});
