@@ -83,10 +83,6 @@ export default function GroupModal() {
 
 
 
-
-  /* 
-  // !! Connecta create knappen till databasen här!!
-
   //handle form submission
   const handleSubmit = async () => {
     try {
@@ -95,9 +91,9 @@ export default function GroupModal() {
 
 
 
-        const response = await api.post('/api/newEvent', formData);         // ändra till group API
+        const response = await api.post('/api/newGroup', formData); 
 
-        if (response.status === 201)                                        //201 Created
+        if (response.status === 201)    //201 Created
         {
             alert('Group created successfully');                          
             handleClose();      //closes the create event form
@@ -112,7 +108,7 @@ export default function GroupModal() {
         alert('An error occurred while creating the group');
     }
   };
-*/
+
 
 
 
@@ -171,7 +167,7 @@ export default function GroupModal() {
             <Grid sx={{ display: 'grid', width: '100%', gridTemplateColumns: 'repeat(1, 1fr)', paddingBottom: '15px'}}>
                 <Item>
                     <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
-                        <ButtonDirectionStack handleClose={handleClose}  />             {/* add handleSubmit={handleSubmit} here when submission is implemented */}
+                        <ButtonDirectionStack handleClose={handleClose} handleSubmit={handleSubmit} />
                     </Box>
                 </Item>
             </Grid>

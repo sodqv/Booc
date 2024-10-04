@@ -2,6 +2,7 @@ var express = require('express');
 const {authenicate, authStatus, removeAuth} = require("../controller/authController");
 const {createUser, deleteUser} = require('../controller/usersController');
 const { createEvent } = require('../Controller/eventController');
+//add const { createGroup } = require('../Controller/groupController'); when it's implemented
 var router = express.Router();
 
 //Authorization
@@ -15,6 +16,9 @@ router.delete("/users", deleteUser);
 
 //Events
 router.post("/newEvent", createEvent);
+
+//Groups
+router.post("/newGroup, createGroup");
 
 
 module.exports = router;
