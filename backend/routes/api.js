@@ -1,12 +1,12 @@
 var express = require('express');
 const {authenicate, authStatus, removeAuth} = require("../controller/authController");
 const {createUser, deleteUser} = require('../controller/usersController');
-const { createEvent } = require('../Controller/eventController');
 const {getGroup,
     getAllGroups,
     createGroup,
     updateGroup,
     deleteGroup} = require("../controller/groupController");
+const { createEvent, deleteEvent } = require('../Controller/eventController');
 var router = express.Router();
 
 //Authorization
@@ -29,6 +29,11 @@ router.get("/groups", getAllGroups);
 
 //Events
 router.post("/newEvent", createEvent);
+router.delete("events", deleteEvent);
+
+//Groups
+router.post("/newGroup", createGroup);
+router.delete("/groups", deleteGroup);
 
 
 module.exports = router;
