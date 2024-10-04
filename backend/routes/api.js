@@ -29,7 +29,7 @@ router.get("/groups", getAllGroups);
 
 //Events
 router.post("/newEvent", createEvent);
-router.delete("events", deleteEvent);
+//router.delete("events", deleteEvent);
 
 //Groups
 router.post("/newGroup", createGroup);

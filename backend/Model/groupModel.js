@@ -8,7 +8,7 @@ async function getGroup(groupName){
     const group = await groups.findOne({
         groupName:groupName,
     });
-
+    
     if(group === null){return null;}
     const objGroup = group.toObject();
 

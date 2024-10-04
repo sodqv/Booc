@@ -34,6 +34,7 @@ export async function updateGroup(){
 
     const response = await CTRLupdateGroup(groupName,owners,members);
     console.log(response);
+    
 }
 
 //Delete group

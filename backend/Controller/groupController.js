@@ -8,7 +8,9 @@ const {getGroup:getGroupModel,
 
 //Get info about group for recreating form
 async function getGroup(req, res){
-    const {body: {groupName} } = req;
+    //console.log(req.query);
+    const groupName = req.query.groupName;
+    //console.log(groupName);
     var result = await getGroupModel(groupName);
     if(result === null){
         return res.status(500).send({msg:"Failed to get group"});

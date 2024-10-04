@@ -5,7 +5,9 @@ import {api} from "./axiosTemplate.js"
 export async function getGroup(groupName){
     var ProccesedResponse = "";
     await api.get('/api/group', {
-          groupName:groupName,
+          params: {
+            groupName:groupName,
+          }
         },{
           headers:{
             "Access-Control-Allow-Origin": "http://localhost:6400",
@@ -30,6 +32,7 @@ export async function getGroup(groupName){
 }
 
 //Get all groups the current user is in
+//Will return array of groups that the user is in
 export async function getAllGroups(){
     var ProccesedResponse = "";
     await api.get('/api/groups', {
