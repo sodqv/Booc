@@ -7,6 +7,7 @@ import BasicDateCalendar from './calendar';
 import Navbar from '../feed/navbar';
 import CheckboxListSecondary from '../../modelData/Feed/list';
 import BasicFriendModal from '../forms/add_friend';
+import GroupModal from '../forms/create_group';
 
 
 export default function Profile() {
@@ -49,6 +50,14 @@ export default function Profile() {
                     <div style={{ margin: '15px 0'}}>
                         <BasicFriendModal/>
                     </div>
+
+
+                    {/* Group button */}
+                    <div style={{ margin: '15px 0'}}>
+                        <GroupModal/>
+                    </div>
+
+
 
                     {/* List */}
                     <div style={{boxSizing: 'border-box', overflow: 'auto',  height: 'calc((100vh - 460px))' }}>
