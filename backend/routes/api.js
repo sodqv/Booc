@@ -1,8 +1,8 @@
 var express = require('express');
 const {authenicate, authStatus, removeAuth} = require("../controller/authController");
 const {createUser, deleteUser} = require('../controller/usersController');
-const { createEvent } = require('../Controller/eventController');
-//add const { createGroup } = require('../Controller/groupController'); when it's implemented
+const { createEvent, deleteEvent } = require('../Controller/eventController');
+//add const { createGroup, deleteGroup } = require('../Controller/groupController'); when it's implemented
 var router = express.Router();
 
 //Authorization
@@ -15,10 +15,12 @@ router.post("/users", createUser);
 router.delete("/users", deleteUser);
 
 //Events
-router.post("/newEvent", createEvent);
+router.post("/events", createEvent);
+router.delete("events", deleteEvent);
 
 //Groups
-router.post("/newGroup, createGroup");
+router.post("/groups", createGroup);
+router.delete("/groups", deleteGroup);
 
 
 module.exports = router;
