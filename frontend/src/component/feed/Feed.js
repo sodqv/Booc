@@ -9,6 +9,7 @@ import LetterAvatars from './avatar';
 // Self created
 import Meating from '../../modelData/Feed/meating';
 import Navbar from './navbar';
+import {MeatingRequest, FrienRequest} from '../../modelData/Feed/notification';
 
 function Feed() {
   return (
@@ -49,6 +50,8 @@ function Feed() {
 
             <div className="info">
                 <h2>Info</h2>
+                <MeatingRequest/>
+                <FrienRequest/>
             </div>
         </div>
 
