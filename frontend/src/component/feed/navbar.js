@@ -19,7 +19,6 @@ export default function Navbar( {page} ) {
     }
     const changeToProfile = () => {
         let path = "/Profile";
-        isAuth();
         navigate(path);
     }
 
@@ -27,6 +26,11 @@ export default function Navbar( {page} ) {
         let path = "/"
         const sucess = await logOutAuth();
         if(sucess === 0){return;}
+        navigate(path);
+    }
+
+    const changeToSettings = () => {
+        let path = "/Settings";
         navigate(path);
     }
 
@@ -83,7 +87,7 @@ export default function Navbar( {page} ) {
                         width: '45px'
                 }}/>
                 <div class="dropdown-content">
-                    <a href="">Settings</a>
+                    <a onClick={changeToSettings}>Settings</a>
                     <a href="" onClick={logOut}>Log out</a>
                 </div>
 

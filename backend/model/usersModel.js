@@ -1,5 +1,3 @@
-const {startMongodb} = require("./mongodbStarter.js");
-const mongoose = require('mongoose');
 const {startmongoose} = require('./mongodbStarter');
 const users = require("./schemas/userSchema.js");
 const argon2 = require('argon2');
@@ -99,8 +97,8 @@ async function deleteUser(email, password){
 
     try{
         if(await argon2.verify(user.password, password)){
-            await user.deleteOne({"email":email});
-            return 1;
+            const result = await user.deleteOne({"email":email});
+            return result; //Will return 1 if sucessfull
         } 
     }
     catch{

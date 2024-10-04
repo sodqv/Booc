@@ -9,5 +9,5 @@ export async function AuthLoader(){
     if( response !== "authenticated"){
         return redirect("/");
     }
-    return 1;
+    return 0;
 }
