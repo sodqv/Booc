@@ -15,11 +15,11 @@ router.post("/users", createUser);
 router.delete("/users", deleteUser);
 
 //Events
-router.post("/events", createEvent);
+router.post("/newEvent", createEvent);
 router.delete("events", deleteEvent);
 
 //Groups
-router.post("/groups", createGroup);
+router.post("/newGroup", createGroup);
 router.delete("/groups", deleteGroup);
 
 
