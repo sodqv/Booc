@@ -38,6 +38,7 @@ const rows = [
   createData('','Meeting', 'Dentist', '', '', '', 'Dinner'),
   createData('','Meeting', 'Dentist', '', '', '', 'Dinner')
 ];
+
 const styleCellHead = {
   fontWeight: 'bold', 
   padding: '2px', 
@@ -88,8 +89,10 @@ export default function BasicTable() {
 
   const todayCellStyle = {
     ...styleCell,
-    backgroundColor: '#FFD700',  // Gold background for today
-    color: '#000',               // Text color to stand out
+    backgroundColor: '#D66536',
+    color: 'white',
+    fontSize: '15px',
+    fontWeight: 'bold',
   }
   
   const date = new Date();
@@ -102,7 +105,7 @@ export default function BasicTable() {
           <TableHead>
             <TableRow>
               <TableCell align="center" sx={{...styleCellHead, width: '30px'}}>
-                <button variant="contained" onClick={() => changeWeek(-1)}>
+                <button style={{fontWeight: 'bold', border: 'transparent', background: '#D66536', fontSize: '20px', color: 'white', borderRadius: '14px'}} variant="contained" onClick={() => changeWeek(-1)}>
                   ←
                 </button>
               </TableCell>
@@ -110,14 +113,14 @@ export default function BasicTable() {
               {daysOfWeek.map((day) => (
                 <TableCell 
                   align="center" 
-                  sx={today == day ? todayCellStyle : styleCellHead} 
+                  sx={today === day ? todayCellStyle : styleCellHead} 
                   key={day}>
                   {day}
                 </TableCell>
               ))}
               
               <TableCell align="center" sx={{...styleCellHead, width: '30px'}}>
-                <button variant="contained" onClick={() => changeWeek(1)} >
+                <button style={{fontWeight: 'bold', border: 'transparent', background: '#D66536', fontSize: '1820x', color: 'white', borderRadius: '14px'}} variant="contained" onClick={() => changeWeek(1)} >
                   →
                 </button>
               </TableCell>

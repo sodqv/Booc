@@ -8,7 +8,6 @@ import Navbar from '../feed/navbar';
 import CheckboxListSecondary from '../../modelData/Feed/list';
 import BasicFriendModal from '../forms/add_friend';
 
-
 export default function Profile() {
     return (
         <div style={{
@@ -75,7 +74,7 @@ export default function Profile() {
                         boxSizing: 'border-box'  
                     }}
                 >
-                    <BasicTable />
+                    <BasicTable/>
                 </div>
             </div>
         {/* </Box> */}
