@@ -78,7 +78,7 @@ export async function createGroup(groupName, members){
           }
   
           //Test return
-          return "Success";
+          ProccesedResponse = "Success";
         })
         .catch(function(error){
             console.log(error);

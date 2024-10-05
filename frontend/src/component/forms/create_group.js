@@ -10,8 +10,7 @@ import { Typography } from '@mui/material';
 import BasicTextField from "./text_field";
 import ButtonDirectionStack from "./button_stack";
 import Selector from "./selector";
-
-import {api} from '../../controllers/axiosTemplate';
+import {getGroup, getAllGroups, createGroup, updateGroup, deleteGroup} from "../../modelData/group.js";
 
 
 const style = {
@@ -87,20 +86,18 @@ export default function GroupModal() {
   const handleSubmit = async () => {
     try {
 
-        console.log('Form data:', formData);                                //puts the submitted data in the console log in the browser
+        //console.log('Form data:', formData);                                //puts the submitted data in the console log in the browser
 
+        const response = await createGroup(formData);
 
-
-        const response = await api.post('/api/newGroup', formData); 
-
-        if (response.status === 201)    //201 Created
+        if (response === "Success")
         {
-            alert('Group created successfully');                          
+            console.log('Group created successfully');                          
             handleClose();      //closes the create event form
         }
         else
         {
-            alert('Failed to create group');
+            console.log('Failed to create group');
         }
     }
     catch (error) {

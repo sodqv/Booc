@@ -45,7 +45,7 @@ export async function getAllGroups(){
     "groups": [
         {
             "_id": "6701740d478dcc174a97a6df",
-            "groupName": "TestingClient",
+            "groupName": "TestingClient",q 
             "owners": [
                 {
                     "username": "Tester",
@@ -60,13 +60,19 @@ export async function getAllGroups(){
 }
 
 //Create group
-export async function createGroup(){
+export async function createGroup(formData){
+    //Extracts form values
+    let groupName = formData.groupName;
+    let members = formData.invitePeople;
+
     //Testing values
+    /*
     const groupName = "TestingClient";
-    const members = [];
+    const members = [{username: bob, identifier: 0}];
+    */
 
     const response = await CTRLcreateGroup(groupName, members);
-    console.log(response);
+    return response;
     //Typical response: Success
 }  
 

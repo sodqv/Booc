@@ -88,12 +88,14 @@ export default function SettingsPage(){
                 <AlertDialog callback={deleteUser}/>
 
                 {/* Buttons for all group functions
+                    <button onClick={createGroup}>Create group</button>
+                */}
                 <button onClick={getGroup}>Get group</button>
                 <button onClick={getAllGroups}>Get groups</button>
-                <button onClick={createGroup}>Create group</button>
+                
                 <button onClick={updateGroup}>Post group</button>
                 <button onClick={deleteGroup}>Delete group</button>
-                */}
+
             </div>
         </div>
     )
