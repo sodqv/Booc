@@ -6,9 +6,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import dayjs from 'dayjs';
 
-function createData(
+function createData (
   left,
   monday,
   tuesday,
@@ -18,7 +17,7 @@ function createData(
   saturday,
   sunday,
   right
-) {
+) { 
   return {left, monday, tuesday, wednesday, thursday, friday, saturday, sunday, right };
 }
 
@@ -38,17 +37,19 @@ const rows = [
   createData('','Meeting', 'Dentist', '', '', '', 'Dinner'),
   createData('','Meeting', 'Dentist', '', '', '', 'Dinner')
 ];
+
 const styleCellHead = {
   fontWeight: 'bold', 
   padding: '2px', 
   fontSize: '15px'
 }
+
 const styleCell = { 
   padding: '2px', 
   fontSize: '11px'
 }
+
 function nameOfDay(day) {
-  
   switch(day) {
     case 1:
       return "Monday";
@@ -69,10 +70,7 @@ function nameOfDay(day) {
   }
 }
 
-export default function BasicTable() {
-
-  const [selectedDate, setSelectedDate] = React.useState(dayjs());
-
+export default function BasicTable({ selectedDate, onDateChange }) {
   // Start of week
   const startOfWeek = selectedDate.startOf('week').add(1, 'day');
 
@@ -83,15 +81,18 @@ export default function BasicTable() {
 
   // Change week
   const changeWeek = (amount) => {
-    setSelectedDate(selectedDate.add(amount, 'week'));
+    const newDate = selectedDate.add(amount, 'week');
+    onDateChange(newDate);
   };
 
   const todayCellStyle = {
     ...styleCell,
-    backgroundColor: '#FFD700',  // Gold background for today
-    color: '#000',               // Text color to stand out
+    backgroundColor: '#D66536',
+    color: 'white',
+    fontSize: '15px',
+    fontWeight: 'bold',
   }
-  
+
   const date = new Date();
   const today = nameOfDay(date.getDay()) + " " + date.getDate();
 
@@ -99,10 +100,11 @@ export default function BasicTable() {
     <div>
       <TableContainer component={Paper}>
         <Table sx={{ tableLayout: 'fixed',minWidth: 400, bgcolor: '#f5f5f5', height: 'calc(100vh - 90px)' }} aria-label="simple table">
+          
           <TableHead>
             <TableRow>
               <TableCell align="center" sx={{...styleCellHead, width: '30px'}}>
-                <button variant="contained" onClick={() => changeWeek(-1)}>
+                <button style={{fontWeight: 'bold', border: 'transparent', background: '#D66536', fontSize: '20px', color: 'white', borderRadius: '14px'}} variant="contained" onClick={() => changeWeek(-1)}>
                   ←
                 </button>
               </TableCell>
@@ -110,19 +112,21 @@ export default function BasicTable() {
               {daysOfWeek.map((day) => (
                 <TableCell 
                   align="center" 
-                  sx={today == day ? todayCellStyle : styleCellHead} 
+                  sx={today === day ? todayCellStyle : styleCellHead} 
                   key={day}>
                   {day}
                 </TableCell>
               ))}
               
               <TableCell align="center" sx={{...styleCellHead, width: '30px'}}>
-                <button variant="contained" onClick={() => changeWeek(1)} >
+                <button style={{fontWeight: 'bold', border: 'transparent', background: '#D66536', fontSize: '1820x', color: 'white', borderRadius: '14px'}} variant="contained" onClick={() => changeWeek(1)} >
                   →
                 </button>
               </TableCell>
+
             </TableRow>
           </TableHead>
+
           <TableBody> {rows.map((row, index) => (
             <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
               <TableCell align="center" sx={ styleCell }>{row.left}</TableCell>
@@ -136,6 +140,7 @@ export default function BasicTable() {
               <TableCell align="center" sx={ styleCell }>{row.right}</TableCell>
             </TableRow>))}
           </TableBody>
+
         </Table>
       </TableContainer>
     </div>

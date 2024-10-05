@@ -1,5 +1,5 @@
-import React from 'react';
-// import ImageAvatars from './avatars'; 
+import React, { useState } from 'react';
+import dayjs from 'dayjs';
 import BasicTable from '../../modelData/Profile/table'; 
 import TimeTable from '../../modelData/Profile/timeTable';
 import BasicModal from '../forms/create_new_event';
@@ -9,8 +9,16 @@ import CheckboxListSecondary from '../../modelData/Feed/list';
 import BasicFriendModal from '../forms/add_friend';
 import GroupModal from '../forms/create_group';
 
-
 export default function Profile() {
+
+        // Lift the state to the Profile component
+        const [selectedDate, setSelectedDate] = useState(dayjs());
+
+        // Handler to change the date
+        const handleDateChange = (newDate) => {
+            setSelectedDate(newDate);
+        };
+
     return (
         <div style={{
             // Fix the basic display
@@ -38,26 +46,25 @@ export default function Profile() {
                     }}
                 >
                     {/* Calender */}
-                    <BasicDateCalendar/>
+                    <BasicDateCalendar
+                        selectedDate={selectedDate} 
+                        onDateChange={handleDateChange} 
+                    />
 
                     {/* Form button */}
                     <div style={{ margin: '15px 0'}}>
                         <BasicModal/>
                     </div>
 
-
                     {/* Friend button */}
                     <div style={{ margin: '15px 0'}}>
                         <BasicFriendModal/>
                     </div>
 
-
                     {/* Group button */}
                     <div style={{ margin: '15px 0'}}>
                         <GroupModal/>
                     </div>
-
-
 
                     {/* List */}
                     <div style={{boxSizing: 'border-box', overflow: 'auto',  height: 'calc((100vh - 460px))' }}>
@@ -75,8 +82,8 @@ export default function Profile() {
                 >
                     <TimeTable />
                 </div>
-
-                {/* Container for BasicTable */}
+                
+                {/* Container for BasicTable */} 
                 <div
                     style={{
                         width: '100%', 
@@ -84,7 +91,10 @@ export default function Profile() {
                         boxSizing: 'border-box'  
                     }}
                 >
-                    <BasicTable />
+                    <BasicTable
+                        selectedDate={selectedDate} 
+                        onDateChange={handleDateChange}
+                    /> 
                 </div>
             </div>
         {/* </Box> */}
