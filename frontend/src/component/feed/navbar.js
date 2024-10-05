@@ -34,12 +34,6 @@ export default function Navbar( {page} ) {
         navigate(path);
     }
 
-    // const changeToLogin = () => {
-    //     let path = "/";
-    //     isAuth();
-    //     navigate(path);
-    // }
-
     return (
         <div className='navBar' >
             {/* Left text */}

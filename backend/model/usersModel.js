@@ -41,17 +41,8 @@ async function createUser(email, username, password) {
         try{
             smallestAvailableIdentifier = (await users.find({"username":username}).sort({"identifier":-1}).limit(1))[0].identifier;
 
-            //BiggestIdentifier = await users.find({"username":username}).sort({"identifier":-1}).limit(1);//.identifier;
-            /*
-            console.log(BiggestIdentifier[0]);
-            console.log(typeof BiggestIdentifier[0]);
-            console.log(BiggestIdentifier[0].identifier);
-            */
-            //smallestAvailableIdentifier = BiggestIdentifier[0].identifier
             smallestAvailableIdentifier++;
-            //console.log(smallestAvailableIdentifier);
             if(typeof smallestAvailableIdentifier === "undefined"){
-                //console.log("became 0");
                 smallestAvailableIdentifier = 0;
             }
         }
@@ -81,6 +72,47 @@ async function createUser(email, username, password) {
     }
     catch{
         return; //failed
+    }
+}
+
+async function changeStartPage(email, password, newStartPage) {
+    startmongoose();
+    const user = await users.findOne({
+        "email":email,
+    })
+    if(!user){
+        return 0; //Cannot find user
+    }
+
+    try{
+        if(await argon2.verify(user.password, password)){
+            const result = await users.updateOne({"email":email}, {"startingPage":newStartPage});
+            return result; //Will return 1 if sucessfull
+        } 
+    }
+    catch{
+        return 0;
+    }
+}
+
+async function changePassword(email, password, newPassword) {
+    startmongoose();
+    const user = await users.findOne({
+        "email":email,
+    })
+    if(!user){
+        return 0; //Cannot find user
+    }
+
+    try{
+        if(await argon2.verify(user.password, password)){
+            newPassword = await argon2.hash(newPassword) //Hashes the password
+            const result = await users.updateOne({"email":email}, {"password":newPassword});
+            return result; //Will return 1 if sucessfull
+        } 
+    }
+    catch{
+        return 0;
     }
 }
 
@@ -115,5 +147,7 @@ async function deleteUser(email, password){
 module.exports = {
     getUser,
     createUser,
+    changePassword,
     deleteUser,
+    changeStartPage,
 }

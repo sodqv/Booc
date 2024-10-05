@@ -9,7 +9,7 @@ async function authenicate(req, res){
     const user = await usersModel.getUser(email, password);
 
     //Exists
-    if(!user || user == null){
+    if(!user || user == null || user == "Failed to find"){
         console.log("Invalid credentials");
         return res.status(401).send({msg: "Bad credentials"});
     }

@@ -17,22 +17,52 @@ async function createUser(req, res){
     }
 }
 
-async function deleteUser(req, res) {
-    const {body: {email, password}} = req;
-
-    const result = await usersModel.deleteUser(email, password);
-
+async function changeStartPage(req, res) {
+    const result = await usersModel.changeStartPage(req.session.user.email, req.session.user.password, req.body.startPage);
     if(result){
-        return res.status(200).send({msg:"Deleted user"});
+        return res.status(200).send({msg:"Changed start page"});
     }
     else{
-        return res.status(500).send({msg:"Failed to create user"});
+        return res.status(500).send({msg:"Failed to change start page"});
+    }
+}
+
+async function changePassword(req, res) {
+    const result = await usersModel.changePassword(req.session.user.email, req.session.user.password, req.body.password);
+    if(result){
+        //Change the session to be the new password
+        req.session.user.password = req.body.password;
+
+        return res.status(200).send({msg:"Changed users password"});
+    }
+    else{
+        return res.status(500).send({msg:"Failed to change password"});
+    }
+}
+
+async function deleteUser(req, res) {
+    try{
+        const result = await usersModel.deleteUser(req.session.user.email, req.session.user.password);
+
+        if(result){
+            return res.status(200).send({msg:"Deleted user"});
+        }
+        else{
+            return res.status(500).send({msg:"Failed to delete user"});
+        }
+    }
+    catch(err){
+        console.log("Failed to delete user");
+        console.log(err);
+        return res.status(500).send({msg:"Failed to delete user"});
     }
 }
 
 module.exports = {
     createUser,
-    deleteUser
+    deleteUser,
+    changeStartPage,
+    changePassword
 }
 
 
