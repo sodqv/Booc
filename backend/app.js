@@ -7,6 +7,7 @@ var session = require("express-session")
 var logger = require('morgan');
 var cors = require("cors");
 const dotenv = require("dotenv").config();
+var MongoDBStore = require('connect-mongodb-session')(session);
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -27,6 +28,18 @@ const corsconfig = {
 app.options("*", cors(corsconfig))
 app.use(cors(corsconfig));
 
+//Creates mongoDB connection for session storage, https://www.npmjs.com/package/connect-mongodb-session
+var store = new MongoDBStore({
+  uri: `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@booc.oduvk.mongodb.net/Booc?retryWrites=true&w=majority&appName=Booc `,
+  databaseName: "Booc",
+  collection: 'mySessions',
+});
+
+//Catches errors with storing sessions
+store.on('error', function(error) {
+  console.log(error);
+});
+
 
 //Implements sessions
 app.use(session({
@@ -35,7 +48,8 @@ app.use(session({
   resave: false,
   cookie: {
     maxAge: 1000*60*60*24, //24 hours
-  }
+  },
+  store: store,
 }));
 
 // view engine setup
