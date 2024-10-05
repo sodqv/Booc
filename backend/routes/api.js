@@ -8,7 +8,8 @@ const {getGroup,
     getAllGroups,
     createGroup,
     updateGroup,
-    deleteGroup} = require("../controller/groupController");
+    deleteGroup,
+    leaveGroup} = require("../controller/groupController");
 const { createEvent, deleteEvent } = require('../Controller/eventController');
 var router = express.Router();
 
@@ -33,6 +34,7 @@ router.delete("/group", deleteGroup);
 
 //Groups
 router.get("/groups", getAllGroups);
+router.delete("/groups", leaveGroup);
 
 //Events
 router.post("/newEvent", createEvent);

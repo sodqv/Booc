@@ -22,8 +22,8 @@ async function getAllGroups(username, identifier){
         const user = {username, identifier};
         const group = await groups.find({
             $or: [
-                {owners: {$all: [user] }},
-                {members:{$all: [user] }},
+                {owners: {$all:[user]}},
+                {members:{$all:[user]}},
             ]
         });
         /*
@@ -67,7 +67,9 @@ async function createGroup(groupName, owner, members){
 async function updateGroup(groupName, owners, members){
     startmongoose();
     try{
+        console.log(groupName);
         const newGroup = await groups.findOneAndReplace({groupName}, {groupName, owners, members});
+        console.log(newGroup);
         await newGroup.save();
         return newGroup.toObject(); //success
     }
@@ -109,7 +111,7 @@ async function checkIfOwner(groupName, username, identifier) {
     const group = await groups.findOne({
         $and: [
             {groupName},
-            {owners: {$all: [user]}}
+            {owners: {$all:[user]}}
         ]
     });
     console.log(group);
@@ -118,11 +120,61 @@ async function checkIfOwner(groupName, username, identifier) {
     
 }
 
+async function leaveGroup(groupName, username, identifier) {
+    startmongoose();
+    try{
+        const user = {username, identifier};
+        //Finds if the user is in the group
+        const filter = {
+            $and: [
+                {groupName},
+                {
+                    $or: [
+                        {owners: {$all:[user]}},
+                        {members:{$all:[user]}},
+                    ]
+                },
+            ]
+        }
+
+        
+        //Leaves group
+        const group1 = await groups.updateOne(filter, {
+            $pullAll : {
+                owners:[user]
+            },
+        })
+        const group2 = await groups.updateOne(filter, {
+            $pullAll : {
+                members:[user]
+            },
+        })
+
+        const finalModifiedCount = group1?.modifiedCount + group2?.modifiedCount;
+        if(finalModifiedCount === 0){return null;}
+
+        //Deletes group if no owners
+        const groupData = await getGroup(groupName);
+        if(!Array.isArray(groupData.owners) || !groupData.owners.length){
+            console.log("No owners detected of '" + groupName + "' deleting group.");
+            deleteGroup(groupName);
+        }
+
+        return groupData;
+    }
+    catch(err){
+        console.log("Failed to get the users groups");
+        console.log(err);
+        return null;
+    }
+}
+
 module.exports = {
     getGroup,
     getAllGroups,
     createGroup,
     updateGroup,
     deleteGroup,
+    leaveGroup,
     checkIfOwner
 }

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Textfield, {TextFieldPassword} from '../TextField.js';
 import {Link, redirect, useNavigate, useSubmit} from "react-router-dom";
-import {getGroup, getAllGroups, createGroup, updateGroup, deleteGroup} from "../../modelData/group.js";
+import {getGroup, getAllGroups, createGroup, updateGroup, deleteGroup, leaveGroup} from "../../modelData/group.js";
 import { changePassword } from '../../modelData/user.js';
 import Navbar from '../feed/navbar.js';
 import {Formik, Form} from "formik";
@@ -88,12 +88,13 @@ export default function SettingsPage(){
                 <AlertDialog callback={deleteUser}/>
 
                 {/* Buttons for all group functions
-                    <button onClick={createGroup}>Create group</button>
+                    
                 */}
                 <button onClick={getGroup}>Get group</button>
                 <button onClick={getAllGroups}>Get groups</button>
-                
-                <button onClick={updateGroup}>Post group</button>
+                <button onClick={createGroup}>Create group</button>
+                <button onClick={updateGroup}>Put group</button>
+                <button onClick={leaveGroup}>Leave group</button>
                 <button onClick={deleteGroup}>Delete group</button>
 
             </div>

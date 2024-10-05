@@ -1,4 +1,9 @@
-import {getGroup as CTRLgetGroup, getAllGroups as CTRLgetAllGroups, createGroup as CTRLcreateGroup, updateGroup as CTRLupdateGroup, deleteGroup as CTRLdeleteGroup} from ".././controllers/groupController"
+import {getGroup as CTRLgetGroup, 
+    getAllGroups as CTRLgetAllGroups, 
+    createGroup as CTRLcreateGroup, 
+    updateGroup as CTRLupdateGroup, 
+    deleteGroup as CTRLdeleteGroup,
+    leaveGroup as CTRLleaveGroup} from ".././controllers/groupController"
 
 //Get info about group for recreating form
 export async function getGroup(){
@@ -62,13 +67,15 @@ export async function getAllGroups(){
 //Create group
 export async function createGroup(formData){
     //Extracts form values
+    
     let groupName = formData.groupName;
     let members = formData.invitePeople;
+    
 
-    //Testing values
     /*
+    //Testing values
     const groupName = "TestingClient";
-    const members = [{username: bob, identifier: 0}];
+    const members = [{username: "bob", identifier: 0}];
     */
 
     const response = await CTRLcreateGroup(groupName, members);
@@ -97,4 +104,13 @@ export async function deleteGroup(){
     const response = await CTRLdeleteGroup(groupName);
     console.log(response);
     //Typical response: "Deleted group"
+}
+
+export async function leaveGroup(inputGroupName) {
+    //Testing values
+    const groupName = "TestingClient";
+
+    const response = await CTRLleaveGroup(groupName);
+    console.log(response);
+    //Typical response: "Left group"
 }

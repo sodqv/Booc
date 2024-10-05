@@ -147,3 +147,33 @@ export async function deleteGroup(groupName){
   
     return ProccesedResponse;
 }
+
+//Leave group
+export async function leaveGroup(groupName){
+  var ProccesedResponse = "";
+  await api.delete('/api/groups', 
+      {
+      headers:{
+        "Access-Control-Allow-Origin": "http://localhost:6400",
+        "Access-Control-Allow-Credentials":"true",
+      },
+      data: {
+        groupName:groupName,
+      }
+      })
+      .then(function(response){
+        //Test for failed login
+        if(typeof response.data?.msg === "undefined" || response.data?.msg === "Failed to leave group"){
+          throw new Error("Invalid response");
+        }
+
+        //Test return
+        return "Success";
+      })
+      .catch(function(error){
+          console.log(error);
+          ProccesedResponse = "Failed to leave group";
+      })
+
+  return ProccesedResponse;
+}
