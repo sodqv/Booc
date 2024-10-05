@@ -1,13 +1,11 @@
 import * as React from 'react';
-//import { useState } from 'react';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
+import dayjs from 'dayjs';
 import 'dayjs/locale/en-gb';
 
-export default function BasicDateCalendar() {
-
-  //const [selectedDate, setSelectedDate] = useState(null);
+export default function BasicDateCalendar({ selectedDate, onDateChange }) {
 
   return (
     <LocalizationProvider 
@@ -20,13 +18,8 @@ export default function BasicDateCalendar() {
     >
         <DateCalendar displayWeekNumber
 
-
-          
-
-
-
-          //value={selectedDate}
-          //onChange={(newDate) => setSelectedDate(newDate)}
+          value={selectedDate}
+          onChange={(newDate) => onDateChange(dayjs(newDate))}
 
           sx={{
             width: '100%',
@@ -38,13 +31,6 @@ export default function BasicDateCalendar() {
             '& .MuiPickersDay-root': {
               fontSize: '10px', 
             },
-            /*'& .Mui-selected': { 
-              backgroundColor: '#D66536',
-              color: 'white',
-            },
-              '& .Mui-selected:hover': { 
-              backgroundColor: '#black', 
-            },*/
           }}
         />
     </LocalizationProvider>
