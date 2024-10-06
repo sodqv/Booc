@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -49,7 +49,7 @@ const style = {
     const [open, setOpen] = React.useState(false);
 
     const [username, setUsername] = useState('');
-  
+    const [currentUserEmail, setCurrentUserEmail] = useState('');
 
     const handleOpen = () => setOpen(true);
   
@@ -65,19 +65,48 @@ const style = {
       setFormData({ ...formData, [field]: value });
     }
   */
+
+
+    useEffect (() => {
+      const fetchCurrentUserEmail = async () => {
+        try {
+          const response = await api.get('/api/currentUserEmail');
+
+          if (response.status === 200)
+          {
+            setCurrentUserEmail(response.data.email);
+
+          }
+          else
+          {
+            console.error('Failed to get current users email');
+          }
+        }
+        catch (error) {
+          console.error('Error when fetching current user email:', error);
+        }
+      };
+      fetchCurrentUserEmail();
+    }, []);
   
-    /* 
+    
     //handle form submission
     const handleSubmit = async () => {
       try {
   
           console.log('Adding friend:', username);        //puts the friend request in the console log in the browser
+          console.log('Current user email:', currentUserEmail);
+
+          if (!currentUserEmail) {
+            alert('Current user email is not set');
+            return;
+          }
+
+          //const currentUserEmail = "user@example.com";
   
+          const response = await api.post('/api/addFriend', { currentUserEmail, username });  //current users email and the friends username
   
-  
-          const response = await api.post('/api/addFriend', { username });  
-  
-          if (response.status === 201)
+          if (response.status === 200)
           {
               alert('Friend added successfully');
               handleClose();      //closes the add friend form
@@ -92,8 +121,50 @@ const style = {
           alert('An error occurred while adding the friend');
       }
     };
-    */
+    
   
+
+    /* 
+    //handle form submission
+    const handleSubmit = async () => {
+      try {
+
+          const formData = {
+            email: user.email,
+            friendUsername: friendUsernameValue
+          };
+
+
+  
+          //console.log('Adding friend:', username);        //puts the friend request in the console log in the browser
+  
+          //const currentUserEmail = "user@example.com";
+  
+          const response = await api.post('/api/addFriend', formData);  //current users email and the friends username
+  
+          if (response.status === 200)
+          {
+              alert('Friend added successfully');
+              handleClose();      //closes the add friend form
+          }
+          else
+          {
+              alert('Failed to add friend');
+          }
+      }
+      catch (error) {
+          console.error('Error when adding friend:', error.response?.data || error.message);
+          alert('An error occurred while adding the friend');
+      }
+    };
+*/
+
+
+
+
+
+
+
   
     return (
       <div>
@@ -135,7 +206,7 @@ const style = {
             <Grid sx={{ display: 'grid', width: '100%', gridTemplateColumns: 'repeat(1, 1fr)', paddingBottom: '15px' }}>
                 <Item>
                     <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                        <FriendButtonDirectionStack handleClose={handleClose}/>
+                        <FriendButtonDirectionStack handleClose={handleClose} handleSubmit={handleSubmit} />
                     </Box>
                 </Item>
             </Grid>

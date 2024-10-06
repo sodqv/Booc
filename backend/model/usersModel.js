@@ -31,6 +31,7 @@ async function getUser(email, password){
     }
 }
 
+
 //Create user
 async function createUser(email, username, password) {
     startmongoose();
@@ -75,6 +76,7 @@ async function createUser(email, username, password) {
     }
 }
 
+
 async function changeStartPage(email, password, newStartPage) {
     startmongoose();
     const user = await users.findOne({
@@ -94,6 +96,7 @@ async function changeStartPage(email, password, newStartPage) {
         return 0;
     }
 }
+
 
 async function changePassword(email, password, newPassword) {
     startmongoose();
@@ -115,6 +118,7 @@ async function changePassword(email, password, newPassword) {
         return 0;
     }
 }
+
 
 //Delete user
 async function deleteUser(email, password){
@@ -139,6 +143,76 @@ async function deleteUser(email, password){
     
 }
 
+
+
+
+//Add friend
+async function addFriend(email, username) {
+    startmongoose();
+
+    try {
+
+        //find the current user
+        const currentUser = await users.findOne({ email: email });
+        if (!currentUser) 
+        {
+            return 0; //User not found
+        }
+
+        //find the friend by username
+        const friend = await users.findOne({ username: username });
+        if (!friend)
+        {
+            return 0; //Friend not found
+        }
+
+        //check if the friend is already in the users friendlist
+        if (currentUser.friendList.includes(friend._id))
+        {
+            return 0; //You are already friends with this person
+        }
+
+
+        //push the friend to the friend list
+        currentUser.friendList.push(friend._id);
+        await currentUser.save();
+
+
+        return { success: true, message: 'Friend added successfully' };
+    }
+    catch (error) {
+        console.error('Error when adding friend:', error);
+        return { success: false, message: 'Failed to add friend' };
+    }
+}
+
+
+
+async function getCurrentUser(req, res) {
+    startmongoose();
+
+    try {
+        console.log('Current session data:', req.session.user);
+        const email = req.session.user?.email;
+
+        if (email) {
+            return res.status(200).send({ email });
+        }
+        else
+        {
+            return res.status(404).send({msg: 'User not found'});
+        }
+    }
+    catch (error)
+    {
+        console.error('Error when getting current user email', error);
+        return res.status(500).send({msg: 'Failed to get user email'});
+    }
+}
+
+
+
+
 //Reset password
 //TO DO, will need access to a mailing service
 //For sending email: https://www.w3schools.com/nodejs/nodejs_email.asp
@@ -150,4 +224,6 @@ module.exports = {
     changePassword,
     deleteUser,
     changeStartPage,
+    addFriend,
+    getCurrentUser,
 }

@@ -17,6 +17,7 @@ async function createUser(req, res){
     }
 }
 
+
 async function changeStartPage(req, res) {
     const result = await usersModel.changeStartPage(req.session.user.email, req.session.user.password, req.body.startPage);
     if(result){
@@ -26,6 +27,7 @@ async function changeStartPage(req, res) {
         return res.status(500).send({msg:"Failed to change start page"});
     }
 }
+
 
 async function changePassword(req, res) {
     const result = await usersModel.changePassword(req.session.user.email, req.session.user.password, req.body.password);
@@ -39,6 +41,7 @@ async function changePassword(req, res) {
         return res.status(500).send({msg:"Failed to change password"});
     }
 }
+
 
 async function deleteUser(req, res) {
     try{
@@ -58,11 +61,78 @@ async function deleteUser(req, res) {
     }
 }
 
+
+
+//add friend
+async function addFriend(req, res) {
+    const { body: { friendUsername } } = req;                               //get the friends username from the form
+
+    const result = await usersModel.addFriend(req.session.user.email, friendUsername);      // get the current sessions email
+
+    if (result) 
+    {
+        return res.status(200).send({ msg: "Added Friend" });
+    }
+    else
+    {
+        return res.status(400).send({ msg: "Failed to add Friend" });
+    }
+}
+
+
+
+
+
+/* 
+//add friend
+async function addFriend(req, res) {
+    const { body: { friendUsername } } = req;
+
+    //const userEmail = req.session.user.email;       //get the email of the current user
+
+    const result = await usersModel.addFriend(userEmail, friendUsername);
+
+    if (result.success) 
+    {
+        return res.status(200).send({ msg: result.message });
+    }
+    else
+    {
+        return res.status(400).send({ msg: result.message });
+    }
+}*/
+
+
+
+
+/* 
+//add friend
+async function addFriend(req, res) {
+    const { body: { email, friendUsername } } = req;
+
+    //const userEmail = req.session.user.email;       //get the email of the current user
+
+    const result = await usersModel.addFriend(email, friendUsername);
+
+    if (result.success) 
+    {
+        return res.status(200).send({ msg: result.message });
+    }
+    else
+    {
+        return res.status(400).send({ msg: result.message });
+    }
+}
+*/
+
+
 module.exports = {
     createUser,
     deleteUser,
     changeStartPage,
-    changePassword
+    changePassword,
+    addFriend,
+    getCurrentUser,
 }
 
 

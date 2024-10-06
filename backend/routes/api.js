@@ -3,7 +3,9 @@ const {authenicate, authStatus, removeAuth} = require("../controller/authControl
 const {createUser, 
     deleteUser, 
     changePassword,
-    changeStartPage} = require('../controller/usersController');
+    changeStartPage,
+    addFriend,
+    getCurrentUser} = require('../controller/usersController');
 const {getGroup,
     getAllGroups,
     createGroup,
@@ -23,8 +25,13 @@ router.post("/users", createUser);
 router.put("/users", changeStartPage);
 router.delete("/users", deleteUser);
 
+router.get("/currentUserEmail", getCurrentUser);
+
+//Friend
+router.post("/users/addFriend", addFriend);
+
 //Password
-router.put("/password", changePassword)
+router.put("/password", changePassword);
 
 //Group
 router.get("/group", getGroup);
