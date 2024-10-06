@@ -4,16 +4,11 @@ import {Link, redirect, useNavigate} from "react-router-dom";
 import { isAuth } from '../../modelData/auth';
 import {logOut as logOutAuth} from "../../modelData/auth"
 import './navbar.css';
-import {api} from '../../controllers/axiosTemplate';
-import {getUserName} from "../../modelData/user.js";
-
-var userNameHere = "";
-// Get username of the curent user
-userNameHere = await getUserName();
-//console.log("Efter: " + userNameHere);
+import { useLoaderData } from 'react-router-dom';
 
 export default function Navbar( {page} ) {
-
+    //const userNameHere = useState("");
+    const userNameHere = useLoaderData();
     let navigate = useNavigate();
 
     const changeToFeed = () => {
