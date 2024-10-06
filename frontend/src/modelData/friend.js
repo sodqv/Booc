@@ -12,13 +12,19 @@ export async function getCurrentUser()
 }
 
 
-export async function addFriend()
+export async function addFriend(request)
 {
-    //testing values
-    const _id = "TestingClient";
-    const friendList = [{username:"pal", identifier:0}, {username:"world", identifier:1}]
 
-    const response = await CTRLaddFriend(_id, friendList);
+    
+    const formData = await request.addFriendString;
+
+    const splitStr = formData.split('#');
+
+    const friendsUsername = splitStr[0];
+    const friendIdentifier = splitStr[1];
+
+
+    const response = await CTRLaddFriend(request);
     console.log(response);
 }
 

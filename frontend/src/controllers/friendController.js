@@ -2,13 +2,13 @@ import {redirect} from "react-router-dom";
 import {api} from "./axiosTemplate.js";
 
 
+
 //Get current user
-export async function getCurrentUser(_id)
+export async function getCurrentUser()
 {
     var ProccesedResponse = "";
 
-    await api.get('/api/user', 
-        { params: { _id:_id, } }, 
+    await api.get('/api/users',  
         { headers: { 
             "Access-Control-Allow-Origin": "http://localhost:6400",
             "Access-Control-Allow-Credentials":"true",
@@ -19,7 +19,7 @@ export async function getCurrentUser(_id)
             throw new Error("Invalid response");
         }
 
-        return response.data.group;
+        ProccesedResponse = response.data.user;
     })
     .catch(function(error) {
         console.log(error);
@@ -32,13 +32,13 @@ export async function getCurrentUser(_id)
 
 
 //Add friend
-export async function addFriend(_id, friendList)
+export async function addFriend(newFriend)
 {
 
     var ProccesedResponse = "";
 
-    await api.put('api/user', {
-        friendList:friendList
+    await api.put('api/users', {
+        friendList:newFriend
     },{
         headers: {
             "Access-Control-Allow-Origin": "http://localhost:6400",

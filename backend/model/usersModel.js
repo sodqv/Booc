@@ -168,13 +168,22 @@ async function getCurrentUser(_id)
 
 
 
-async function addFriend(_id, friendList) 
+async function addFriend(user, friendsUsername, friendIdentifier) 
 {
     startmongoose();
     
+    const user = await users.findOne({
+        $and: {
+           "identifier":friendIdentifier,
+           "username":friendsUsername 
+        }
+    });
+
     try {
-        console.log(_id);
-        const newFriendList = await users.findOneAndReplace({friendList}, {_id, friendList});
+
+        const newFriendList = await user.friendList.push({ "username":friendsUsername, "identifier":friendIdentifier });
+
+        //const newFriendList = await users.updateOne({friendList}, {_id, friendList});
         console.log(newFriendList);
 
         await newFriendList.save();
@@ -186,7 +195,6 @@ async function addFriend(_id, friendList)
         return null;                        //fail
     }
 }
-
 
 
 

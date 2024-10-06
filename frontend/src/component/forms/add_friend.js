@@ -53,14 +53,13 @@ const style = {
 
     //the data that is set in the form
     const [formData, setFormData] = React.useState ({ 
-      username: '',
-      friendList: ''
+      addFriendString: ''
     });
 
 
     //clear the form when it's closed by using this
     const initialFormData = { 
-      friendList: ''
+      addFriendString: ''
     };
 
 
@@ -215,8 +214,8 @@ const style = {
                 <Item>
                     <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536' }}>Enter your friend's username</Typography>
                     <BasicTextField 
-                      value={formData.username}
-                      onChange={(newFriendList) => handleInput('username', newFriendList.target.value)}
+                      value={formData.addFriendString}
+                      onChange={(newFriendList) => handleInput('addFriendString', newFriendList.target.value)}
                     />  
                 </Item>
             </Grid>

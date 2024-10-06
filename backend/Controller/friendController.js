@@ -19,10 +19,10 @@ async function getCurrentUser(req, res)
 
 async function addFriend(req, res)
 {
-    const { body : { _id, friendList } } = req;
+    const { body : { friendsUsername, friendIdentifier } } = req;
 
     try {
-        var result = await addFriendModel(_id, friendList);
+        var result = await addFriendModel(friendsUsername, friendIdentifier);
 
         if (result === null)
         {
