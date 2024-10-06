@@ -34,6 +34,13 @@ Starting server
 DB_USERNAME = place username here  
 DB_PASSWORD = place password here  
 SESSION_SECRET= place your session secret here
+
+-If you want to connecto to a database other than the one setup by use change the following in backend:
+in app.js change line 33 to your connection string 
+in ./model/mongodbStarter.js change line 7 to your connection string
+observe that this connection string should preferably set its user with process.env.DB_USERNAME, and process.env.DB_PASSWORD to avoid leaking the connection string.
+The connection string also decides which database in the cluster is used to also set it to an chosen name. (This is the /Booc? part of the connection string where booc is the database name).
+
 5. For debugging run "SET DEBUG=backend:* & npm start" in the cmd(this has a problem with doing it in vscode) or if you are running it for production "npm start".
 
 Preliminary List of Features
