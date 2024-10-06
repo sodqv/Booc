@@ -128,10 +128,10 @@ async function addFriend(req, res) {
 async function getCurrentUser(req, res) {
     try {
         console.log('Current session data:', req.session.user);
-        const email = req.session.user?.email;
+        const user = req.session?.user;
 
-        if (email) {
-            return res.status(200).send({ email });
+        if (user) {
+            return res.status(200).send(user);
         }
         else
         {
