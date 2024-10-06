@@ -8,8 +8,8 @@ const eventSchema = new Schema({
     date: {type: Date, required: true},
     fromTime: {type: Date, required: true},
     toTime: {type: Date, required: true},
-    location: {type: String, required: false},
-    description: {type: String, required: false},
+    location: {type: String},
+    description: {type: String},
     color: {type: String, default: '#0000FF'},
     repeat: {
         type: [String],
@@ -22,6 +22,7 @@ const eventSchema = new Schema({
         default: 'private'
     },
     invitePeople: [{ type: String }],                               //array of usernames of invited people
+    createdBy: { type: String, required: true},                     //the user that created the event
 },
 {
     collection:"Events",

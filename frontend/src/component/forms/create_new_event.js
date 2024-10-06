@@ -67,6 +67,7 @@ export default function BasicModal() {
     repeat: ['never'],
     visibility: 'private',
     invitePeople: [],
+    createdBy: '',
   });
 
 
@@ -81,6 +82,7 @@ export default function BasicModal() {
     repeat: ['never'],
     visibility: 'private',
     invitePeople: [],
+    createdBy: '',
   };
 
 

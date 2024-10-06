@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
-const Event = require("./schemas/eventSchema");
+const events = require("./schemas/eventSchema");
 const {startmongoose} = require('./mongodbStarter');
 
 
 
 //create event
-async function createEvent(title, date, fromTime, toTime, location, description, color, repeat = 'never', visibility = 'private', invitePeople = [], createdBy)
+async function createEvent(title, date, fromTime, toTime, location, description, color, repeat = 'never', visibility = 'private', invitePeople = [], createdBy, identifier)
 {
     startmongoose();                                        //initialize the mongoose connection
     
@@ -21,6 +21,7 @@ async function createEvent(title, date, fromTime, toTime, location, description,
             repeat,
             visibility,
             invitePeople,
+            createdBy,
         });
 
         await newEvent.save();                              //saves the event to the database
@@ -34,7 +35,30 @@ async function createEvent(title, date, fromTime, toTime, location, description,
 
 
 
+
+//delete event
+async function deleteEvent(eventID){
+    startmongoose();
+
+    try {
+        const event = await events.findById(eventID);
+        if (!event) return 0;
+
+        await event.deleteOne();
+        return 1;
+    }
+    catch (error) {
+        console.error('Failed to delete event:', error);
+        return 0;
+    }
+
+}
+
+
+
+
 module.exports = {
-    createEvent
+    createEvent,
+    deleteEvent
 }
 
