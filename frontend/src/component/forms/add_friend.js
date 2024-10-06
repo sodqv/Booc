@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -9,17 +10,8 @@ import { styled } from '@mui/material/styles';
 import { Typography } from '@mui/material';
 
 import BasicTextField from "./text_field";
-import TextFieldMultiline from "./text_field_multiline";
-import ColorPicker from "./color_picker";
-import RepeatCheckboxes from "./repeat_checkboxes";
-import VisibilityPicker from "./visibility_picker";
-import ButtonDirectionStack from "./button_stack";
-import BasicDatePicker from "./date_picker";
-import BasicTimePicker from "./time_picker";
-import Selector from "./selector";
 import FriendButtonDirectionStack from "./friend_button_stack";
 
-import dayjs from 'dayjs';
 import {api} from '../../controllers/axiosTemplate';
 
 
@@ -55,12 +47,15 @@ const style = {
 
   export default function BasicFriendModal() {
     const [open, setOpen] = React.useState(false);
+
+    const [username, setUsername] = useState('');
   
 
     const handleOpen = () => setOpen(true);
   
     const handleClose = () => {
       setOpen(false);
+      setUsername('');              //resets the username when the form is closed
     };
   
   
@@ -76,25 +71,25 @@ const style = {
     const handleSubmit = async () => {
       try {
   
-          console.log('Form data:', formData);        //puts the new event in the console log in the browser
+          console.log('Adding friend:', username);        //puts the friend request in the console log in the browser
   
   
   
-          const response = await api.post('/api/newEvent', formData);  
+          const response = await api.post('/api/addFriend', { username });  
   
           if (response.status === 201)
           {
-              alert('Event created successfully');
-              handleClose();      //closes the create event form
+              alert('Friend added successfully');
+              handleClose();      //closes the add friend form
           }
           else
           {
-              alert('Failed to create event');
+              alert('Failed to add friend');
           }
       }
       catch (error) {
-          console.error('Error when creating event:', error.response?.data || error.message);
-          alert('An error occurred while creating the event');
+          console.error('Error when adding friend:', error.response?.data || error.message);
+          alert('An error occurred while adding the friend');
       }
     };
     */
@@ -116,7 +111,7 @@ const style = {
             <div style={{width: '100%', height: '100%', paddingLeft: '10px'}}>
   
   
-              {/* Header - Create New Event */}
+              {/* Header - Add Friend */}
               <Grid sx={{ display: 'grid', columnGap: 10, rowGap: 5, gridTemplateColumns: 'repeat(1, 1fr)'}}>
                   <Item>
                       <Typography textAlign={'center'} sx={{ fontWeight: 'bold', fontSize: 20, marginTop: -2 }}>Add Friend</Typography>
@@ -124,11 +119,13 @@ const style = {
               </Grid>
 
 
-              {/* Enter friends name */}
+              {/* Username Input */}
               <Grid sx={{ display: 'grid', width: '100%', gridTemplateColumns: 'repeat(1, 1fr)'}}>
                 <Item>
                     <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536' }}>Enter your friend's username</Typography>
                     <BasicTextField 
+                      value={username}
+                      onChange={(event) => setUsername(event.target.value)}
                     />
                 </Item>
             </Grid>
