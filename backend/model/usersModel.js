@@ -2,6 +2,7 @@ const {startmongoose} = require('./mongodbStarter');
 const users = require("./schemas/userSchema.js");
 const argon2 = require('argon2');
 
+
 //Gets user with the same email and password
 async function getUser(email, password){
     startmongoose();
@@ -145,7 +146,52 @@ async function deleteUser(email, password){
 
 
 
+//Get current user
+async function getCurrentUser(_id)
+{
+    startmongoose();
 
+    const currentUser = await users.findOne({
+        _id:_id
+    });
+
+    if (currentUser === null)
+    {
+        return null;
+    }
+
+    const objCurrUser = currentUser.toObject();
+
+    return objCurrUser;
+}
+
+
+
+
+async function addFriend(_id, friendList) 
+{
+    startmongoose();
+    
+    try {
+        console.log(_id);
+        const newFriendList = await users.findOneAndReplace({friendList}, {_id, friendList});
+        console.log(newFriendList);
+
+        await newFriendList.save();
+        return newFriendList.toObject();    //success
+    }
+    catch (error) {
+        console.log("Failed to update friendlist");
+        console.log("error");
+        return null;                        //fail
+    }
+}
+
+
+
+
+
+/* 
 //Add friend
 async function addFriend(email, username) {
     startmongoose();
@@ -185,7 +231,7 @@ async function addFriend(email, username) {
         return { success: false, message: 'Failed to add friend' };
     }
 }
-
+*/
 
 
 //Reset password
@@ -199,5 +245,6 @@ module.exports = {
     changePassword,
     deleteUser,
     changeStartPage,
+    getCurrentUser,
     addFriend,
 }

@@ -12,6 +12,8 @@ import { Typography } from '@mui/material';
 import BasicTextField from "./text_field";
 import FriendButtonDirectionStack from "./friend_button_stack";
 
+import { getCurrentUser, addFriend } from "../../modelData/friend.js";
+
 import {api} from '../../controllers/axiosTemplate';
 
 
@@ -48,48 +50,66 @@ const style = {
   export default function BasicFriendModal() {
     const [open, setOpen] = React.useState(false);
 
-    const [username, setUsername] = useState('');
-    const [currentUserEmail, setCurrentUserEmail] = useState('');
+
+    //the data that is set in the form
+    const [formData, setFormData] = React.useState ({ 
+      username: '',
+      friendList: ''
+    });
+
+
+    //clear the form when it's closed by using this
+    const initialFormData = { 
+      friendList: ''
+    };
+
 
     const handleOpen = () => setOpen(true);
   
     const handleClose = () => {
+      setFormData(initialFormData);   //clear the form on close
       setOpen(false);
-      setUsername('');              //resets the username when the form is closed
     };
   
   
-  /* 
+  
     //handle form input
     const handleInput = (field, value) => {
       setFormData({ ...formData, [field]: value });
     }
-  */
-
-
-    useEffect (() => {
-      const fetchCurrentUserEmail = async () => {
-        try {
-          const response = await api.get('/api/currentUserEmail');
-
-          if (response.status === 200)
-          {
-            setCurrentUserEmail(response.data.email);
-
-          }
-          else
-          {
-            console.error('Failed to get current users email');
-          }
-        }
-        catch (error) {
-          console.error('Error when fetching current user email:', error);
-        }
-      };
-      fetchCurrentUserEmail();
-    }, []);
   
-    
+
+
+
+  //handle form submission
+  const handleSubmit = async () => {
+    try {
+
+        //console.log('Form data:', formData);                                //puts the submitted data in the console log in the browser
+
+        const response = await addFriend(formData);
+
+        if (response === "Success")
+        {
+            console.log('Friend was successfully added');                          
+            handleClose();      //closes the create event form
+        }
+        else
+        {
+            console.log('Failed to add friend');
+        }
+    }
+    catch (error) {
+        console.error('Error when adding friend:', error.response?.data || error.message);     // prints the error message in console log
+        alert('An error occurred while adding friend');
+    }
+  };
+
+
+
+
+  
+    /* 
     //handle form submission
     const handleSubmit = async () => {
       try {
@@ -124,7 +144,7 @@ const style = {
     
   
 
-    /* 
+    
     //handle form submission
     const handleSubmit = async () => {
       try {
@@ -195,9 +215,9 @@ const style = {
                 <Item>
                     <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536' }}>Enter your friend's username</Typography>
                     <BasicTextField 
-                      value={username}
-                      onChange={(event) => setUsername(event.target.value)}
-                    />
+                      value={formData.username}
+                      onChange={(newFriendList) => handleInput('username', newFriendList.target.value)}
+                    />  
                 </Item>
             </Grid>
 
