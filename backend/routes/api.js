@@ -3,15 +3,14 @@ const {authenicate, authStatus, removeAuth} = require("../controller/authControl
 const {createUser, 
     deleteUser, 
     changePassword,
-    changeStartPage,
-    addFriend,
-    getCurrentUser} = require('../controller/usersController');
+    changeStartPage} = require('../controller/usersController');
 const {getGroup,
     getAllGroups,
     createGroup,
     updateGroup,
     deleteGroup,
     leaveGroup} = require("../controller/groupController");
+const {addFriend} = require('../Controller/friendController');
 const { createEvent, deleteEvent } = require('../Controller/eventController');
 var router = express.Router();
 

@@ -1,4 +1,6 @@
-const {startmongoose} = require('./mongodbStarter');
+
+
+const { startmongoose } = require('./mongodbStarter.js');
 const groups = require("./schemas/groupSchema.js");
 
 //Get info about group for recreating form

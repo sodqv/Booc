@@ -1,5 +1,5 @@
 const { getCurrentUser:getCurrentUserModel,
-        addFriend:addFriendModel } = require("../Model/usersModel")
+        addFriend:addFriendModel } = require("../Model/usersModel");
 
 
 
@@ -24,7 +24,7 @@ async function addFriend(req, res)
 
     console.log('Request body:', req.body); //shows what data is sent
     console.log('Currently logged in user:', currentUser); //shows the current user
-    
+
 
     //const { body : { friendsUsername, friendIdentifier } } = req;
 
