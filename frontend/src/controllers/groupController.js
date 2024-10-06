@@ -21,7 +21,7 @@ export async function getGroup(groupName){
           }
   
           //Test if successfully got group info
-          return response.data.group;
+          ProccesedResponse = response.data.group;
         })
         .catch(function(error){
             console.log(error);
@@ -49,7 +49,7 @@ export async function getAllGroups(){
           }
   
           //Test if successfully got group info
-          return response.data.groups;
+          ProccesedResponse = response.data.groups;
         })
         .catch(function(error){
             console.log(error);
@@ -108,7 +108,7 @@ export async function updateGroup(groupName,owners,members){
           }
   
           //Test return
-          return "Success";
+          ProccesedResponse = "Success";
         })
         .catch(function(error){
             console.log(error);
@@ -138,7 +138,7 @@ export async function deleteGroup(groupName){
           }
   
           //Test return
-          return "Success";
+          ProccesedResponse = "Success";
         })
         .catch(function(error){
             console.log(error);
@@ -168,7 +168,7 @@ export async function leaveGroup(groupName){
         }
 
         //Test return
-        return "Success";
+        ProccesedResponse = "Success";
       })
       .catch(function(error){
           console.log(error);
