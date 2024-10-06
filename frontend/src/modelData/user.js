@@ -2,7 +2,8 @@ import * as React from 'react';
 import {signUp as signUpController, 
     changePassword as changePasswordController, 
     deleteUser as deleteUserController,
-    changeStartPage as changeStartPageController,    
+    changeStartPage as changeStartPageController,
+    getUserName as getUserNameCLR  
     } from "../controllers/userController"
 
 export async function signUp(request){
@@ -43,5 +44,10 @@ export async function changePassword(request) {
 
 export async function deleteUser() {
     const response = await deleteUserController();
+    return response;
+}
+
+export async function getUserName() {
+    const response = await getUserNameCLR();
     return response;
 }

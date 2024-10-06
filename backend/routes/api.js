@@ -3,7 +3,8 @@ const {authenicate, authStatus, removeAuth} = require("../controller/authControl
 const {createUser, 
     deleteUser, 
     changePassword,
-    changeStartPage} = require('../controller/usersController');
+    changeStartPage,
+    getCurrentUser} = require('../controller/usersController');
 const {getGroup,
     getAllGroups,
     createGroup,
@@ -19,6 +20,7 @@ router.get("/auth", authStatus);
 router.delete("/auth", removeAuth);
 
 //Users
+router.get("/users", getCurrentUser);
 router.post("/users", createUser);
 router.put("/users", changeStartPage);
 router.delete("/users", deleteUser);
@@ -39,6 +41,5 @@ router.delete("/groups", leaveGroup);
 //Events
 router.post("/newEvent", createEvent);
 //router.delete("events", deleteEvent);
-
 
 module.exports = router;
