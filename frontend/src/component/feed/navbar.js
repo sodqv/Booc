@@ -1,15 +1,18 @@
-import { React, useState } from 'react';
-import { Box, Typography } from '@mui/material';
+import { React } from 'react';
 import Avatar from '@mui/material/Avatar';
 import {Link, redirect, useNavigate} from "react-router-dom";
 import { isAuth } from '../../modelData/auth';
 import {logOut as logOutAuth} from "../../modelData/auth"
 import './navbar.css';
+import {api} from '../../controllers/axiosTemplate';
+import {getUserName} from "../../modelData/user.js";
+
+var userNameHere = "";
+// Get username of the curent user
+userNameHere = await getUserName();
+//console.log("Efter: " + userNameHere);
 
 export default function Navbar( {page} ) {
-
-    const [hoverF, setHoverF] = useState(false);
-    const [hoverP, setHoverP] = useState(false);
 
     let navigate = useNavigate();
 
@@ -21,43 +24,34 @@ export default function Navbar( {page} ) {
         let path = "/Profile";
         navigate(path);
     }
-
     const logOut = async () => {
         let path = "/"
         const sucess = await logOutAuth();
         if(sucess === 0){return;}
         navigate(path);
     }
-
     const changeToSettings = () => {
         let path = "/Settings";
         navigate(path);
     }
-
+    
     return (
-        <div className='navBar' >
+        
+        <div className='navBar'>
             {/* Left text */}
             <div className='booc'>
                 <h1>BOOC</h1> 
                 <button 
+                    className='feed'
                     onClick={changeToFeed}
-                    onMouseEnter={() => setHoverF(true)}
-                    onMouseLeave={() => setHoverF(false)}
-                    style={{
-                        borderBottom: page == 'Feed' ? '3px solid white' : 'none',
-                        color: hoverF ? 'black' : 'white'
-                    }}
+                    style={{ borderBottom: page === 'Feed' ? '3px solid white' : 'none' }}
                 >
                     FEED
                 </button>
                 <button 
+                    className='prof'
                     onClick={changeToProfile}
-                    onMouseEnter={() => setHoverP(true)}
-                    onMouseLeave={() => setHoverP(false)}
-                    style={{
-                        borderBottom: page == 'Profile' ? '3px solid white' : 'none',
-                        color: hoverP ? 'black' : 'white'
-                    }}
+                    style={{ borderBottom: page === 'Profile' ? '3px solid white' : 'none' }}
                 >
                     PROFILE
                 </button>
@@ -67,7 +61,7 @@ export default function Navbar( {page} ) {
             <div class="rightSide">  
                 
                 {/* Username */}
-                <h2 class="username">Username</h2>
+                <h2 class="username">{userNameHere}</h2>
 
                 {/* Avatar */}
                 <Avatar 
