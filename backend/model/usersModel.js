@@ -168,32 +168,28 @@ async function getCurrentUser(_id)
 
 
 
-async function addFriend(user, friendsUsername, friendIdentifier) 
+async function addFriend(currentUser, friendsUsername, friendIdentifier) 
 {
     startmongoose();
     
-    const user = await users.findOne({
-        $and: {
-           "identifier":friendIdentifier,
-           "username":friendsUsername 
-        }
-    });
-
     try {
+        const user = await users.findOne({ username: currentUser.username });
 
-        const newFriendList = await user.friendList.push({ "username":friendsUsername, "identifier":friendIdentifier });
+        if (!user) {
+            throw new Error("Current user not found");
+        }
 
-        //const newFriendList = await users.updateOne({friendList}, {_id, friendList});
-        console.log(newFriendList);
+        user.friendList.push({ "username":friendsUsername, "identifier":friendIdentifier });
 
-        await newFriendList.save();
-        return newFriendList.toObject();    //success
+        await user.save();
+
+        return user.toObject();
     }
     catch (error) {
-        console.log("Failed to update friendlist");
-        console.log("error");
-        return null;                        //fail
+        console.log("Failed to update friendlist", error);
+        return null;
     }
+
 }
 
 

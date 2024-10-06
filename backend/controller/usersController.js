@@ -63,95 +63,13 @@ async function deleteUser(req, res) {
 
 
 
-//add friend
-async function addFriend(req, res) {
-    const { body: { friendUsername } } = req;                               //get the friends username from the form
 
-    const result = await usersModel.addFriend(req.session.user.email, friendUsername);      // get the current sessions email
-
-    if (result) 
-    {
-        return res.status(200).send({ msg: "Added Friend" });
-    }
-    else
-    {
-        return res.status(400).send({ msg: "Failed to add Friend" });
-    }
-}
-
-
-
-
-
-/* 
-//add friend
-async function addFriend(req, res) {
-    const { body: { friendUsername } } = req;
-
-    //const userEmail = req.session.user.email;       //get the email of the current user
-
-    const result = await usersModel.addFriend(userEmail, friendUsername);
-
-    if (result.success) 
-    {
-        return res.status(200).send({ msg: result.message });
-    }
-    else
-    {
-        return res.status(400).send({ msg: result.message });
-    }
-}*/
-
-
-
-
-/* 
-//add friend
-async function addFriend(req, res) {
-    const { body: { email, friendUsername } } = req;
-
-    //const userEmail = req.session.user.email;       //get the email of the current user
-
-    const result = await usersModel.addFriend(email, friendUsername);
-
-    if (result.success) 
-    {
-        return res.status(200).send({ msg: result.message });
-    }
-    else
-    {
-        return res.status(400).send({ msg: result.message });
-    }
-}
-*/
-
-async function getCurrentUser(req, res) {
-    try {
-        console.log('Current session data:', req.session.user);
-        const user = req.session?.user;
-
-        if (user) {
-            return res.status(200).send(user);
-        }
-        else
-        {
-            return res.status(404).send({msg: 'User not found'});
-        }
-    }
-    catch (error)
-    {
-        console.error('Error when getting current user email', error);
-        return res.status(500).send({msg: 'Failed to get user email'});
-    }
-}
 
 module.exports = {
     createUser,
     deleteUser,
     changeStartPage,
     changePassword,
-    addFriend,
-    getCurrentUser,
 }
 
 

@@ -47,7 +47,7 @@ const style = {
   }));
 
 
-  export default function BasicFriendModal() {
+  export default function BasicFriendModal({ currentUser }) {
     const [open, setOpen] = React.useState(false);
 
 
@@ -84,7 +84,14 @@ const style = {
   const handleSubmit = async () => {
     try {
 
-        //console.log('Form data:', formData);                                //puts the submitted data in the console log in the browser
+        console.log('Form data:', formData);                                //puts the submitted data in the console log in the browser
+
+        /* 
+        const response = await addFriend({
+          addFriendString: formData.addFriendString,
+          currentUser   //the currently logged in user
+        });
+        */
 
         const response = await addFriend(formData);
 

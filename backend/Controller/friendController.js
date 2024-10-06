@@ -19,10 +19,17 @@ async function getCurrentUser(req, res)
 
 async function addFriend(req, res)
 {
-    const { body : { friendsUsername, friendIdentifier } } = req;
+    const { friendsUsername, friendIdentifier } = req.body;
+    const currentUser = req.session.user;       // the currently logged in user
+
+    console.log('Request body:', req.body); //shows what data is sent
+    console.log('Currently logged in user:', currentUser); //shows the current user
+    
+
+    //const { body : { friendsUsername, friendIdentifier } } = req;
 
     try {
-        var result = await addFriendModel(friendsUsername, friendIdentifier);
+        const result = await addFriendModel(currentUser, friendsUsername, friendIdentifier);
 
         if (result === null)
         {
@@ -32,8 +39,7 @@ async function addFriend(req, res)
         return res.status(200).send({ msg: "Added friend" });
     }
     catch (error) {
-        console.log("Failed to add friend");
-        console.log("error");
+        console.log("Failed to add friend", error);
         return res.status(500).send({ msg: "Failed to add friend" });
     }
 }

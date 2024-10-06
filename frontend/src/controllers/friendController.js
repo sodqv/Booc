@@ -35,10 +35,12 @@ export async function getCurrentUser()
 export async function addFriend(newFriend)
 {
 
-    var ProccesedResponse = "";
+    let ProccesedResponse = "";
 
-    await api.put('api/users', {
-        friendList:newFriend
+    await api.post('/api/users/addFriend', {
+        friendsUsername: newFriend.username,
+        friendIdentifier: newFriend.identifier
+        //addFriendString: newFriend.addFriendString      //the inputed friend that will be added to the friendlist
     },{
         headers: {
             "Access-Control-Allow-Origin": "http://localhost:6400",
