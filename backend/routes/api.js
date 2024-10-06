@@ -48,5 +48,4 @@ router.delete("/groups", leaveGroup);
 router.post("/newEvent", createEvent);
 //router.delete("events", deleteEvent);
 
-
 module.exports = router;

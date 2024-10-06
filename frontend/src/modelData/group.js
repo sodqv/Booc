@@ -50,7 +50,7 @@ export async function getAllGroups(){
     "groups": [
         {
             "_id": "6701740d478dcc174a97a6df",
-            "groupName": "TestingClient",q 
+            "groupName": "TestingClient",
             "owners": [
                 {
                     "username": "Tester",
