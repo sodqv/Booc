@@ -125,6 +125,26 @@ async function addFriend(req, res) {
 }
 */
 
+async function getCurrentUser(req, res) {
+    try {
+        console.log('Current session data:', req.session.user);
+        const email = req.session.user?.email;
+
+        if (email) {
+            return res.status(200).send({ email });
+        }
+        else
+        {
+            return res.status(404).send({msg: 'User not found'});
+        }
+    }
+    catch (error)
+    {
+        console.error('Error when getting current user email', error);
+        return res.status(500).send({msg: 'Failed to get user email'});
+    }
+}
+
 
 module.exports = {
     createUser,

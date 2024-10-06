@@ -188,31 +188,6 @@ async function addFriend(email, username) {
 
 
 
-async function getCurrentUser(req, res) {
-    startmongoose();
-
-    try {
-        console.log('Current session data:', req.session.user);
-        const email = req.session.user?.email;
-
-        if (email) {
-            return res.status(200).send({ email });
-        }
-        else
-        {
-            return res.status(404).send({msg: 'User not found'});
-        }
-    }
-    catch (error)
-    {
-        console.error('Error when getting current user email', error);
-        return res.status(500).send({msg: 'Failed to get user email'});
-    }
-}
-
-
-
-
 //Reset password
 //TO DO, will need access to a mailing service
 //For sending email: https://www.w3schools.com/nodejs/nodejs_email.asp
@@ -225,5 +200,4 @@ module.exports = {
     deleteUser,
     changeStartPage,
     addFriend,
-    getCurrentUser,
 }
