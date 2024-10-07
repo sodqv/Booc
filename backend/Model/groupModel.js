@@ -1,5 +1,3 @@
-
-
 const { startmongoose } = require('./mongodbStarter.js');
 const groups = require("./schemas/groupSchema.js");
 

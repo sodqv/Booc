@@ -1,14 +1,19 @@
 
-const eventsModel = require('../Model/eventModel');
+const eventsModel = require('../model/eventModel');
 
+
+function inviteToObject(array){
+    return {username:array[0], identifier:array[1]};
+}
 
 //create event
 async function createEvent(req, res){
 
     const { body: { title, date, fromTime, toTime, location, description, color, repeat, visibility, invitePeople } } = req;
     const createdBy = req.session.user;
+    const mappedInvite = invitePeople.map(inviteToObject); //Transforms the [[]] to [{}]
 
-    const result = await eventsModel.createEvent(title, date, fromTime, toTime, location, description, color, repeat, visibility, invitePeople, createdBy);
+    const result = await eventsModel.createEvent(title, date, fromTime, toTime, location, description, color, repeat, visibility, mappedInvite, createdBy);
 
     if (result)
     {

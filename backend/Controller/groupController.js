@@ -4,8 +4,11 @@ const {getGroup:getGroupModel,
     updateGroup:updateGroupModel,
     deleteGroup:deleteGroupModel,
     leaveGroup:leaveGroupModel,
-    checkIfOwner} =  require("../Model/groupModel")
+    checkIfOwner} =  require("../model/groupModel")
 
+function inviteToObject(array){
+    return {username:array[0], identifier:array[1]};
+}
 
 
 //Get info about group for recreating form
@@ -38,7 +41,8 @@ async function createGroup(req, res){
     const {body : {groupName, members}} = req
     try{
         const owner = [{username:req.session.user.username, identifier:req.session.user.identifier}];
-        var result = await createGroupModel(groupName, owner, members);
+        const memberObjectArray = members.map(inviteToObject);
+        var result = await createGroupModel(groupName, owner, memberObjectArray);
         if(result === null){
             return res.status(500).send({msg:"Failed to create group"});
         }

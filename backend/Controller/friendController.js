@@ -1,5 +1,5 @@
 const { //getCurrentUser:getCurrentUserModel,
-        addFriend:addFriendModel } = require("../Model/usersModel");
+        addFriend:addFriendModel } = require("../model/usersModel");
 
 
 /* 

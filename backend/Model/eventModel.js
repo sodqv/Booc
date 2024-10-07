@@ -4,11 +4,6 @@ const users = require("./schemas/userSchema");
 const {startmongoose} = require('./mongodbStarter');
 
 
-function inviteToObject(array){
-    return {username:array[0], identifier:array[1]};
-}
-
-
 //create event
 async function createEvent(title, date, fromTime, toTime, location, description, color, repeat = 'never', visibility = 'private', invitePeople = [], createdBy)
 {
@@ -23,8 +18,6 @@ async function createEvent(title, date, fromTime, toTime, location, description,
             return 0;
         }
 
-        const mappedInvite = invitePeople.map(inviteToObject); //Transforms the [[]] to [{}]
-
 
         const newEvent = new events({
             title,
@@ -36,7 +29,7 @@ async function createEvent(title, date, fromTime, toTime, location, description,
             color,
             repeat,
             visibility,
-            invitePeople:mappedInvite,
+            invitePeople,
             createdBy: currentUser    
         });
         
