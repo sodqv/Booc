@@ -13,6 +13,7 @@ import {MeatingRequest, FrienRequest} from '../../modelData/Feed/notification';
 
 import BasicFriendModal from '../forms/add_friend';
 import GroupModal from '../forms/create_group';
+import ModifyGroupModal from '../forms/modify_group_form';
 
 function Feed() {
   return (
@@ -38,6 +39,7 @@ function Feed() {
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                         <h2>Groups</h2>
                         <GroupModal /> 
+                        <ModifyGroupModal/>
                     </div>
                     <div style={{ height: 'calc((100vh - 90px)/2 - 61px)', overflow: 'auto' }}>
                         <CheckboxListSecondary/>
