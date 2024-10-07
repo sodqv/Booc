@@ -8,6 +8,7 @@ import Navbar from '../feed/navbar';
 import CheckboxListSecondary from '../../modelData/Feed/list';
 import BasicFriendModal from '../forms/add_friend';
 import GroupModal from '../forms/create_group';
+import ModifyGroupModal from '../forms/modify_group_form';
 
 export default function Profile() {
 
@@ -81,6 +82,12 @@ export default function Profile() {
                     <div style={{ margin: '15px 0'}}>
                         <GroupModal/>
                     </div>
+
+                    {/* Modify Group button */}
+                    <div style={{ margin: '15px 0'}}>
+                        <ModifyGroupModal/>
+                    </div>
+
 
                     {/* List */}
                     <div style={{boxSizing: 'border-box', overflow: 'auto',  height: 'calc((100vh - 460px))' }}>
