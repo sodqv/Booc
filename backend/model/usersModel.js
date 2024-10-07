@@ -173,11 +173,28 @@ async function addFriend(currentUser, friendsUsername, friendIdentifier)
     startmongoose();
     
     try {
-        const user = await users.findOne({ username: currentUser.username });   //find the current user's username in the database
+        const user = await users.findOne({ username: currentUser.username });   //find the currently logged in user by username
 
         if (!user) {
             throw new Error("Current user not found");
         }
+
+        
+        //check if the friend (user) exists in the database
+        const friendExists = await users.findOne({ username: friendsUsername, identifier: friendIdentifier });
+        if (!friendExists)
+        {
+            return 0;
+        }
+
+
+        //check if the friend (user) is already in the friendList
+        const friendAlreadyAdded = user.friendList.some(check => check.username === friendsUsername && check.identifier === friendIdentifier);
+        if (friendAlreadyAdded)
+        {
+            return 0;
+        }
+
 
 
         //add the new friend's username and identifier to the current user's friendlist

@@ -90,12 +90,14 @@ const style = {
 
         if (response === "Success")   //check the response from friend.js
         {
-            console.log('Friend was successfully added (add_friend.js)');                          
+            alert('Friend Added');
+            console.log('Friend was successfully added');                          
             handleClose();      //closes the form
         }
         else
         {
-            console.log('Failed to add friend (add_friend.js)');
+            alert('Failed to add friend');
+            console.log('Failed to add friend');
         }
     }
     catch (error) {
