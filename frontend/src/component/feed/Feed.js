@@ -12,7 +12,7 @@ import Navbar from './navbar';
 import {MeatingRequest, FrienRequest} from '../../modelData/Feed/notification';
 
 import BasicFriendModal from '../forms/add_friend';
-import GroupModal from '../forms/create_new_event';
+import GroupModal from '../forms/create_group';
 
 function Feed() {
   return (
