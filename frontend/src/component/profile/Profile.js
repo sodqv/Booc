@@ -88,6 +88,12 @@ export default function Profile() {
                         </div>
                     </div>  
 
+                    {/* Modify Group button */}
+                    <div style={{ margin: '15px 0'}}>
+                        <ModifyGroupModal/>
+                    </div>
+
+
                     {/* List */}
                     <div style={{boxSizing: 'border-box', overflow: 'auto',  height: 'calc((100vh - 460px))' }}>
                         <CheckboxListSecondary/>
