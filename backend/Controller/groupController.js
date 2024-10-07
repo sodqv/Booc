@@ -3,15 +3,15 @@ const {getGroup:getGroupModel,
     createGroup:createGroupModel,
     updateGroup:updateGroupModel,
     deleteGroup:deleteGroupModel,
+    leaveGroup:leaveGroupModel,
     checkIfOwner} =  require("../model/groupModel")
 
 
 
 //Get info about group for recreating form
 async function getGroup(req, res){
-    //console.log(req.query);
+    //Gets info
     const groupName = req.query.groupName;
-    //console.log(groupName);
     var result = await getGroupModel(groupName);
     if(result === null){
         return res.status(500).send({msg:"Failed to get group"});
@@ -104,11 +104,28 @@ async function deleteGroup(req, res){
     return res.status(200).send({msg:"Deleted group"});
 }
 
+//Takes groupname and if the user is in it then leave
+async function leaveGroup(req, res) {
+    try{
+        const {body : {groupName}} = req;
+        var result = await leaveGroupModel(groupName, req.session.user.username, req.session.user.identifier);
+        if(result === null){
+            return res.status(500).send({msg:"Failed leave group"});
+        }
+        return res.status(200).send({msg:"Left group"});
+    }
+    catch(err){
+        console.log(err);
+        return res.status(500).send({msg:"Failed leave group"});
+    }
+}
+
 
 module.exports = {
     getGroup,
     getAllGroups,
     createGroup,
     updateGroup,
-    deleteGroup
+    deleteGroup,
+    leaveGroup
 }

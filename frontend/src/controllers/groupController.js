@@ -21,7 +21,7 @@ export async function getGroup(groupName){
           }
   
           //Test if successfully got group info
-          return response.data.group;
+          ProccesedResponse = response.data.group;
         })
         .catch(function(error){
             console.log(error);
@@ -49,7 +49,7 @@ export async function getAllGroups(){
           }
   
           //Test if successfully got group info
-          return response.data.groups;
+          ProccesedResponse = response.data.groups;
         })
         .catch(function(error){
             console.log(error);
@@ -78,7 +78,7 @@ export async function createGroup(groupName, members){
           }
   
           //Test return
-          return "Success";
+          ProccesedResponse = "Success";
         })
         .catch(function(error){
             console.log(error);
@@ -108,7 +108,7 @@ export async function updateGroup(groupName,owners,members){
           }
   
           //Test return
-          return "Success";
+          ProccesedResponse = "Success";
         })
         .catch(function(error){
             console.log(error);
@@ -138,7 +138,7 @@ export async function deleteGroup(groupName){
           }
   
           //Test return
-          return "Success";
+          ProccesedResponse = "Success";
         })
         .catch(function(error){
             console.log(error);
@@ -146,4 +146,34 @@ export async function deleteGroup(groupName){
         })
   
     return ProccesedResponse;
+}
+
+//Leave group
+export async function leaveGroup(groupName){
+  var ProccesedResponse = "";
+  await api.delete('/api/groups', 
+      {
+      headers:{
+        "Access-Control-Allow-Origin": "http://localhost:6400",
+        "Access-Control-Allow-Credentials":"true",
+      },
+      data: {
+        groupName:groupName,
+      }
+      })
+      .then(function(response){
+        //Test for failed login
+        if(typeof response.data?.msg === "undefined" || response.data?.msg === "Failed to leave group"){
+          throw new Error("Invalid response");
+        }
+
+        //Test return
+        ProccesedResponse = "Success";
+      })
+      .catch(function(error){
+          console.log(error);
+          ProccesedResponse = "Failed to leave group";
+      })
+
+  return ProccesedResponse;
 }

@@ -24,7 +24,7 @@ const styDiv = {
 export function MeatingRequest() {
     return (
         <div style={styDiv}>
-            <p style={{ fontSize: '25px' }}>New meating</p>
+            <p style={{ fontSize: '25px' }}>New meeting</p>
             <p>Sandra invited you to 'Planning'</p>
             <button style={{...styBtn, marginRight: '4%'}}>Accept</button>
             <button style={{...styBtn}}>Decline</button>

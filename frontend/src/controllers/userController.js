@@ -22,3 +22,102 @@ export async function signUp(email, username, password){
   })
   return redirect_target;
 }
+
+export async function changeStartPage(startPage){
+  var ProccesedResponse = "";
+  await api.put('/api/users', {
+        startPage:startPage,
+      },{
+        headers:{
+          "Access-Control-Allow-Origin": "http://localhost:6400",
+          "Access-Control-Allow-Credentials":"true",
+        }
+      })
+      .then(function(response){
+        //Test for failed login
+        if(typeof response.data?.msg === "undefined" || response.data?.msg === "Failed to change start page"){
+          throw new Error("Invalid response");
+        }
+
+        //Test return
+        return "Success";
+      })
+      .catch(function(error){
+          console.log(error);
+          ProccesedResponse = "Failed to change start page";
+      })
+
+  return ProccesedResponse;
+}
+
+
+export async function changePassword(password) {
+  var ProccesedResponse = "";
+  await api.put('/api/password', {
+        password:password,
+      },{
+        headers:{
+          "Access-Control-Allow-Origin": "http://localhost:6400",
+          "Access-Control-Allow-Credentials":"true",
+        }
+      })
+      .then(function(response){
+        //Test for failed login
+        if(typeof response.data?.msg === "undefined" || response.data?.msg === "Failed to change password"){
+          throw new Error("Invalid response");
+        }
+
+        //Test return
+        return "Success";
+      })
+      .catch(function(error){
+          console.log(error);
+          ProccesedResponse = "Failed to change password";
+      })
+
+  return ProccesedResponse;
+}
+
+//Deletes the currently logged in user
+export async function deleteUser() {
+  var ProccesedResponse = "";
+  await api.delete('/api/users',{
+        headers:{
+          "Access-Control-Allow-Origin": "http://localhost:6400",
+          "Access-Control-Allow-Credentials":"true",
+        }
+      })
+      .then(function(response){
+        //Test for failed login
+        if(typeof response.data?.msg === "undefined" || response.data?.msg === "Failed to delete user"){
+          throw new Error("Invalid response");
+        }
+
+        //Test return
+        return "Success";
+      })
+      .catch(function(error){
+          console.log(error);
+          ProccesedResponse = "Failed to delete user";
+      })
+
+  return ProccesedResponse;
+}
+
+export async function getUserName() {
+  var userNameHere = "";
+
+  try {
+    const response = await api.get('/api/users', userNameHere);
+    if(typeof response.data === "undefined" || response.data?.msg === "Failed to delete user"){
+      throw "Error";
+    }
+    userNameHere = response.data.username;
+    //console.log(userNameHere.email);
+  }
+  catch (error) {
+    console.log(error)
+  }
+  
+  return userNameHere;
+}

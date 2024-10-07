@@ -10,10 +10,11 @@ export async function signUpAction({request}){
     const response  = await signUpModel(request);
     if(response === "invalid" || response === null){
         //Set MUI prop for error to true
-
+        
         return null;
     }
     else{
+        //Give feedback that password has changed
         return redirect(response);
     }
 }
@@ -81,8 +82,8 @@ export default function Sign_up_page(){
                             />
                         </div>
                         <div className='PageButtons'>
-                            <button className='leftButton' type="button">Complete sign up</button>
-                            <button className='rightButton' type="submit" onClick={changeToLoginPage}>Login page →</button>
+                            <button className='leftButton' type="submit">Complete sign up</button>
+                            <button className='rightButton' type="button" onClick={changeToLoginPage}>Login page →</button>
                         </div>
                     </Form>
                 )}
