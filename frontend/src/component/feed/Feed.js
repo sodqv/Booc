@@ -50,10 +50,6 @@ function Feed() {
             <div className="meatings" >
                 <h2>Monday</h2>
                  <Meeting/>
-                {/*<Meeting/>
-                <Meeting/>
-                <Meeting/>
-                <Meeting/> */}
             </div>
 
             <div className="info">
