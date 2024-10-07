@@ -10,6 +10,8 @@ import RadioBtn from "./MUIRadiobtn.js"
 import { changeStartPage } from '../../modelData/user.js';
 import { deleteUser as deleteUserController} from '../../controllers/userController.js';
 import {logOut as logOutAuth} from "../../modelData/auth.js"
+import {getCurrentUser} from "../../modelData/user"
+import { useLoaderData } from 'react-router-dom';
 
 export async function changePasswordAction({request}){
     const response  = await changePassword(request); //Changes password
@@ -47,6 +49,10 @@ export default function SettingsPage(){
         await changeStartPage(callValue);
     }
 
+    const getUserFunc = async () => {
+        return getCurrentUser().startingPage;
+    }
+
     return(
         <div>
             <Navbar/>
@@ -80,7 +86,7 @@ export default function SettingsPage(){
                         </Form>
                     )}
                 </Formik>
-                <RadioBtn startingValue={0} setValueCallback={RadioBtnCallback}/> 
+                <RadioBtn startingValue={useLoaderData().startingPage} setValueCallback={RadioBtnCallback}/> 
                 
                 {//------------------------------------------------------ Get startinvValue from user (probably api.get("/api/user")), in format 0 or 1
                 }

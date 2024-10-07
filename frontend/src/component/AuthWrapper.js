@@ -15,5 +15,5 @@ export async function AuthLoader(){
     if(user === "Failed to get user"){
         return null;
     }
-    return `${user.username}#${user.identifier}`;
+    return user;
 }

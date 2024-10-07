@@ -8,7 +8,8 @@ import { useLoaderData } from 'react-router-dom';
 
 export default function Navbar( {page} ) {
     //const userNameHere = useState("");
-    const userNameHere = useLoaderData();
+    const user = useLoaderData();
+    const userNameHere = `${user.username}#${user.identifier}`;
     let navigate = useNavigate();
 
     const changeToFeed = () => {
