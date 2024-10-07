@@ -104,20 +104,21 @@ export async function deleteUser() {
   return ProccesedResponse;
 }
 
-export async function getUserName() {
-  var userNameHere = "";
+export async function getCurrentUser(){
+  var user;
 
   try {
-    const response = await api.get('/api/users', userNameHere);
-    if(typeof response.data === "undefined" || response.data?.msg === "Failed to delete user"){
+    const response = await api.get('/api/users', user);
+    if(typeof response.data === "undefined" || response.data?.msg === "Failed to get user"){
       throw "Error";
     }
-    userNameHere = response.data.username;
+    user = response.data;
     //console.log(userNameHere.email);
   }
   catch (error) {
     console.log(error)
+    return "Failed to get user";
   }
   
-  return userNameHere;
+  return user;
 }

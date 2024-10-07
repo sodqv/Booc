@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {redirect, useNavigate} from "react-router-dom";
 import {isAuth} from "../modelData/auth";
-import {getUserName} from "../modelData/user"
+import {getCurrentUser} from "../modelData/user"
 
 export async function AuthLoader(){
     //console.log("Starting auth");
@@ -11,6 +11,9 @@ export async function AuthLoader(){
         return redirect("/");
     }
     //Get user
-    const userNameHere = await getUserName();
-    return userNameHere ;
+    const user = await getCurrentUser();
+    if(user === "Failed to get user"){
+        return null;
+    }
+    return `${user.username}#${user.identifier}`;
 }

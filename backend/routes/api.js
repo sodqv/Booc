@@ -1,6 +1,7 @@
 var express = require('express');
 const {authenicate, authStatus, removeAuth} = require("../controller/authController");
-const {createUser, 
+const {getCurrentUser,
+    createUser, 
     deleteUser, 
     changePassword,
     changeStartPage} = require('../controller/usersController');
@@ -10,7 +11,7 @@ const {getGroup,
     updateGroup,
     deleteGroup,
     leaveGroup} = require("../controller/groupController");
-const {addFriend} = require('../Controller/friendController');
+const {addFriend} = require('../controller/friendController');
 const { createEvent, deleteEvent } = require('../Controller/eventController');
 var router = express.Router();
 
@@ -20,7 +21,7 @@ router.get("/auth", authStatus);
 router.delete("/auth", removeAuth);
 
 //Users
-//router.get("/users", getCurrentUser);
+router.get("/users", getCurrentUser);
 router.post("/users", createUser);
 router.put("/users", changeStartPage);
 router.delete("/users", deleteUser);

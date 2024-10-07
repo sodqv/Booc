@@ -3,7 +3,7 @@ import {signUp as signUpController,
     changePassword as changePasswordController, 
     deleteUser as deleteUserController,
     changeStartPage as changeStartPageController,
-    getUserName as getUserNameCLR  
+    getCurrentUser as getCurrentUserCLR  
     } from "../controllers/userController"
 
 export async function signUp(request){
@@ -47,7 +47,7 @@ export async function deleteUser() {
     return response;
 }
 
-export async function getUserName() {
-    const response = await getUserNameCLR();
+export async function getCurrentUser() {
+    const response = await getCurrentUserCLR();
     return response;
 }

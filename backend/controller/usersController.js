@@ -1,5 +1,22 @@
 const usersModel = require('../Model/usersModel.js');
 
+
+//
+//Get user info
+async function getCurrentUser(req, res){
+    try{
+        if(!req.session.user){
+            return res.status(401).send({msg:"Not authenticated"})
+        }
+        return res.status(200).send(req.session.user);
+    }
+    catch(err){
+        console.log(err);
+        return res.status(500).send({msg:"Failed to get current user"});
+    }
+    
+}
+
 //Create user
 async function createUser(req, res){
     const {body: {email, username, password}} = req;
@@ -66,6 +83,7 @@ async function deleteUser(req, res) {
 
 
 module.exports = {
+    getCurrentUser,    
     createUser,
     deleteUser,
     changeStartPage,
