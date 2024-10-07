@@ -7,7 +7,7 @@ import BasicButtons from './button';
 import CheckboxListSecondary from '../../modelData/Feed/list';
 import LetterAvatars from './avatar';
 // Self created
-import Meating from '../../modelData/Feed/meating';
+import Meeting from '../../modelData/Feed/meeting';
 import Navbar from './navbar';
 import {MeatingRequest, FrienRequest} from '../../modelData/Feed/notification';
 
@@ -40,12 +40,11 @@ function Feed() {
 
             <div className="meatings" >
                 <h2>Monday</h2>
-                <Meating/>
-                <Meating/>
-                <Meating/>
-                <Meating/>
-                <Meating/>
-                <Meating/>
+                <Meeting/>
+                <Meeting/>
+                <Meeting/>
+                <Meeting/>
+                <Meeting/>
             </div>
 
             <div className="info">

@@ -13,7 +13,7 @@ const styBtn = {
 }
 
 const styDiv = {
-    backgroundColor: '#f5f5f5',
+    backgroundColor: 'rgba(255, 255, 255, 0.7)',
     textAlign: 'left',
     margin: '20px 0',
     padding: '10px',

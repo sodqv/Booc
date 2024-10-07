@@ -1,0 +1,17 @@
+.meating {
+    background-color: rgba(255, 255, 255, 0.7);
+    text-align: left;
+    margin: 20px 10px;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    line-height: 30px;
+}
+.collapsible{
+    cursor: pointer;
+    
+}
+.content{
+    overflow: hidden;
+    display: none;
+}
