@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const events = require("./schemas/eventSchema");
+const users = require("./schemas/userSchema");
 const {startmongoose} = require('./mongodbStarter');
 
 
@@ -8,8 +9,18 @@ const {startmongoose} = require('./mongodbStarter');
 async function createEvent(title, date, fromTime, toTime, location, description, color, repeat = 'never', visibility = 'private', invitePeople = [], createdBy)
 {
     startmongoose();                                        //initialize the mongoose connection
-    
+
     try{
+
+        const currentUser = {
+            username: createdBy.username,
+            identifier: createdBy.identifier,
+        }
+        if (!currentUser) {
+            return 0;
+        }
+
+
         const newEvent = new events({
             title,
             date,
@@ -21,7 +32,7 @@ async function createEvent(title, date, fromTime, toTime, location, description,
             repeat,
             visibility,
             invitePeople,
-            createdBy,
+            createdBy: currentUser    
         });
 
         await newEvent.save();                              //saves the event to the database
