@@ -5,6 +5,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { useLoaderData } from 'react-router-dom';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -17,24 +18,8 @@ const MenuProps = {
   },
 };
 
-const names = [
-    'Friend 1',
-    'Friend 2',
-    'Friend 3',
-    'Friend 4',
-    'Friend 5',
-];
-
-function getStyles(name, personName, theme) {
-  return {
-    fontWeight: personName.includes(name)
-      ? theme.typography.fontWeightMedium
-      : theme.typography.fontWeightRegular,
-  };
-}
-
 export default function Selector({ value, onChange }) {
-  const theme = useTheme();
+  var names = useLoaderData().friendList;
   //const [personName, setPersonName] = React.useState([]);
 
   const handleChange = (event) => {
@@ -60,13 +45,12 @@ export default function Selector({ value, onChange }) {
           input={<OutlinedInput />}
           MenuProps={MenuProps}
         >
-          {names.map((name) => (
+          {names.map(({username, identifier}, index) => (
             <MenuItem
-              key={name}
-              value={name}
-              style={getStyles(name, value, theme)}
+              key={index}
+              value={`${username}#${identifier}`}
             >
-              {name}
+              {`${username}#${identifier}`}
             </MenuItem>
           ))}
         </Select>

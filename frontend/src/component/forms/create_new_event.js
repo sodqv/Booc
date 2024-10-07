@@ -102,10 +102,11 @@ export default function BasicModal() {
   //handle form submission
   const handleSubmit = async () => {
     try {
-
+        //For some reason if i place a console.log() before the next line it will still behave as the map happened before it.
+        formData.invitePeople = formData.invitePeople.map(((user) => user.split("#") ))
         console.log('Form data:', formData);        //puts the new event in the console log in the browser
 
-
+        
 
         const response = await api.post('/api/newEvent', formData);  
 

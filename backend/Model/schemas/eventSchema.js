@@ -21,7 +21,7 @@ const eventSchema = new Schema({
         enum: ['public', 'private'],                                //visibility options
         default: 'private'
     },
-    invitePeople: [{ type: String }],                               //array of usernames of invited people
+    invitePeople:[{username: {type: String}, identifier: {type: String}, _id:false}],                               //array of usernames of invited people
     //createdBy: [{ username: String, identifier: String, _id: false}],
     createdBy: {
         username: String,

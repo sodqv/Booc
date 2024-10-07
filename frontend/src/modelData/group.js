@@ -69,7 +69,7 @@ export async function createGroup(formData){
     //Extracts form values
     
     let groupName = formData.groupName;
-    let members = formData.invitePeople;
+    let members = formData.invitePeople.map((preproceccedUsername) => preproceccedUsername.split("#"));
     
 
     /*
