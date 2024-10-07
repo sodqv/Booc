@@ -11,6 +11,9 @@ import Meeting from '../../modelData/Feed/meeting';
 import Navbar from './navbar';
 import {MeatingRequest, FrienRequest} from '../../modelData/Feed/notification';
 
+import BasicFriendModal from '../forms/add_friend';
+import GroupModal from '../forms/create_new_event';
+
 function Feed() {
   return (
     <div style={{ height: '100vh', width: '100%', overflow: 'hidden'  }}>
@@ -23,18 +26,22 @@ function Feed() {
             }}>
             <div className="contacts" >
                 <div className='list' style={{ height: 'calc((100vh - 90px)/2)', marginBottom: '10px' }}>
-                    <h2>Friends</h2>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <h2>Friends</h2>
+                        <BasicFriendModal buttonText="+"/> {/* Modal to add friend */}
+                    </div>
                     <div style={{ height: 'calc((100vh - 90px)/2 - 61px)', overflow: 'auto' }}>
                         <CheckboxListSecondary/>
                     </div>
-                    <BasicButtons/>
                 </div>
                 <div className='list' style={{ height: 'calc((100vh - 90px)/2)' }}>
-                    <h2>Groups</h2>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <h2>Groups</h2>
+                        <GroupModal /> {/* Modal to add group */}
+                    </div>
                     <div style={{ height: 'calc((100vh - 90px)/2 - 61px)', overflow: 'auto' }}>
                         <CheckboxListSecondary/>
                     </div>
-                    <BasicButtons />
                 </div>
             </div>
 

@@ -7,33 +7,42 @@ import BasicDateCalendar from './calendar';
 import Navbar from '../feed/navbar';
 import CheckboxListSecondary from '../../modelData/Feed/list';
 import BasicFriendModal from '../forms/add_friend';
-import GroupModal from '../forms/create_group';
 
 export default function Profile() {
 
-        // Lift the state to the Profile component
         const [selectedDate, setSelectedDate] = useState(dayjs());
 
-        // New
-        const [weekData, setWeekData] = useState(createWeekData(selectedDate.startOf('week'))); // Add state for week data
-
-
+        const [weekData, setWeekData] = useState({});
 
         // Handler to change the date
         const handleDateChange = (newDate) => {
             setSelectedDate(newDate);
         };
 
-
-        // New
-        const handleEventCreated = (eventTitle, eventDate) => {
-            const day = eventDate.format('dddd D'); // Format to match weekData keys
+        const fetchEventsForWeek = async (startOfWeekISO) => {
+            try {
+              // Assuming you're fetching from a backend API
+              const response = await fetch(`/api/events?weekStart=${startOfWeekISO}`);
+              const data = await response.json();
+        
+              // Transform data if needed, assuming the backend returns { 'YYYY-MM-DD': [event1, event2, ...], ... }
+              setWeekData(data);
+        
+              return data;
+            } catch (error) {
+              console.error('Error fetching events:', error);
+              return {}; // Return an empty object if there's an error
+            }
+          };
+        
+          // New: To handle when an event is created
+          const handleEventCreated = (eventTitle, eventDate) => {
+            const day = eventDate.format('YYYY-MM-DD'); // Format to match weekData keys
             setWeekData((prevData) => ({
-                ...prevData,
-                [day]: [...(prevData[day] || []), eventTitle], // Add event title to the corresponding day
+              ...prevData,
+              [day]: [...(prevData[day] || []), eventTitle], // Add event title to the corresponding day
             }));
-        };
-
+          };
 
     return (
         <div style={{
@@ -72,15 +81,12 @@ export default function Profile() {
                         <BasicModal onEventCreated={handleEventCreated} />
                     </div>
 
-                    {/* Friend button */}
-                    <div style={{ margin: '15px 0'}}>
-                        <BasicFriendModal/>
-                    </div>
-
-                    {/* Group button */}
-                    <div style={{ margin: '15px 0'}}>
-                        <GroupModal/>
-                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', margin: '15px 0' }}>
+                        {/* Friend button */}
+                        <div style={{ flex: '1', marginRight: '10px' }}>
+                            <BasicFriendModal/>
+                        </div>
+                    </div>  
 
                     {/* List */}
                     <div style={{boxSizing: 'border-box', overflow: 'auto',  height: 'calc((100vh - 460px))' }}>
@@ -110,21 +116,11 @@ export default function Profile() {
                     <BasicTable
                         selectedDate={selectedDate} 
                         onDateChange={handleDateChange}
-                        weekData={weekData}
+                        // Get weekly events
+                        fetchEventsForWeek={fetchEventsForWeek}
                     /> 
                 </div>
             </div>
-        {/* </Box> */}
         </div>
     );
 }
-
-
-const createWeekData = (startDate) => {
-    const weekData = {};
-    for (let i = 0; i < 7; i++) {
-        const day = startDate.add(i, 'day').format('dddd D');
-        weekData[day] = [];
-    }
-    return weekData;
-};
