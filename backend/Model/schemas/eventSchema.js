@@ -22,7 +22,7 @@ const eventSchema = new Schema({
         default: 'private'
     },
     invitePeople: [{ type: String }],                               //array of usernames of invited people
-    createdBy: { type: String, required: true},                     //the user that created the event
+    //createdBy: { type: String, required: true},                     //the user that created the event
 },
 {
     collection:"Events",

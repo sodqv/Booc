@@ -1,5 +1,5 @@
 
-const eventsModel = require('../model/eventModel');
+const eventsModel = require('../Model/eventModel');
 
 
 //create event
