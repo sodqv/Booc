@@ -7,36 +7,22 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-function createData (
-  left,
-  monday,
-  tuesday,
-  wednesday,
-  thursday,
-  friday,
-  saturday,
-  sunday,
-  right
-) { 
-  return {left, monday, tuesday, wednesday, thursday, friday, saturday, sunday, right };
-}
 
-const rows = [
-  createData('','Meeting', 'Dentist', '', '', '', 'Dinner'),
-  createData('','', 'Meeting', '', '', '', '', ''),
-  createData('','Meeting', '', '', 'Meeting', '', '', ''),
-  createData('','Meeting', '', '', '', '', '', ''),
-  createData('', '', '', '', 'Hairdresser', '', ''),
-  createData('', 'Workout', '', 'Meeting', '', 'Party'),
-  createData('', '', '', '', '', 'Party'),
-  createData('','Meeting', 'Dentist', '', '', '', 'Dinner'),
-  createData('','Meeting', 'Dentist', '', '', '', 'Dinner'),
-  createData('','Meeting', 'Dentist', '', '', '', 'Dinner'),
-  createData('','Meeting', 'Dentist', '', '', '', 'Dinner'),
-  createData('','Meeting', 'Dentist', '', '', '', 'Dinner'),
-  createData('','Meeting', 'Dentist', '', '', '', 'Dinner'),
-  createData('','Meeting', 'Dentist', '', '', '', 'Dinner')
-];
+//New
+import dayjs from 'dayjs';
+import isoWeek from 'dayjs/plugin/isoWeek';
+
+//New
+dayjs.extend(isoWeek);
+
+const createWeekData = (startDate) => {
+  const weekData = {};
+  for (let i = 0; i < 7; i++) {
+    const day = startDate.add(i, 'day').format('dddd D');
+    weekData[day] = [];
+  }
+  return weekData;
+};
 
 const styleCellHead = {
   fontWeight: 'bold', 
@@ -49,30 +35,16 @@ const styleCell = {
   fontSize: '11px'
 }
 
-function nameOfDay(day) {
-  switch(day) {
-    case 1:
-      return "Monday";
-    case 2:
-      return "Tuesday";
-    case 3:
-      return "Wednesday";
-    case 4:
-      return "Thursday";
-    case 5:
-      return "Friday";
-    case 6:
-      return "Saturday";
-    case 7:
-      return "Sunday";
-    default:
-      return "";
-  }
-}
-
 export default function BasicTable({ selectedDate, onDateChange }) {
+  
+  //New - modifyed with isoWeek
+  const [weekData, setWeekData] = React.useState(createWeekData(selectedDate.startOf('isoWeek')));
+  
+  
   // Start of week
-  const startOfWeek = selectedDate.startOf('week').add(1, 'day');
+  //const startOfWeek = selectedDate.startOf('week').add(1, 'day');
+  //New
+  const startOfWeek = selectedDate.startOf('isoWeek');
 
   // Days in current week
   const daysOfWeek = Array.from({ length: 7 }, (_, index) =>
@@ -83,6 +55,8 @@ export default function BasicTable({ selectedDate, onDateChange }) {
   const changeWeek = (amount) => {
     const newDate = selectedDate.add(amount, 'week');
     onDateChange(newDate);
+    //New - modifyed with isoWeek
+    setWeekData(createWeekData(newDate.startOf('isoWeek')));
   };
 
   const todayCellStyle = {
@@ -94,7 +68,8 @@ export default function BasicTable({ selectedDate, onDateChange }) {
   }
 
   const date = new Date();
-  const today = nameOfDay(date.getDay()) + " " + date.getDate();
+  //New
+  const today = dayjs(date).format('dddd D');
 
   return (
     <div>
@@ -127,20 +102,20 @@ export default function BasicTable({ selectedDate, onDateChange }) {
             </TableRow>
           </TableHead>
 
-          <TableBody> {rows.map((row, index) => (
-            <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-              <TableCell align="center" sx={ styleCell }>{row.left}</TableCell>
-              <TableCell align="center" sx={ styleCell }>{row.monday}</TableCell>
-              <TableCell align="center" sx={ styleCell }>{row.tuesday}</TableCell>
-              <TableCell align="center" sx={ styleCell }>{row.wednesday}</TableCell>
-              <TableCell align="center" sx={ styleCell }>{row.thursday}</TableCell>
-              <TableCell align="center" sx={ styleCell }>{row.friday}</TableCell>
-              <TableCell align="center" sx={ styleCell }>{row.saturday}</TableCell>
-              <TableCell align="center" sx={ styleCell }>{row.sunday}</TableCell>
-              <TableCell align="center" sx={ styleCell }>{row.right}</TableCell>
-            </TableRow>))}
+          { /*New */}
+          <TableBody>
+            <TableRow>
+              {daysOfWeek.map((day) => (
+                <TableCell align="center" sx={{ padding: '2px', fontSize: '11px' }} key={day}>
+                  <ul style={{ padding: '0', listStyleType: 'none' }}>
+                    {(weekData[day] || []).map((event, index) => (
+                      <li key={index}>{event}</li>
+                    ))}
+                  </ul>
+                </TableCell>
+              ))}
+            </TableRow>
           </TableBody>
-
         </Table>
       </TableContainer>
     </div>

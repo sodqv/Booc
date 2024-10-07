@@ -14,10 +14,26 @@ export default function Profile() {
         // Lift the state to the Profile component
         const [selectedDate, setSelectedDate] = useState(dayjs());
 
+        // New
+        const [weekData, setWeekData] = useState(createWeekData(selectedDate.startOf('week'))); // Add state for week data
+
+
+
         // Handler to change the date
         const handleDateChange = (newDate) => {
             setSelectedDate(newDate);
         };
+
+
+        // New
+        const handleEventCreated = (eventTitle, eventDate) => {
+            const day = eventDate.format('dddd D'); // Format to match weekData keys
+            setWeekData((prevData) => ({
+                ...prevData,
+                [day]: [...(prevData[day] || []), eventTitle], // Add event title to the corresponding day
+            }));
+        };
+
 
     return (
         <div style={{
@@ -53,7 +69,7 @@ export default function Profile() {
 
                     {/* Form button */}
                     <div style={{ margin: '15px 0'}}>
-                        <BasicModal/>
+                        <BasicModal onEventCreated={handleEventCreated} />
                     </div>
 
                     {/* Friend button */}
@@ -94,6 +110,7 @@ export default function Profile() {
                     <BasicTable
                         selectedDate={selectedDate} 
                         onDateChange={handleDateChange}
+                        weekData={weekData}
                     /> 
                 </div>
             </div>
@@ -101,3 +118,13 @@ export default function Profile() {
         </div>
     );
 }
+
+
+const createWeekData = (startDate) => {
+    const weekData = {};
+    for (let i = 0; i < 7; i++) {
+        const day = startDate.add(i, 'day').format('dddd D');
+        weekData[day] = [];
+    }
+    return weekData;
+};
