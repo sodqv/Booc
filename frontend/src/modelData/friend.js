@@ -32,7 +32,6 @@ export async function addFriend(request)
     }
 
 
-
     console.log("New friend data in friend.js:", newFriend);                    //logs the newFriend object
 
     const response = await CTRLaddFriend(newFriend);                            //send the newFriend object to friendController (frontend) 

@@ -179,20 +179,26 @@ async function addFriend(currentUser, friendsUsername, friendIdentifier)
             throw new Error("Current user not found");
         }
 
+
         
         //check if the friend (user) exists in the database
         const friendExists = await users.findOne({ username: friendsUsername, identifier: friendIdentifier });
+        
         if (!friendExists)
         {
-            return 0;
+            //return 0;
+            return { status: 404, msg: "Friend not found" };
         }
 
 
+        
         //check if the friend (user) is already in the friendList
         const friendAlreadyAdded = user.friendList.some(check => check.username === friendsUsername && check.identifier === friendIdentifier);
+        
         if (friendAlreadyAdded)
         {
-            return 0;
+            //return 0;
+            return { status: 409, msg: "Friend already added" };
         }
 
 

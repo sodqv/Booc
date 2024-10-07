@@ -56,8 +56,20 @@ export async function addFriend(newFriend)
         ProccesedResponse = "Success";
     })
     .catch(function(error) {
-        console.log(error);
-        ProccesedResponse = "Failed";
+
+        if (error.response?.status === 404)
+        {
+            ProccesedResponse = "Friend not found";
+        }
+        else if (error.response?.status === 409)
+        {
+            ProccesedResponse = "Friend already added";
+        }
+        else
+        {
+            console.log(error);
+            ProccesedResponse = "Failed";            
+        }
     })
 
     return ProccesedResponse;       //return the processed response. This should be either "Success" or "Failed"

@@ -94,6 +94,14 @@ const style = {
             console.log('Friend was successfully added');                          
             handleClose();      //closes the form
         }
+        else if ( response === "Friend not found")
+        {
+            alert('User does not exist');
+        }
+        else if (response === "Friend already added")
+        {
+            alert('User is already in your friendlist');
+        }
         else
         {
             alert('Failed to add friend');

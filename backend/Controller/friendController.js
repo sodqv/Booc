@@ -30,6 +30,16 @@ async function addFriend(req, res)
         //pass the data to the addFriend() function in usersModel
         const result = await addFriendModel(currentUser, friendsUsername, friendIdentifier);    
 
+        if (result.status === 404)
+        {
+            return res.status(404).send({ msg: "Friend not found" });
+        }
+
+        if (result.status === 409)
+        {
+            return res.status(409).send({ msg: "Friend already added" });
+        }
+
         if (result === null)
         {
             return res.status(500).send({ msg: "Failed to add friend" });
