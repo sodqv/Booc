@@ -1,4 +1,4 @@
-const usersModel = require('../model/usersModel.js');
+const usersModel = require('../Model/usersModel.js');
 
 //Create user
 async function createUser(req, res){
@@ -17,6 +17,7 @@ async function createUser(req, res){
     }
 }
 
+
 async function changeStartPage(req, res) {
     const result = await usersModel.changeStartPage(req.session.user.email, req.session.user.password, req.body.startPage);
     if(result){
@@ -26,6 +27,7 @@ async function changeStartPage(req, res) {
         return res.status(500).send({msg:"Failed to change start page"});
     }
 }
+
 
 async function changePassword(req, res) {
     const result = await usersModel.changePassword(req.session.user.email, req.session.user.password, req.body.password);
@@ -39,6 +41,7 @@ async function changePassword(req, res) {
         return res.status(500).send({msg:"Failed to change password"});
     }
 }
+
 
 async function deleteUser(req, res) {
     try{
@@ -58,32 +61,15 @@ async function deleteUser(req, res) {
     }
 }
 
-async function getCurrentUser(req, res) {
-    try {
-        console.log('Current session data:', req.session.user);
-        const user = req.session?.user;
 
-        if (user) {
-            return res.status(200).send(user);
-        }
-        else
-        {
-            return res.status(404).send({msg: 'User not found'});
-        }
-    }
-    catch (error)
-    {
-        console.error('Error when getting current user email', error);
-        return res.status(500).send({msg: 'Failed to get user email'});
-    }
-}
+
+
 
 module.exports = {
     createUser,
     deleteUser,
     changeStartPage,
     changePassword,
-    getCurrentUser
 }
 
 

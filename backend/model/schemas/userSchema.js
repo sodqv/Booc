@@ -8,6 +8,7 @@ const userSchema = new Schema({
     description: {type: String, default: ""},
     password: String,
     startingPage: {type: Number, default: 0},
+    friendList: [{username: String, identifier: String, _id: false}],
 },{
     collection:"Users"
 })

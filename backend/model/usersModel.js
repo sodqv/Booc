@@ -1,6 +1,7 @@
-const {startmongoose} = require('./mongodbStarter');
+const {startmongoose} = require('./mongodbStarter.js');
 const users = require("./schemas/userSchema.js");
 const argon2 = require('argon2');
+
 
 //Gets user with the same email and password
 async function getUser(email, password){
@@ -30,6 +31,7 @@ async function getUser(email, password){
         return "Failed to find";
     }
 }
+
 
 //Create user
 async function createUser(email, username, password) {
@@ -75,6 +77,7 @@ async function createUser(email, username, password) {
     }
 }
 
+
 async function changeStartPage(email, password, newStartPage) {
     startmongoose();
     const user = await users.findOne({
@@ -94,6 +97,7 @@ async function changeStartPage(email, password, newStartPage) {
         return 0;
     }
 }
+
 
 async function changePassword(email, password, newPassword) {
     startmongoose();
@@ -115,6 +119,7 @@ async function changePassword(email, password, newPassword) {
         return 0;
     }
 }
+
 
 //Delete user
 async function deleteUser(email, password){
@@ -139,6 +144,58 @@ async function deleteUser(email, password){
     
 }
 
+
+/* 
+//Get current user
+async function getCurrentUser(_id)
+{
+    startmongoose();
+
+    const currentUser = await users.findOne({
+        _id:_id
+    });
+
+    if (currentUser === null)
+    {
+        return null;
+    }
+
+    const objCurrUser = currentUser.toObject();
+
+    return objCurrUser;
+}
+*/
+
+
+
+async function addFriend(currentUser, friendsUsername, friendIdentifier) 
+{
+    startmongoose();
+    
+    try {
+        const user = await users.findOne({ username: currentUser.username });   //find the current user's username in the database
+
+        if (!user) {
+            throw new Error("Current user not found");
+        }
+
+
+        //add the new friend's username and identifier to the current user's friendlist
+        user.friendList.push({ "username":friendsUsername, "identifier":friendIdentifier });
+
+        await user.save();          //save the updated user (with the new friendlist) to the database
+
+        return user.toObject();     //return the updated user as an object
+        
+    }
+    catch (error) {
+        console.log("Failed to update friendlist", error);
+        return null;
+    }
+}
+
+
+
 //Reset password
 //TO DO, will need access to a mailing service
 //For sending email: https://www.w3schools.com/nodejs/nodejs_email.asp
@@ -150,4 +207,6 @@ module.exports = {
     changePassword,
     deleteUser,
     changeStartPage,
+    //getCurrentUser,
+    addFriend,
 }
