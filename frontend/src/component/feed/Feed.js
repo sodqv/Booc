@@ -28,7 +28,7 @@ function Feed() {
                 <div className='list' style={{ height: 'calc((100vh - 90px)/2)', marginBottom: '10px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                         <h2>Friends</h2>
-                        <BasicFriendModal buttonText="+"/> {/* Modal to add friend */}
+                        <BasicFriendModal/> 
                     </div>
                     <div style={{ height: 'calc((100vh - 90px)/2 - 61px)', overflow: 'auto' }}>
                         <CheckboxListSecondary/>
@@ -37,7 +37,7 @@ function Feed() {
                 <div className='list' style={{ height: 'calc((100vh - 90px)/2)' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                         <h2>Groups</h2>
-                        <GroupModal /> {/* Modal to add group */}
+                        <GroupModal /> 
                     </div>
                     <div style={{ height: 'calc((100vh - 90px)/2 - 61px)', overflow: 'auto' }}>
                         <CheckboxListSecondary/>
