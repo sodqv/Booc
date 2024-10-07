@@ -186,7 +186,6 @@ async function addFriend(currentUser, friendsUsername, friendIdentifier)
         
         if (!friendExists)
         {
-            //return 0;
             return { status: 404, msg: "Friend not found" };
         }
 
@@ -197,7 +196,6 @@ async function addFriend(currentUser, friendsUsername, friendIdentifier)
         
         if (friendAlreadyAdded)
         {
-            //return 0;
             return { status: 409, msg: "Friend already added" };
         }
 
@@ -206,7 +204,14 @@ async function addFriend(currentUser, friendsUsername, friendIdentifier)
         //add the new friend's username and identifier to the current user's friendlist
         user.friendList.push({ "username":friendsUsername, "identifier":friendIdentifier });
 
-        await user.save();          //save the updated user (with the new friendlist) to the database
+        //add the current user to the friend's friendlist
+        friendExists.friendList.push({ "username": currentUser.username, "identifier": currentUser.identifier });
+
+
+
+        //save the updated friendlists of the current user and the added friend to the database
+        await user.save();          
+        await friendExists.save();
 
         return user.toObject();     //return the updated user as an object
         
