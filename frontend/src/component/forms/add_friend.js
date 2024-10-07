@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -12,9 +11,9 @@ import { Typography } from '@mui/material';
 import BasicTextField from "./text_field";
 import FriendButtonDirectionStack from "./friend_button_stack";
 
-import { getCurrentUser, addFriend } from "../../modelData/friend.js";
+import { //getCurrentUser, 
+  addFriend } from "../../modelData/friend.js";
 
-import {api} from '../../controllers/axiosTemplate';
 
 
 const style = {
@@ -84,25 +83,19 @@ const style = {
   const handleSubmit = async () => {
     try {
 
-        console.log('Form data:', formData);                                //puts the submitted data in the console log in the browser
+        console.log('Form data:', formData);          //logs the submitted form data
 
-        /* 
-        const response = await addFriend({
-          addFriendString: formData.addFriendString,
-          currentUser   //the currently logged in user
-        });
-        */
+        const response = await addFriend(formData);   //sends the friends username and identifier to the addFriend() function in friend.js
 
-        const response = await addFriend(formData);
 
-        if (response === "Success")
+        if (response === "Success")   //check the response from friend.js
         {
-            console.log('Friend was successfully added');                          
-            handleClose();      //closes the create event form
+            console.log('Friend was successfully added (add_friend.js)');                          
+            handleClose();      //closes the form
         }
         else
         {
-            console.log('Failed to add friend');
+            console.log('Failed to add friend (add_friend.js)');
         }
     }
     catch (error) {
@@ -110,84 +103,6 @@ const style = {
         alert('An error occurred while adding friend');
     }
   };
-
-
-
-
-  
-    /* 
-    //handle form submission
-    const handleSubmit = async () => {
-      try {
-  
-          console.log('Adding friend:', username);        //puts the friend request in the console log in the browser
-          console.log('Current user email:', currentUserEmail);
-
-          if (!currentUserEmail) {
-            alert('Current user email is not set');
-            return;
-          }
-
-          //const currentUserEmail = "user@example.com";
-  
-          const response = await api.post('/api/addFriend', { currentUserEmail, username });  //current users email and the friends username
-  
-          if (response.status === 200)
-          {
-              alert('Friend added successfully');
-              handleClose();      //closes the add friend form
-          }
-          else
-          {
-              alert('Failed to add friend');
-          }
-      }
-      catch (error) {
-          console.error('Error when adding friend:', error.response?.data || error.message);
-          alert('An error occurred while adding the friend');
-      }
-    };
-    
-  
-
-    
-    //handle form submission
-    const handleSubmit = async () => {
-      try {
-
-          const formData = {
-            email: user.email,
-            friendUsername: friendUsernameValue
-          };
-
-
-  
-          //console.log('Adding friend:', username);        //puts the friend request in the console log in the browser
-  
-          //const currentUserEmail = "user@example.com";
-  
-          const response = await api.post('/api/addFriend', formData);  //current users email and the friends username
-  
-          if (response.status === 200)
-          {
-              alert('Friend added successfully');
-              handleClose();      //closes the add friend form
-          }
-          else
-          {
-              alert('Failed to add friend');
-          }
-      }
-      catch (error) {
-          console.error('Error when adding friend:', error.response?.data || error.message);
-          alert('An error occurred while adding the friend');
-      }
-    };
-*/
-
-
-
-
 
 
 
@@ -219,7 +134,8 @@ const style = {
               {/* Username Input */}
               <Grid sx={{ display: 'grid', width: '100%', gridTemplateColumns: 'repeat(1, 1fr)'}}>
                 <Item>
-                    <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536' }}>Enter your friend's username</Typography>
+                    <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536' }}>Enter your friend's username followed by their identifier separated by #</Typography>
+                    <Typography sx = {{ fontSize: '13px' }}>Example: username#identifier</Typography>
                     <BasicTextField 
                       value={formData.addFriendString}
                       onChange={(newFriendList) => handleInput('addFriendString', newFriendList.target.value)}

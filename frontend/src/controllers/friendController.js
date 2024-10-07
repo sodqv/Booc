@@ -1,8 +1,8 @@
-import {redirect} from "react-router-dom";
+//import {redirect} from "react-router-dom";
 import {api} from "./axiosTemplate.js";
 
 
-
+/* 
 //Get current user
 export async function getCurrentUser()
 {
@@ -28,23 +28,24 @@ export async function getCurrentUser()
 
     return ProccesedResponse;
 }
-
+*/
 
 
 //Add friend
 export async function addFriend(newFriend)
 {
+    let ProccesedResponse = "";     //variable to hold the processed response
 
-    let ProccesedResponse = "";
 
-    await api.post('/api/users/addFriend', {
+    //api post to the backend, request body containing the friend's username and identifier
+    await api.post('/api/users/addFriend', {    
         friendsUsername: newFriend.username,
         friendIdentifier: newFriend.identifier
-        //addFriendString: newFriend.addFriendString      //the inputed friend that will be added to the friendlist
     },{
+
         headers: {
-            "Access-Control-Allow-Origin": "http://localhost:6400",
-            "Access-Control-Allow-Credentials":"true",
+            "Access-Control-Allow-Origin": "http://localhost:6400",         //allow requests from this origin
+            "Access-Control-Allow-Credentials":"true",                      //allow credentials (cookies) in the requests
         }
     })
     .then(function(response) {
@@ -52,14 +53,14 @@ export async function addFriend(newFriend)
             throw new Error("Invalid response");
         }
 
-        return "Success";
+        ProccesedResponse = "Success";
     })
     .catch(function(error) {
         console.log(error);
-        ProccesedResponse = "Failed to add friend";
+        ProccesedResponse = "Failed";
     })
 
-    return ProccesedResponse;
+    return ProccesedResponse;       //return the processed response. This should be either "Success" or "Failed"
 }
 
 

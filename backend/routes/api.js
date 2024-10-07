@@ -10,7 +10,7 @@ const {getGroup,
     updateGroup,
     deleteGroup,
     leaveGroup} = require("../controller/groupController");
-const {addFriend} = require('../controller/friendController');
+const {addFriend} = require('../Controller/friendController');
 const { createEvent, deleteEvent } = require('../controller/eventController');
 var router = express.Router();
 

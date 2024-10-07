@@ -1,4 +1,4 @@
-const {startmongoose} = require('./mongodbStarter');
+const {startmongoose} = require('./mongodbStarter.js');
 const users = require("./schemas/userSchema.js");
 const argon2 = require('argon2');
 
@@ -145,7 +145,7 @@ async function deleteUser(email, password){
 }
 
 
-
+/* 
 //Get current user
 async function getCurrentUser(_id)
 {
@@ -164,7 +164,7 @@ async function getCurrentUser(_id)
 
     return objCurrUser;
 }
-
+*/
 
 
 
@@ -173,69 +173,27 @@ async function addFriend(currentUser, friendsUsername, friendIdentifier)
     startmongoose();
     
     try {
-        const user = await users.findOne({ username: currentUser.username });
+        const user = await users.findOne({ username: currentUser.username });   //find the current user's username in the database
 
         if (!user) {
             throw new Error("Current user not found");
         }
 
+
+        //add the new friend's username and identifier to the current user's friendlist
         user.friendList.push({ "username":friendsUsername, "identifier":friendIdentifier });
 
-        await user.save();
+        await user.save();          //save the updated user (with the new friendlist) to the database
 
-        return user.toObject();
+        return user.toObject();     //return the updated user as an object
+        
     }
     catch (error) {
         console.log("Failed to update friendlist", error);
         return null;
     }
-
 }
 
-
-
-
-/* 
-//Add friend
-async function addFriend(email, username) {
-    startmongoose();
-
-    try {
-
-        //find the current user
-        const currentUser = await users.findOne({ email: email });
-        if (!currentUser) 
-        {
-            return 0; //User not found
-        }
-
-        //find the friend by username
-        const friend = await users.findOne({ username: username });
-        if (!friend)
-        {
-            return 0; //Friend not found
-        }
-
-        //check if the friend is already in the users friendlist
-        if (currentUser.friendList.includes(friend._id))
-        {
-            return 0; //You are already friends with this person
-        }
-
-
-        //push the friend to the friend list
-        currentUser.friendList.push(friend._id);
-        await currentUser.save();
-
-
-        return { success: true, message: 'Friend added successfully' };
-    }
-    catch (error) {
-        console.error('Error when adding friend:', error);
-        return { success: false, message: 'Failed to add friend' };
-    }
-}
-*/
 
 
 //Reset password
@@ -249,6 +207,6 @@ module.exports = {
     changePassword,
     deleteUser,
     changeStartPage,
-    getCurrentUser,
+    //getCurrentUser,
     addFriend,
 }
