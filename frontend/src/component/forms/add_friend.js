@@ -46,7 +46,7 @@ const style = {
   }));
 
 
-  export default function BasicFriendModal({ currentUser }) {
+  export default function BasicFriendModal({ displayText }) {
     const [open, setOpen] = React.useState(false);
 
 
@@ -120,7 +120,7 @@ const style = {
     return (
       <div>
         <Button onClick={handleOpen} sx={{ width: '100%', padding: '8px', backgroundColor: '#d66536', color: '#f5ebe0' }}>
-            Add Friend
+            {displayText}
         </Button>
         <Modal
           open={open}

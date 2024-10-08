@@ -45,7 +45,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 
 
-export default function ModifyGroupModal() {
+export default function ModifyGroupModal({displayText}) {
   const [open, setOpen] = React.useState(false);
 
 
@@ -114,7 +114,7 @@ export default function ModifyGroupModal() {
   return (
     <div>
       <Button onClick={handleOpen} sx={{ width: '100%', padding: '8px', backgroundColor: '#d66536', color: '#f5ebe0' }}>
-          Modify Group
+          {displayText}
       </Button>
       <Modal
         open={open}

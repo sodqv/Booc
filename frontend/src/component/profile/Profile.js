@@ -84,7 +84,7 @@ export default function Profile() {
                     <div style={{ display: 'flex', justifyContent: 'space-between', margin: '15px 0' }}>
                         {/* Friend button */}
                         <div style={{ flex: '1', marginRight: '10px' }}>
-                            <BasicFriendModal/>
+                            <BasicFriendModal displayText={"Add friend"}/>
                         </div>
                     </div>  
 
