@@ -35,27 +35,42 @@ export default function Meeting() {
                 meetings.map((meeting, value) => (
                     
                     <div key={value} className="meeting" onClick={() => toggleIsOpen(value)}>
-                    <p style={{ fontSize: '25px' }}>
-                        <b>{
-                        new Date(meeting.fromTime).toLocaleTimeString(
-                            navigator.language, {hour: '2-digit', minute:'2-digit'})} - {
-                        new Date(meeting.toTime).toLocaleTimeString(
-                            navigator.language, {hour: '2-digit', minute:'2-digit'})
-                        }</b> {meeting.title} 
+                   <p style={{ fontSize: '20px', fontWeight: 'bold' }}>| {new Date(meeting.date).toLocaleDateString(navigator.language, { month: 'long', day: 'numeric' })}</p>
+                   <p style={{ fontSize: '20px' }}>
+                        <span>
+                            <span>
+                                {new Date(meeting.fromTime).toLocaleTimeString(navigator.language, { hour: '2-digit', minute: '2-digit' })}
+                            </span> - 
+                            <span>
+                                {new Date(meeting.toTime).toLocaleTimeString(navigator.language, { hour: '2-digit', minute: '2-digit' })}
+                            </span>
+                        </span> 
+
+                        <span style={{ fontWeight: 'normal' }}> {' '} | </span>
+                        <b>{meeting.title}</b>
                     </p>
                     <div className="collapsible" >
-                        <p>Creator: {meeting.createdBy.username}</p>
-                        <p>Place: {meeting.location}</p>
+                        <p>        
+                            <span style={{ fontWeight: 'bold' }}>Creator: </span> 
+                            <span style={{ fontWeight: 'normal' }}> {meeting.createdBy.username}</span>
+                        </p>
+                        <p>
+                            <span style={{fontWeight: 'bold'}}> Place: </span>
+                            <span>{meeting.location}</span>
+                        </p>
                     </div>
                     <div className="content" style={{ display: isOpen === value ? 'block' : 'none'}}>
-                        <p>Description: {meeting.description}</p>
-                        <p>Participents: </p>
-                        {meeting.invitePeople.length > 0 ? (
-                            meeting.invitePeople.map((people) => (
-                                <p>{people.username}</p>
+                        <p>
+                            <span style={{fontWeight: 'bold'}}>Description: </span>
+                            <span>{meeting.description}</span>
+                        </p>
+                        <p style={{fontWeight: 'bold'}}>Participants: </p>
+                            {meeting.invitePeople.length > 0 ? (
+                                meeting.invitePeople.map((people) => (
+                                    <p style={{ fontSize: '13px', color: 'black' }}>{people.username} </p>
                             ))
                         ) : (
-                            <p>You will do this alone</p>
+                            <p style={{ fontSize: '13px', color: 'black' }}>You will do this alone</p>
                         )}
                     </div>
                 </div>

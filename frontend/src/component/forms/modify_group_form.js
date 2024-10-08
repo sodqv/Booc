@@ -178,7 +178,7 @@ export default function ModifyGroupModal() {
             <Grid sx={{ display: 'grid', width: '100%', gridTemplateColumns: 'repeat(1, 1fr)', paddingBottom: '15px'}}>
                 <Item>
                     <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
-                        <Button sx={{ borderColor: 'black', color: 'black'}}>Delete Group</Button>
+                        <Button sx={{ borderColor: 'black', color: 'red', fontSize: '12px'}}>Delete Group</Button>
                     </Box>
                 </Item>
             </Grid>

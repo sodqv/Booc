@@ -43,6 +43,8 @@ async function deleteEvent(req, res){
     }
 }
 
+
+
 // Get users events
 async function getEvents(req, res){
     var uName = req.session.user.username;
@@ -56,6 +58,8 @@ async function getEvents(req, res){
     }
     return res.status(200).send({msg:"Got group", group:result});
 }
+
+
 
 module.exports = {
     createEvent,
