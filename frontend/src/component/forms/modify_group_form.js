@@ -10,7 +10,10 @@ import { Typography } from '@mui/material';
 import BasicTextField from "./text_field";
 import ButtonDirectionStack from "./button_stack";
 import Selector from "./selector";
-import {getGroup, getAllGroups, createGroup, updateGroup, deleteGroup} from "../../modelData/group.js";
+import {getGroup, getAllGroups, createGroup, updateGroup, deleteGroup, leaveGroup} from "../../modelData/group.js";
+import Group_Selector from './group_selector.js';
+import { useLoaderData } from 'react-router';
+import ButtonDirectionStackGroups from './button_stack_groups.js';
 
 
 const style = {
@@ -47,19 +50,25 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function ModifyGroupModal({displayText}) {
   const [open, setOpen] = React.useState(false);
-
+  const user = useLoaderData();
 
   //this is the data that is set in the form
   const [formData, setFormData] = React.useState ({
+    currentGroupName: '',
     groupName: '',
     invitePeople: [],
     newOwner: '',
   });
 
+  const getFormData = () => {
+    return formData;
+  }
+
 
   
   //this is an initialization for clearing the form
   const initialFormData = {
+    currentGroupName: '',
     groupName: '',
     invitePeople: [],
     newOwner: '',
@@ -78,8 +87,8 @@ export default function ModifyGroupModal({displayText}) {
 
 
   //handle form input
-  const handleInput = (field, value) => {
-    setFormData({ ...formData, [field]: value });
+  const handleInput =  (field, value) => {
+    setFormData(formData => { return { ...formData, [field]: value }  });
   }
 
 
@@ -89,8 +98,8 @@ export default function ModifyGroupModal({displayText}) {
     try {
 
         //console.log('Form data:', formData);                                //puts the submitted data in the console log in the browser
-
-        const response = await updateGroup(formData);
+        console.log("Recived formData",formData);
+        const response = await updateGroup(formData, user);
 
         if (response === "Success")
         {
@@ -107,6 +116,25 @@ export default function ModifyGroupModal({displayText}) {
         alert('An error occurred while modifying the group');
     }
   };
+
+  //Takes a groupname and sets the invited people to that groups members
+  const updateInvitedPeople = async (givenGroupName) => {
+    const response = await getAllGroups(); //Gets all user groups
+    //finds the group with the same groupName and then gets the members of that group
+    const groupData =  response.find(x => x.groupName === givenGroupName);
+
+    handleInput('invitePeople', groupData.members.map(({username,identifier}) => `${username}#${identifier}`));
+  }
+
+  const leaveGroupFunc = async () => {
+    await leaveGroup(formData.currentGroupName);
+    handleClose();
+  }
+
+  const deleteGroupFunc = async () => {
+    await deleteGroup(formData.currentGroupName);
+    handleClose();
+  }
 
 
 
@@ -134,7 +162,21 @@ export default function ModifyGroupModal({displayText}) {
                 </Item>
             </Grid>
 
-
+            {/* Group Name */}
+            <Grid sx={{ display: 'grid', width: '90%', gridTemplateColumns: 'repeat(1, 1fr)'}}>
+                <Item>
+                    <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536' }}>Select group</Typography>
+                    <Group_Selector 
+                        value={formData.currentGroupName} 
+                        onChange={async (currentGroupName) => {
+                          //Sets the current group name
+                          handleInput('currentGroupName', currentGroupName[0]);
+                          //Sets invited members list to that groups current members
+                          updateInvitedPeople(currentGroupName[0]);
+                        }} 
+                    />
+                </Item>
+            </Grid>
 
             {/* Group Name */}
             <Grid sx={{ display: 'grid', width: '90%', gridTemplateColumns: 'repeat(1, 1fr)'}}>
@@ -178,7 +220,7 @@ export default function ModifyGroupModal({displayText}) {
             <Grid sx={{ display: 'grid', width: '100%', gridTemplateColumns: 'repeat(1, 1fr)', paddingBottom: '15px'}}>
                 <Item>
                     <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
-                        <Button sx={{ borderColor: 'black', color: 'red', fontSize: '12px'}}>Delete Group</Button>
+                        <Button onClick={deleteGroupFunc} sx={{ borderColor: 'black', color: 'red', fontSize: '12px'}}>Delete Group</Button>
                     </Box>
                 </Item>
             </Grid>
@@ -190,7 +232,7 @@ export default function ModifyGroupModal({displayText}) {
             <Grid sx={{ display: 'grid', width: '100%', gridTemplateColumns: 'repeat(1, 1fr)', paddingBottom: '15px'}}>
                 <Item>
                     <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
-                        <ButtonDirectionStack handleClose={handleClose} handleSubmit={handleSubmit} />
+                        <ButtonDirectionStackGroups handleClose={handleClose} handleSubmit={handleSubmit} />
                     </Box>
                 </Item>
             </Grid>

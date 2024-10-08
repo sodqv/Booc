@@ -56,7 +56,7 @@ async function createGroup(req, res){
 
 //Update group
 async function updateGroup(req, res){
-    const {body : {groupName, owners, members}} = req
+    const {body : {currentGroupName, groupName, owners, members}} = req
     try{
         
         if(checkIfOwner(groupName, req.session.user.username, req.session.user.identifier) === null){
@@ -70,7 +70,7 @@ async function updateGroup(req, res){
 
     //Update group
     try{
-        var result = await updateGroupModel(groupName, owners, members);
+        var result = await updateGroupModel(currentGroupName, groupName, owners, members);
         if(result === null){
             return res.status(500).send({msg:"Failed to update group"});
         }

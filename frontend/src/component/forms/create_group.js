@@ -11,6 +11,7 @@ import BasicTextField from "./text_field";
 import ButtonDirectionStack from "./button_stack";
 import Selector from "./selector";
 import {getGroup, getAllGroups, createGroup, updateGroup, deleteGroup} from "../../modelData/group.js";
+import { useRevalidator } from "react-router-dom";
 
 
 const style = {
@@ -80,7 +81,8 @@ export default function GroupModal({displayText}) {
     setFormData({ ...formData, [field]: value });
   }
 
-
+  const revalidator = useRevalidator();
+  const Revalidatecallback = () => revalidator.revalidate();
 
   //handle form submission
   const handleSubmit = async () => {
@@ -92,7 +94,8 @@ export default function GroupModal({displayText}) {
 
         if (response === "Success")
         {
-            console.log('Group created successfully');                          
+            console.log('Group created successfully');  
+            Revalidatecallback();
             handleClose();      //closes the create event form
         }
         else
