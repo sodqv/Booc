@@ -16,7 +16,21 @@ export default function Meeting() {
     // get events
     useEffect(() => {
         const fetchEvent = async () => {
-            const event = await getEvents(user);
+            let event = await getEvents(user);
+
+            //sorts the events in the feed by date and time
+            event = event.sort((a, b) => {
+                const dateA = new Date(a.date).setHours(0, 0, 0, 0);
+                const dateB = new Date(b.date).setHours(0, 0, 0, 0);
+
+                if (dateA !== dateB) {
+                    return dateA - dateB;
+                }
+
+                return new Date(a.fromTime) - new Date(b.fromTime);
+            });
+
+
             setMeeting(event);
         }
         fetchEvent();
@@ -40,7 +54,7 @@ export default function Meeting() {
                         <span>
                             <span>
                                 {new Date(meeting.fromTime).toLocaleTimeString(navigator.language, { hour: '2-digit', minute: '2-digit' })}
-                            </span> - 
+                            </span> - {''}
                             <span>
                                 {new Date(meeting.toTime).toLocaleTimeString(navigator.language, { hour: '2-digit', minute: '2-digit' })}
                             </span>
