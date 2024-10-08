@@ -28,7 +28,7 @@ div{
 .list > h2 {
     margin-bottom: 15px;
 }
-.list > button {
+/* .list > button {
     position: absolute;
     top: 5px;
     right: 0px;
@@ -38,7 +38,7 @@ div{
     height: 35px;
     width: 25px;
     background-color: #d66536;
-}
+} */
 
 /* Middle grid */
 .meatings {
