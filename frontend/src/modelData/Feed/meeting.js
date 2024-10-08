@@ -27,7 +27,7 @@ export default function Meeting() {
         setIsOpen(isOpen === value ? null : value);
     };
 
-    console.log(`Vad finns här:`, meetings);
+    //console.log(`Vad finns här:`, meetings);
     return (
         <div>
             {meetings.length > 0 ? (

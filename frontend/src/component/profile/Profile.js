@@ -5,7 +5,7 @@ import TimeTable from '../../modelData/Profile/timeTable';
 import BasicModal from '../forms/create_new_event';
 import BasicDateCalendar from './calendar';
 import Navbar from '../feed/navbar';
-import CheckboxListSecondary from '../../modelData/Feed/list';
+import ListOfFriends from '../../modelData/Feed/list';
 import BasicFriendModal from '../forms/add_friend';
 
 export default function Profile() {
@@ -90,7 +90,7 @@ export default function Profile() {
 
                     {/* List */}
                     <div style={{boxSizing: 'border-box', overflow: 'auto',  height: 'calc((100vh - 460px))' }}>
-                        <CheckboxListSecondary/>
+                        <ListOfFriends/>
                     </div>
                 </div>
                 

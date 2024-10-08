@@ -1,15 +1,19 @@
 import * as React from 'react';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Checkbox from '@mui/material/Checkbox';
 import Avatar from '@mui/material/Avatar';
 
-export default function CheckboxListSecondary() {
-  const [checked, setChecked] = React.useState([0]); // Default checked
+import { useLoaderData } from 'react-router-dom';
 
+export default function ListOfFriends() {
+  const [checked, setChecked] = React.useState([0]); // Default checked
+  const user = useLoaderData();
+  
+
+
+  const friendList = user.friendList;
+       
+
+  console.log('Här finns: ', friendList.length)
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
@@ -24,43 +28,52 @@ export default function CheckboxListSecondary() {
   };
 
   return (
-    <List dense sx={{ width: '100%',  overflow: 'auto' }}>
-      {[0, 1, 2, 3, 4, 5, 6, 7].map((value) => { // Adding more lines
-        const labelId = `checkbox-list-secondary-label-${value}`;
-        return (
-          <ListItem
-            sx={{ // Styling list elements
-              width: 95/100 , 
+    <div>
+      {friendList.length > 0 ? (
+        // loop through meetings and creates a div for each
+        friendList.map((friend, value) => (
+          <div className='listElement' 
+            style={{ // Styling list elements
+              width: 'calc(100% - 25px)' , 
               margin: '0px 5px 10px 5px', 
               padding: '5px', 
-              bgcolor: 'rgba(255, 255, 255, 0.7)',
-              boxShadow: 3,
-              borderRadius: 2
+              backgroundColor: 'rgba(255, 255, 255, 0.7)',
+              boxShadow: '3px',
+              borderRadius: '2px',
+              height: '40px'
             }}
             key={value}
-            secondaryAction={
-              <Checkbox
-                edge="end"
+          >
+            <Avatar
+              alt={`Avatar n°${value + 1}`}
+              src={`/static/images/${value + 1}.jpg`}
+              sx={{ float: 'left'}}
+            />
+            <p style={{
+              float: 'left',
+              marginTop: '5px',
+              marginLeft: '15px'
+            }}>
+              {friend.username}
+            </p>
+            <Checkbox
+                
                 onChange={handleToggle(value)}
                 checked={checked.includes(value)}
-                inputProps={{ 'aria-labelledby': labelId }}
-                sx={{color: 'black', '&.Mui-checked': {color: '#d66536'}}}
+                inputProps={{ 'aria-labelledby': `checkbox-list-secondary-label-${value}` }}
+                sx={{
+                  marginTop: '-4px',
+                  //marginRight: '10px',
+                  float: 'right',
+                  color: 'black', 
+                  '&.Mui-checked': {color: '#d66536'}
+                }}
               />
-            }
-            disablePadding
-          >
-            <ListItemButton>
-               <ListItemAvatar> {/* Profile pic */}
-                <Avatar
-                  alt={`Avatar n°${value + 1}`}
-                  src={`/static/images/${value + 1}.jpg`}
-                />
-              </ListItemAvatar>
-              <ListItemText id={labelId} primary={`Person ${value + 1}`} /> {/* Name */}
-            </ListItemButton>
-          </ListItem>
-        );
-      })}
-    </List>
+          </div>
+        ))
+      ) : (
+        <p>You have no friends</p>
+      )}
+    </div>
   );
 }
