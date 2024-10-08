@@ -54,54 +54,113 @@ export default function SettingsPage(){
     }
 
     return(
-        <div>
+        <div style={{backgroundColor: '#f5ebe0', height: '100vh'}}>
             <Navbar/>
             <div className='settingsPage'>
-                <Formik initialValues={{password1:"", password2:""}} onSubmit={(values) => {submit(values, {method:"post"})} } //onSubmit={login}
-                    >{({values, handleChange}) => (
-                        <Form method='post' className='changePasswordForm'>
-                            <div className='changePasswordFields'>
-                                <Textfield
-                                    name = "password1"
-                                    type = "password"
-                                    value = {values.password1}
-                                    onChange={handleChange}
-                                    label="new Password"
-                                    id = "password1"
-                                    //error={failedToChangePassword}
-                                />
 
-                                <Textfield
-                                    name = "password2"
-                                    type = "password"
-                                    value = {values.password2}
-                                    onChange={handleChange}
-                                    label="Confirm new password"
-                                    id = "password2"
-                                    //error={failedToChangePassword}
-                                />
-                            </div>
+                <div style={{
+                    marginTop: '30px', 
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    flex: 1, 
+                    backgroundColor: '#d66536', 
+                    padding: '10px', 
+                    margin: '0 10 px', 
+                    borderRadius: '10px',
+                    width: '230px'
+                }}>
 
-                            <button className='ResetPasswordBtn' type='submit'>Reset password</button>
-                        </Form>
-                    )}
-                </Formik>
-                <RadioBtn startingValue={useLoaderData().startingPage} setValueCallback={RadioBtnCallback}/> 
+                <h2 style={{ color: 'white' }} > Password Settings </h2>
+
+                    <Formik initialValues={{password1:"", password2:""}} onSubmit={(values) => {submit(values, {method:"post"})} } //onSubmit={login}
+                        >{({values, handleChange}) => (
+                            <Form method='post' className='changePasswordForm'>
+                                <div className='changePasswordFields'>
+                                    <Textfield
+                                        name = "password1"
+                                        type = "password"
+                                        value = {values.password1}
+                                        onChange={handleChange}
+                                        label="New password"
+                                        id = "password1"
+                                        inputProps={{ 
+                                            style: { 
+                                                backgroundColor: 'white', 
+                                                color: 'gray', 
+                                                borderRadius: '5px' 
+                                            } 
+                                        }}
+                                        //error={failedToChangePassword}
+                                    />
+
+                                    <Textfield
+                                        name = "password2"
+                                        type = "password"
+                                        value = {values.password2}
+                                        onChange={handleChange}
+                                        label="Confirm new password"
+                                        id = "password2"
+                                        inputProps={{ 
+                                            style: { 
+                                                backgroundColor: 'white', 
+                                                color: 'gray', 
+                                                borderRadius: '5px' 
+                                            } 
+                                        }}
+                                        //error={failedToChangePassword}
+                                    />
+                                </div>
+
+                                <button 
+                                    className='ResetPasswordBtn' 
+                                    type='submit'
+                                    style={{
+                                        backgroundColor: 'black',
+                                        color: 'white',
+                                        border: 'none',
+                                        borderRadius: '5px',
+                                        padding: '10px',
+                                        cursor: 'pointer',
+                                        width: '470px'
+                                    }}
+                                >Reset password
+                                </button>
+                            </Form>
+                        )}
+                    </Formik>
+                </div>
                 
+                <div style={{
+                    marginTop: '10px', 
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    flex: 1, 
+                    backgroundColor: '#d66536', 
+                    padding: '10px', 
+                    margin: '0 10 px', 
+                    borderRadius: '10px',
+                    width: '230px'
+                }}>
+                    <RadioBtn 
+                    startingValue={useLoaderData().startingPage} setValueCallback={RadioBtnCallback}/> 
+                </div>
+
                 {//------------------------------------------------------ Get startinvValue from user (probably api.get("/api/user")), in format 0 or 1
                 }
 
-                <AlertDialog callback={deleteUser}/>
+                <div style = {{ backgroundColor: 'black', color: 'gray', borderRadius: '5px', width: '250px', marginTop: '10px' }}>
+                    <AlertDialog callback={deleteUser}/>
+                </div>
+
 
                 {/* Buttons for all group functions
-                    
-                */}
                 <button onClick={getGroup}>Get group</button>
                 <button onClick={getAllGroups}>Get groups</button>
                 <button onClick={createGroup}>Create group</button>
                 <button onClick={updateGroup}>Put group</button>
                 <button onClick={leaveGroup}>Leave group</button>
                 <button onClick={deleteGroup}>Delete group</button>
+                */}
 
             </div>
         </div>

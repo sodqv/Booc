@@ -24,7 +24,7 @@ export default function AlertDialog({callback}) {
 
   return (
     <React.Fragment>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button variant="outlined" onClick={handleClickOpen} sx={{ color: 'white', borderColor: 'black' }}>
         Delete account
       </Button>
       <Dialog
@@ -32,18 +32,22 @@ export default function AlertDialog({callback}) {
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
+        PaperProps={{
+          style: {
+            backgroundColor: 'black', // Set dialog background to black
+            color: 'white',},}}
       >
-        <DialogTitle id="alert-dialog-title">
+        <DialogTitle id="alert-dialog-title" sx={{ color: 'white' }}>
           {"Delete this account?"}
         </DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
+          <DialogContentText id="alert-dialog-description" sx={{ color: 'white' }}>
             Are you sure you want to delete this account? This is permanent and non-recoverable action.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
-          <Button onClick={handleAccept} autoFocus>Agree</Button>
+          <Button onClick={handleClose} sx={{ color: 'white' }}>Disagree</Button>
+          <Button onClick={handleAccept} autoFocus sx={{ color: 'white' }}>Agree</Button>
         </DialogActions>
       </Dialog>
     </React.Fragment>
