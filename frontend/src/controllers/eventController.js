@@ -13,7 +13,7 @@ export async function getEvents(username, identifier){
     }
     catch (error) {
       console.log(error)
-      return "Failed to get user";
+      return [];
     }
     // console.log("Jag är efter frontend och getEvents");
     return event;
