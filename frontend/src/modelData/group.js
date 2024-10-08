@@ -44,7 +44,6 @@ export async function getGroup(){
 //Get all groups a person is in
 export async function getAllGroups(){
     const response = await CTRLgetAllGroups();
-    console.log(response);
     return response;
     //Typical response: Array of groups:
     /*

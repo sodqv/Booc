@@ -47,6 +47,11 @@ div{
     overflow: auto;
 }
 
+/* Right grid */
+.info > h2{
+    text-align: right;
+}
+
 /* Styling scrolbar */
 ::-webkit-scrollbar { /* width */
     width: 4px;

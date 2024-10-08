@@ -4,7 +4,7 @@ import React from 'react';
 // MUI
 //import BasicTabs from './tabs';
 import BasicButtons from './button';
-import ListOfFriends from '../../modelData/Feed/list';
+import {ListOfFriends, ListOfGroups} from '../../modelData/Feed/list';
 import LetterAvatars from './avatar';
 // Self created
 import Meeting from '../../modelData/Feed/meeting';
@@ -48,7 +48,7 @@ function Feed() {
                         </div>
                     </div>
                     <div style={{ height: 'calc((100vh - 90px)/2 - 61px)', overflow: 'auto' }}>
-                        <ListOfFriends/>
+                        <ListOfGroups/>
                     </div>
                 </div>
             </div>
@@ -59,7 +59,7 @@ function Feed() {
             </div>
 
             <div className="info">
-                <h2>Info</h2>
+                <h2>Notifications</h2>
                 <MeatingRequest/>
                 <FrienRequest/>
             </div>

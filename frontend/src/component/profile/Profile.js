@@ -5,7 +5,7 @@ import TimeTable from '../../modelData/Profile/timeTable';
 import BasicModal from '../forms/create_new_event';
 import BasicDateCalendar from './calendar';
 import Navbar from '../feed/navbar';
-import ListOfFriends from '../../modelData/Feed/list';
+import {ListOfFriends} from '../../modelData/Feed/list';
 import BasicFriendModal from '../forms/add_friend';
 
 export default function Profile() {
