@@ -76,3 +76,48 @@ export async function addFriend(newFriend)
 }
 
 
+
+//delete friend from the friendlist of the currently logged in user
+export async function deleteFriend(currentUserID, friendsUsername, friendIdentifier)
+{
+    let ProccesedResponse = "";
+
+    try {
+        const response = await api.delete('/api/users/deleteFriend', {
+            headers: {
+                "Access-Control-Allow-Origin": "http://localhost:6400",         //allow requests from this origin
+                "Access-Control-Allow-Credentials":"true",                      //allow credentials (cookies) in the requests
+            },
+            data: {
+                currentUserID: currentUserID,
+                friendsUsername: friendsUsername,
+                friendIdentifier: friendIdentifier
+            }
+        });
+
+        if (!response.data?.msg || response.data.msg === "Failed to remove friend") {
+            throw new Error("Invalid response");
+        }
+
+        ProccesedResponse = "Success";
+
+    }
+    catch (error) {
+        if (error.response?.status === 404)
+            {
+                ProccesedResponse = "Friend not found";
+            }
+            else if (error.response?.status === 409)
+            {
+                ProccesedResponse = "Friend already removed";
+            }
+            else
+            {
+                console.log("Error:", error);
+                ProccesedResponse = "Failed";            
+            }
+    }
+
+    return ProccesedResponse;       //return the processed response. This should be either "Success" or "Failed"
+}
+

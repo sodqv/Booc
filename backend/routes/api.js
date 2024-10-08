@@ -11,7 +11,7 @@ const {getGroup,
     updateGroup,
     deleteGroup,
     leaveGroup} = require("../controller/groupController");
-const {addFriend} = require('../controller/friendController');
+const {addFriend, deleteFriend} = require('../controller/friendController');
 const { createEvent, deleteEvent, getEvents } = require('../Controller/eventController');
 var router = express.Router();
 
@@ -28,6 +28,7 @@ router.delete("/users", deleteUser);
 
 //Friend
 router.post("/users/addFriend", addFriend);
+router.post("/users/deleteFriend", deleteFriend);
 
 //Password
 router.put("/password", changePassword);

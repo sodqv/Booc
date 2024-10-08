@@ -10,9 +10,9 @@ import { Typography } from '@mui/material';
 
 import BasicTextField from "./text_field";
 import DeleteButtonStack from "./delete_button_stack.js";
+import { useLoaderData } from 'react-router';
 
-import { //getCurrentUser, 
-  addFriend } from "../../modelData/friend.js";
+import { deleteFriend } from "../../modelData/friend.js";
 
 
 
@@ -46,8 +46,14 @@ const style = {
   }));
 
 
-  export default function DeleteFriendModal({ displayText, friendUsername }) {
+  export default function DeleteFriendModal({ displayText, friendsUsername, friendIdentifier }) {
     const [open, setOpen] = React.useState(false);
+
+    const currentUser = useLoaderData();
+
+    const [formData, setFormData] = React.useState ({
+
+      });
 
 
     const handleOpen = () => setOpen(true);
@@ -57,10 +63,15 @@ const style = {
       setOpen(false);
     };
   
-  
 
-  // MAKE THIS HANDLE DELETE
-  /** 
+    /* 
+    const deleteFriendFunction = async () => {
+        await deleteFriend(formData.friendUsername);
+        handleClose();
+      }
+  */
+
+      /* 
     //handle form input
     const handleInput = (field, value) => {
       setFormData({ ...formData, [field]: value });
@@ -68,42 +79,42 @@ const style = {
   */
 
 
-/* 
+
   //handle form submission
-  const handleSubmit = async () => {
+  const handleDelete = async () => {
     try {
 
-        console.log('Form data:', formData);          //logs the submitted form data
+        //for debugging
+        console.log('Trying to delete friend:', {
+            deleteFriendString: `${friendsUsername}#${friendIdentifier}`,
+            currentUserID: currentUser._id,
+        });
 
-        const response = await addFriend(formData);   //sends the friends username and identifier to the addFriend() function in friend.js
+    
+
+        const response = await deleteFriend({
+            deleteFriendString: `${friendsUsername}#${friendIdentifier}`,
+            currentUserID: currentUser._id
+        });
 
 
-        if (response === "Success")   //check the response from friend.js
+        if (response === "Success")
         {
-            alert('Friend Added');
-            console.log('Friend was successfully added');                          
-            handleClose();      //closes the form
-        }
-        else if ( response === "Friend not found")
-        {
-            alert('User does not exist');
-        }
-        else if (response === "Friend already added")
-        {
-            alert('User is already in your friendlist');
+            alert('Friend Deleted');
+            console.log('Friend successfully deleted');                          
+            handleClose();     
         }
         else
         {
-            alert('Failed to add friend');
-            console.log('Failed to add friend');
+            alert('Failed to delete friend');
+            console.log('Failed to delete friend');
         }
     }
     catch (error) {
-        console.error('Error when adding friend:', error.response?.data || error.message);     // prints the error message in console log
-        alert('An error occurred while adding friend');
+        console.error('Error when deleting friend:', error.response?.data || error.message);     // prints the error message in console log
+        alert('An error occurred while deleting the friend');
     }
   };
-*/
 
 
   
@@ -126,7 +137,7 @@ const style = {
               {/* Header - Delete Friend */}
               <Grid sx={{ display: 'grid', columnGap: 10, rowGap: 5, gridTemplateColumns: 'repeat(1, 1fr)'}}>
                   <Item>
-                      <Typography textAlign={'center'} sx={{ fontWeight: 'normal', fontSize: 20, marginTop: -2 }}>Do you want to delete <b>{friendUsername}</b> from your friendlist?</Typography>
+                      <Typography textAlign={'center'} sx={{ fontWeight: 'normal', fontSize: 20, marginTop: -2 }}>Do you want to delete <b>{friendsUsername}</b> from your friendlist?</Typography>
                   </Item>
               </Grid>
 
@@ -135,7 +146,7 @@ const style = {
             <Grid sx={{ display: 'grid', width: '100%', gridTemplateColumns: 'repeat(1, 1fr)', paddingBottom: '15px' }}>
                 <Item>
                     <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                        <DeleteButtonStack handleClose={handleClose}  />
+                        <DeleteButtonStack handleClose={handleClose} handleDelete={handleDelete} />
                     </Box>
                 </Item>
             </Grid>

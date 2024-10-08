@@ -1,5 +1,6 @@
 const { //getCurrentUser:getCurrentUserModel,
-        addFriend:addFriendModel } = require("../model/usersModel");
+        addFriend:addFriendModel,
+        deleteFriend:deleteFriendModel } = require("../model/usersModel");
 
 
 /* 
@@ -54,8 +55,37 @@ async function addFriend(req, res)
 }
 
 
+//delete friend from friendlist
+async function deleteFriend(req, res)
+{
+    const { currentUserID, friendsUsername, friendIdentifier } = req.body;
+
+    try {
+        const result = deleteFriendModel(currentUserID, friendsUsername, friendIdentifier);
+
+        if (result === 'Deleted') {
+            return res.status(200).send({ msg: "Friend successfully deleted" });
+            
+        }
+        else if (result === 'Friend not found') {
+            return res.status(404).send({ msg: "Friend not found" });
+        }
+        else {
+            return res.status(500).send({ msg: "Failed to delete friend" });
+        }
+        
+    }
+    catch (error) {
+        console.log("Failed to delete friend", error);
+        return res.status(500).send({ msg: "Failed to delete friend" });
+    }
+}
+
+
+
 module.exports = {
     //getCurrentUser,
-    addFriend
+    addFriend,
+    deleteFriend
 }
 
