@@ -8,6 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
+import TableMeeting from './tableMeeting';
 
 dayjs.extend(isoWeek);
 
@@ -149,8 +150,10 @@ export default function BasicTable({ selectedDate, onDateChange, fetchEventsForW
               })}
             </TableRow>
           </TableBody>
+          
         </Table>
       </TableContainer>
+      <TableMeeting />
     </div>
   );
 }
