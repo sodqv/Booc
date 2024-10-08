@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Checkbox from '@mui/material/Checkbox';
 import Avatar from '@mui/material/Avatar';
+import DeleteFriendModal from '../../component/forms/delete_friend';
 
 import { useLoaderData } from 'react-router-dom';
 
@@ -56,6 +57,7 @@ export default function ListOfFriends() {
             }}>
               {friend.username}
             </p>
+            
             <Checkbox
                 
                 onChange={handleToggle(value)}
@@ -69,6 +71,13 @@ export default function ListOfFriends() {
                   '&.Mui-checked': {color: '#d66536'}
                 }}
               />
+              <div style={{ float: 'right', marginRight: '5px'}}>
+                <DeleteFriendModal 
+                  displayText={"X"} 
+                  friendUsername={friend.username}
+                />
+              </div>
+
           </div>
         ))
       ) : (
