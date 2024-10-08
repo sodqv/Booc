@@ -28,7 +28,7 @@ router.delete("/users", deleteUser);
 
 //Friend
 router.post("/users/addFriend", addFriend);
-router.post("/users/deleteFriend", deleteFriend);
+router.delete("/users/deleteFriend", deleteFriend);
 
 //Password
 router.put("/password", changePassword);
