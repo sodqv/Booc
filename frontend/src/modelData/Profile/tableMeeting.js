@@ -16,7 +16,7 @@ export default function TableMeeting() {
     useEffect(() => {
         const fetchEvent = async () => {
             const event = await getEvents(user);
-            console.log('Fetched Events:', event);
+            //console.log('Fetched Events:', event);
             setMeeting(event);
         }
         fetchEvent();

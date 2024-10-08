@@ -13,7 +13,7 @@ export default function ListOfFriends() {
   const friendList = user.friendList;
        
 
-  console.log('Här finns: ', friendList.length)
+  //console.log('Här finns: ', friendList.length)
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
