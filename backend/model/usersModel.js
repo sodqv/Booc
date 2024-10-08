@@ -2,6 +2,30 @@ const {startmongoose} = require('./mongodbStarter.js');
 const users = require("./schemas/userSchema.js");
 const argon2 = require('argon2');
 
+//
+async function getUserWithUsername(username, identifier){
+    startmongoose();
+    const user = await users.findOne({
+        $and: [
+            {"username":username},
+            {"identifier":identifier}
+        ],
+    });
+
+    if(user === null){return null;}
+    const objUser = user.toObject();
+    //console.log( objUser);
+
+    if(typeof objUser === "undefined"){
+        return null;
+    }
+    
+    return objUser;
+}
+
+
+
+
 
 //Gets user with the same email and password
 async function getUser(email, password){
@@ -145,28 +169,6 @@ async function deleteUser(email, password){
 }
 
 
-/* 
-//Get current user
-async function getCurrentUser(_id)
-{
-    startmongoose();
-
-    const currentUser = await users.findOne({
-        _id:_id
-    });
-
-    if (currentUser === null)
-    {
-        return null;
-    }
-
-    const objCurrUser = currentUser.toObject();
-
-    return objCurrUser;
-}
-*/
-
-
 
 async function addFriend(currentUser, friendsUsername, friendIdentifier) 
 {
@@ -236,5 +238,6 @@ module.exports = {
     deleteUser,
     changeStartPage,
     //getCurrentUser,
+    getUserWithUsername,
     addFriend,
 }

@@ -89,9 +89,10 @@ export async function createGroup(groupName, members){
 }
 
 //Update group
-export async function updateGroup(groupName,owners,members){
+export async function updateGroup(currentGroupName, groupName,owners,members){
     var ProccesedResponse = "";
     await api.put('/api/group', {
+            currentGroupName:currentGroupName,
             groupName:groupName,
             owners:owners,
             members:members,
