@@ -27,7 +27,7 @@ function Feed() {
             }}>
             <div className="contacts" >
                 <div className='list' style={{ height: 'calc((100vh - 90px)/2)', marginBottom: '10px' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '5px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
                         <h2>Friends</h2>
                         <BasicFriendModal displayText={"+"}/> 
                     </div>
@@ -36,10 +36,16 @@ function Feed() {
                     </div>
                 </div>
                 <div className='list' style={{ height: 'calc((100vh - 90px)/2)' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '5px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
                         <h2>Groups</h2>
-                        <GroupModal displayText={"+"} /> 
-                        <ModifyGroupModal displayText={"✎"}/>
+                        <div>
+                            <div style={{ float: 'right' }}>
+                                <GroupModal displayText={"+"}/> 
+                            </div>
+                            <div style={{ float: 'right', marginRight: '5px'}}>
+                                <ModifyGroupModal displayText={"✎"}/>
+                            </div>
+                        </div>
                     </div>
                     <div style={{ height: 'calc((100vh - 90px)/2 - 61px)', overflow: 'auto' }}>
                         <ListOfFriends/>

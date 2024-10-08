@@ -79,10 +79,23 @@ export default function BasicTable({ selectedDate, onDateChange, fetchEventsForW
           
           <TableHead>
             <TableRow>
-              <TableCell align="center" sx={{...styleCellHead, width: '30px'}}>
-                <button style={{fontWeight: 'bold', border: 'transparent', background: '#D66536', fontSize: '20px', color: 'white', borderRadius: '14px'}} variant="contained" onClick={() => changeWeek(-1)}>
-                  ←
-                </button>
+              <TableCell align="center" 
+                sx={{
+                  ...styleCellHead, 
+                  width: '30px',
+                  color: '#D66536',
+                  fontSize: '20px',
+                  cursor: 'pointer', 
+                  paddingRight: '5px',
+                  fontWeight: '900'
+                }}
+                variant="contained" 
+                onClick={() => changeWeek(-1)}
+                >
+                {/* <button style={{fontWeight: 'bold', border: 'transparent', background: '#D66536', fontSize: '20x', color: 'white', borderRadius: '14px'}} variant="contained" onClick={() => changeWeek(-1)}>
+                  {"<"}
+                </button> */}
+                {"<"}
               </TableCell>
 
               {daysOfWeek.map((day, index) => {
@@ -97,10 +110,24 @@ export default function BasicTable({ selectedDate, onDateChange, fetchEventsForW
                 );
               })}
               
-              <TableCell align="center" sx={{...styleCellHead, width: '30px'}}>
-                <button style={{fontWeight: 'bold', border: 'transparent', background: '#D66536', fontSize: '20x', color: 'white', borderRadius: '14px'}} variant="contained" onClick={() => changeWeek(1)} >
-                  →
-                </button>
+              <TableCell 
+                align="center" 
+                sx={{
+                  ...styleCellHead, 
+                  width: '30px',
+                  color: '#D66536',
+                  fontSize: '20px',
+                  cursor: 'pointer', 
+                  paddingRight: '5px',
+                  fontWeight: '900'
+                }}
+                variant="contained" 
+                onClick={() => changeWeek(1)} 
+              >
+                {/* <button style={{fontWeight: 'bold', border: 'transparent', background: '#D66536', fontSize: '200x', color: 'white', borderRadius: '14px'}} variant="contained" onClick={() => changeWeek(1)} >
+                  {">"}
+                </button> */}
+                {">"}
               </TableCell>
 
             </TableRow>

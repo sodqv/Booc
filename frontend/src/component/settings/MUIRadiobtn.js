@@ -15,7 +15,7 @@ export default function ControlledRadioButtonsGroup({startingValue, setValueCall
 
   return (
     <FormControl>
-      <FormLabel id="demo-controlled-radio-buttons-group">Starting page</FormLabel>
+      <FormLabel style={{ color: 'black' }} id="demo-controlled-radio-buttons-group">Starting page</FormLabel>
       <RadioGroup
         aria-labelledby="demo-controlled-radio-buttons-group"
         name="controlled-radio-buttons-group"
@@ -23,8 +23,8 @@ export default function ControlledRadioButtonsGroup({startingValue, setValueCall
         value={value}
         onChange={handleChange}
       >
-        <FormControlLabel value="0" control={<Radio />} label="Profile"/>
-        <FormControlLabel value="1" control={<Radio />} label="Feed" />
+        <FormControlLabel value="0" control={<Radio sx={{color: 'withe', '&.Mui-checked': {color: 'black'}}}/>} label={<span style={{ color: 'black' }}>Profile</span>}/>
+        <FormControlLabel value="1" control={<Radio sx={{color: 'withe', '&.Mui-checked': {color: 'black'}}}/>} label={<span style={{ color: 'black' }}>Feed</span>}/>
       </RadioGroup>
     </FormControl>
   );
