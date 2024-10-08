@@ -45,7 +45,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 
 
-export default function ModifyGroupModal() {
+export default function ModifyGroupModal({displayText}) {
   const [open, setOpen] = React.useState(false);
 
 
@@ -114,7 +114,7 @@ export default function ModifyGroupModal() {
   return (
     <div>
       <Button onClick={handleOpen} sx={{ width: '100%', padding: '8px', backgroundColor: '#d66536', color: '#f5ebe0' }}>
-          Modify Group
+          {displayText}
       </Button>
       <Modal
         open={open}
@@ -178,7 +178,7 @@ export default function ModifyGroupModal() {
             <Grid sx={{ display: 'grid', width: '100%', gridTemplateColumns: 'repeat(1, 1fr)', paddingBottom: '15px'}}>
                 <Item>
                     <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
-                        <Button sx={{ borderColor: 'black', color: 'black'}}>Delete Group</Button>
+                        <Button sx={{ borderColor: 'black', color: 'red', fontSize: '12px'}}>Delete Group</Button>
                     </Box>
                 </Item>
             </Grid>

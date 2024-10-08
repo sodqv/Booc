@@ -1,5 +1,7 @@
 import { //getCurrentUser as CTRLgetCurrentUser,
-         addFriend as CTRLaddFriend } from ".././controllers/friendController"
+         addFriend as CTRLaddFriend } from ".././controllers/friendController";
+import { useLoaderData } from 'react-router-dom';
+import { getCurrentUser } from "./user";
 
 /* 
 export async function getCurrentUser()
@@ -40,4 +42,3 @@ export async function addFriend(request)
 
     return response;
 }
-

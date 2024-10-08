@@ -65,11 +65,42 @@ async function deleteEvent(eventID){
 
 }
 
+// Get users events
+async function getEvents(username, identifier){
+    startmongoose();
+    try {
+        const user = {username, identifier};
+        const event = await events.find({
+            $or: [
+                {"createdBy.username": username, "createdBy.identifier": identifier},
+                //{members:{$all:[user]}},
+            ]
+        });
+        // console.log("Testat hämta events nu, den ger: " + event);
+        if (event.length > 0) {
+            console.log(`Hittade ${event.length} event(s) skapat av ${user.username}`);
+        } else {
+            console.log(`Inga events under ${user.username}`);
+        }
+
+        if (!Array.isArray(event) || !event.length) {
+            console.log("No events returned, returning null");
+            return null;
+        }
+        return event;
+    }
+    catch(error) {
+        console.log(error);
+        return null;
+    }
+}
+
 
 
 
 module.exports = {
     createEvent,
-    deleteEvent
+    deleteEvent,
+    getEvents
 }
 

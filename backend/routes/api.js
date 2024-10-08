@@ -12,7 +12,7 @@ const {getGroup,
     deleteGroup,
     leaveGroup} = require("../controller/groupController");
 const {addFriend} = require('../controller/friendController');
-const { createEvent, deleteEvent } = require('../Controller/eventController');
+const { createEvent, deleteEvent, getEvents } = require('../Controller/eventController');
 var router = express.Router();
 
 //Authorization
@@ -25,8 +25,6 @@ router.get("/users", getCurrentUser);
 router.post("/users", createUser);
 router.put("/users", changeStartPage);
 router.delete("/users", deleteUser);
-
-
 
 //Friend
 router.post("/users/addFriend", addFriend);
@@ -45,6 +43,7 @@ router.get("/groups", getAllGroups);
 router.delete("/groups", leaveGroup);
 
 //Events
+router.get("/event", getEvents);
 router.post("/newEvent", createEvent);
 //router.delete("events", deleteEvent);
 

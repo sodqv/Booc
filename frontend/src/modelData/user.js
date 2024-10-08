@@ -51,3 +51,4 @@ export async function getCurrentUser() {
     const response = await getCurrentUserCLR();
     return response;
 }
+

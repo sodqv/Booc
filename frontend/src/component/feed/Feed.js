@@ -4,7 +4,7 @@ import React from 'react';
 // MUI
 //import BasicTabs from './tabs';
 import BasicButtons from './button';
-import CheckboxListSecondary from '../../modelData/Feed/list';
+import ListOfFriends from '../../modelData/Feed/list';
 import LetterAvatars from './avatar';
 // Self created
 import Meeting from '../../modelData/Feed/meeting';
@@ -27,33 +27,29 @@ function Feed() {
             }}>
             <div className="contacts" >
                 <div className='list' style={{ height: 'calc((100vh - 90px)/2)', marginBottom: '10px' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '5px' }}>
                         <h2>Friends</h2>
-                        <BasicFriendModal/> 
+                        <BasicFriendModal displayText={"+"}/> 
                     </div>
                     <div style={{ height: 'calc((100vh - 90px)/2 - 61px)', overflow: 'auto' }}>
-                        <CheckboxListSecondary/>
+                        <ListOfFriends/>
                     </div>
                 </div>
                 <div className='list' style={{ height: 'calc((100vh - 90px)/2)' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '5px' }}>
                         <h2>Groups</h2>
-                        <GroupModal /> 
-                        <ModifyGroupModal/>
+                        <GroupModal displayText={"+"} /> 
+                        <ModifyGroupModal displayText={"✎"}/>
                     </div>
                     <div style={{ height: 'calc((100vh - 90px)/2 - 61px)', overflow: 'auto' }}>
-                        <CheckboxListSecondary/>
+                        <ListOfFriends/>
                     </div>
                 </div>
             </div>
 
             <div className="meatings" >
                 <h2>Monday</h2>
-                <Meeting/>
-                <Meeting/>
-                <Meeting/>
-                <Meeting/>
-                <Meeting/>
+                 <Meeting/>
             </div>
 
             <div className="info">
