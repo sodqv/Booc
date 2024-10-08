@@ -81,15 +81,13 @@ export default function Profile() {
                         <BasicModal onEventCreated={handleEventCreated} />
                     </div>
 
-                    <div style={{ display: 'flex', justifyContent: 'space-between', margin: '15px 0' }}>
-                        {/* Friend button */}
-                        <div style={{ flex: '1', marginRight: '10px' }}>
-                            <BasicFriendModal displayText={"Add friend"}/>
-                        </div>
+                    {/* Friend button */}
+                    <div style={{ width: '100%', margin: '15px 0' }}>
+                        <BasicFriendModal displayText={"Add friend"}/>
                     </div>  
 
                     {/* List */}
-                    <div style={{boxSizing: 'border-box', overflow: 'auto',  height: 'calc((100vh - 460px))' }}>
+                    <div style={{boxSizing: 'border-box', overflow: 'auto',  height: 'calc((100vh - 517px))' }}>
                         <ListOfFriends/>
                     </div>
                 </div>

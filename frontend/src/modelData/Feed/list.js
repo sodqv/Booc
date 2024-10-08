@@ -35,24 +35,25 @@ export default function ListOfFriends() {
         friendList.map((friend, value) => (
           <div className='listElement' 
             style={{ // Styling list elements
-              width: 'calc(100% - 25px)' , 
-              margin: '0px 5px 10px 5px', 
+              width: 'calc(100% - 25px)' ,
+              marginBottom: '10px', 
+              // margin: '0px 5px 10px 0px', 
               padding: '5px', 
               backgroundColor: 'rgba(255, 255, 255, 0.7)',
               boxShadow: '3px',
               borderRadius: '2px',
-              height: '40px'
+              height: '50px'
             }}
             key={value}
           >
             <Avatar
               alt={`Avatar n°${value + 1}`}
               src={`/static/images/${value + 1}.jpg`}
-              sx={{ float: 'left'}}
+              sx={{ float: 'left',marginTop: '5px', }}
             />
             <p style={{
               float: 'left',
-              marginTop: '5px',
+              marginTop: '10px',
               marginLeft: '15px'
             }}>
               {friend.username}
@@ -64,16 +65,15 @@ export default function ListOfFriends() {
                 checked={checked.includes(value)}
                 inputProps={{ 'aria-labelledby': `checkbox-list-secondary-label-${value}` }}
                 sx={{
-                  marginTop: '-4px',
                   //marginRight: '10px',
                   float: 'right',
                   color: 'black', 
                   '&.Mui-checked': {color: '#d66536'}
                 }}
               />
-              <div style={{ float: 'right', marginRight: '5px'}}>
+              <div style={{ float: 'right'}}>
                 <DeleteFriendModal 
-                  displayText={"X"} 
+                  displayText={"x"} 
                   friendsUsername={friend.username}
                   friendIdentifier={friend.identifier}
                 />

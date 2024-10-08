@@ -75,7 +75,8 @@ async function getEvents(username, identifier){
                 {"createdBy.username": username, "createdBy.identifier": identifier},
                 { "invitePeople": { $elemMatch: { "username": username, "identifier": identifier } } },
             ]
-        });
+        })
+        .sort({ date: 1 });
         
         // if (event.length > 0) {
         //     console.log(`Hittade ${event.length} event(s) skapat av ${user.username}`);

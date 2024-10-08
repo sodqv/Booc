@@ -7,6 +7,8 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid2';
 import { styled } from '@mui/material/styles';
 import { Typography } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 import BasicTextField from "./text_field";
 import DeleteButtonStack from "./delete_button_stack.js";
@@ -120,9 +122,9 @@ const style = {
   
     return (
       <div>
-        <Button onClick={handleOpen} sx={{ width: '100%', padding: '8px', backgroundColor: '#d66536', color: '#f5ebe0' }}>
-            {displayText}
-        </Button>
+        <IconButton aria-label="delete" onClick={handleOpen} sx={{ color: '#d66536' }}>
+          <DeleteIcon />
+        </IconButton>
         <Modal
           open={open}
           onClose={handleClose}

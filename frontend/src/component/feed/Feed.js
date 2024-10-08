@@ -54,7 +54,7 @@ function Feed() {
             </div>
 
             <div className="meatings" >
-                <h2>Monday</h2>
+                <h2>Events</h2>
                  <Meeting/>
             </div>
 

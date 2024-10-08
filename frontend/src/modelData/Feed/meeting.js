@@ -41,11 +41,6 @@ export default function Meeting() {
         setIsOpen(isOpen === value ? null : value);
     };
 
-    // set border color
-    var style = {
-
-    }
-
     //console.log(`Vad finns här:`, meetings);
     return (
         <div>
@@ -53,7 +48,11 @@ export default function Meeting() {
                 // loop through meetings and creates a div for each
                 meetings.map((meeting, value) => (
                     
-                    <div key={value} className="meeting" onClick={() => toggleIsOpen(value)} style={{ border: `3px solid ${meeting.color}` }}>
+                    <div 
+                    key={value} className="meeting" 
+                    onClick={() => toggleIsOpen(value)} 
+                    style={{ border: `3px solid ${meeting.color}`, borderStyle: meeting.visibility === "private" ? 'dashed' : 'solid'}}
+                    >
                         <p style={{ fontSize: '20px', fontWeight: 'bold' }}>| {new Date(meeting.date).toLocaleDateString(navigator.language, { month: 'long', day: 'numeric' })}</p>
                         <p style={{ fontSize: '20px' }}>
                                 <span>
