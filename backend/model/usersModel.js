@@ -226,6 +226,38 @@ async function addFriend(currentUser, friendsUsername, friendIdentifier)
 
 
 
+//delete friend from friendlist
+async function deleteFriend(currentUserID, friendsUsername, friendIdentifier)
+{
+    startmongoose();
+
+    try{
+        const result = await users.updateOne(
+            { _id: currentUserID },
+            { $pull: {
+                friendList: {
+                    username: friendsUsername,
+                    identifier: friendIdentifier
+                }
+            }}
+        );
+    
+        if (result.modifiedCount > 0) {
+            return "Deleted";
+        }
+        else {
+            return "Friend not found";
+        }
+    }
+    catch (error) {
+        console.log("Failed to delete friend", error);
+        return null;
+    }
+}
+
+
+
+
 //Reset password
 //TO DO, will need access to a mailing service
 //For sending email: https://www.w3schools.com/nodejs/nodejs_email.asp
@@ -240,4 +272,5 @@ module.exports = {
     //getCurrentUser,
     getUserWithUsername,
     addFriend,
+    deleteFriend,
 }

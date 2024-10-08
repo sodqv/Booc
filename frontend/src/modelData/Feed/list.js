@@ -74,7 +74,8 @@ export default function ListOfFriends() {
               <div style={{ float: 'right', marginRight: '5px'}}>
                 <DeleteFriendModal 
                   displayText={"X"} 
-                  friendUsername={friend.username}
+                  friendsUsername={friend.username}
+                  friendIdentifier={friend.identifier}
                 />
               </div>
 

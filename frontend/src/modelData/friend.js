@@ -1,5 +1,6 @@
 import { //getCurrentUser as CTRLgetCurrentUser,
-         addFriend as CTRLaddFriend } from ".././controllers/friendController";
+         addFriend as CTRLaddFriend,
+         deleteFriend as CTRLdeleteFriend } from ".././controllers/friendController";
 import { useLoaderData } from 'react-router-dom';
 import { getCurrentUser } from "./user";
 
@@ -39,6 +40,30 @@ export async function addFriend(request)
     const response = await CTRLaddFriend(newFriend);                            //send the newFriend object to friendController (frontend) 
 
     console.log("Response from friendController (frontend):", response);        //logs the response from friendController
+
+    return response;
+}
+
+
+
+export async function deleteFriend(request)
+{
+    const formData = request.deleteFriendString;
+
+    console.log("Raw formdata in deleteFriend:", formData);
+
+
+    const splitStr = formData.split('#');
+    const friendsUsername = splitStr[0];
+    const friendIdentifier = splitStr[1];
+
+
+    const friendToDelete = {
+        username: friendsUsername,
+        identifier: friendIdentifier
+    };
+
+    const response = await CTRLdeleteFriend(request.currentUserID, friendsUsername, friendIdentifier);
 
     return response;
 }
