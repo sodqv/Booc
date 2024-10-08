@@ -91,7 +91,8 @@ export async function updateGroup(formData, user){
     if(!currentGroupName){console.log("No group chosen");return;}
 
     var groupName = formData.groupName;                             //New group name
-    if(!currentGroupName){groupName = currentGroupName;}            //If no new name is chosen then use the current group name
+    if(!currentGroupName || groupName === ""){groupName = currentGroupName;}            //If no new name is chosen then use the current group name
+
 
     var invitePeople = formData.invitePeople.map((member) => {return {username:member.split("#")[0],identifier:member.split("#")[1]}}); //This will overwritte the current members
 
@@ -105,9 +106,7 @@ export async function updateGroup(formData, user){
     const owners = [{username:"bob", identifier:0}, {username:"Test5", identifier:0}]
     const members = [{username:"lisa", identifier:0},{username:"carl", identifier:1}]
     */
-
     const response = await CTRLupdateGroup(currentGroupName, groupName, newOwner, invitePeople); //For testing switch to (groupName,owners,members)
-    console.log(response);
     return response;
     //Typical response: Updated group
     
