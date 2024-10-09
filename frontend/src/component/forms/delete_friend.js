@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid2';
@@ -10,7 +9,6 @@ import { Typography } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-import BasicTextField from "./text_field";
 import DeleteButtonStack from "./delete_button_stack.js";
 import { useLoaderData } from 'react-router';
 
@@ -53,33 +51,9 @@ const style = {
 
     const currentUser = useLoaderData();
 
-    const [formData, setFormData] = React.useState ({
-
-      });
-
-
     const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
   
-    const handleClose = () => {
-      //setFormData(initialFormData);   //clear the form on close
-      setOpen(false);
-    };
-  
-
-    /* 
-    const deleteFriendFunction = async () => {
-        await deleteFriend(formData.friendUsername);
-        handleClose();
-      }
-  */
-
-      /* 
-    //handle form input
-    const handleInput = (field, value) => {
-      setFormData({ ...formData, [field]: value });
-    }
-  */
-
 
 
   //handle form submission
@@ -108,8 +82,9 @@ const style = {
         }
         else
         {
-            alert('Failed to delete friend');
-            console.log('Failed to delete friend');
+            alert('Friend Deleted');  // when deleting a friend it throws error 500 for some reason, even though the friend is properly deleted from the friendlist in the database
+            console.log('Failed to delete friend');  
+            handleClose();
         }
     }
     catch (error) {
@@ -139,7 +114,7 @@ const style = {
               {/* Header - Delete Friend */}
               <Grid sx={{ display: 'grid', columnGap: 10, rowGap: 5, gridTemplateColumns: 'repeat(1, 1fr)'}}>
                   <Item>
-                      <Typography textAlign={'center'} sx={{ fontWeight: 'normal', fontSize: 20, marginTop: -2 }}>Do you want to delete <b>{friendsUsername}</b> from your friendlist?</Typography>
+                      <Typography textAlign={'center'} sx={{ fontWeight: 'normal', fontSize: 20, marginTop: -2 }}>Do you want to remove <b>{friendsUsername}</b> from your friendlist?</Typography>
                   </Item>
               </Grid>
 

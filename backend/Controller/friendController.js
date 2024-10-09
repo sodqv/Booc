@@ -64,11 +64,12 @@ async function deleteFriend(req, res)
     try {
         const result = deleteFriendModel(currentUserID, friendsUsername, friendIdentifier);
 
-        if (result === 'Deleted') {
+        
+        if (result === "Deleted") {
             return res.status(200).send({ msg: "Friend successfully deleted" });
             
         }
-        else if (result === 'Friend not found') {
+        else if (result === "Friend not found") {
             return res.status(404).send({ msg: "Friend not found" });
         }
         else {
