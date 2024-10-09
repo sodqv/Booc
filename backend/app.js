@@ -66,7 +66,14 @@ io.use(sharedsession(session, {
 
 io.on('connection', (socket) => {
   //socket.handshake.session = req.session
-  socket.handshake.session.socket = socket.id;
+  try{
+    socket.handshake.session.socket = socket.id;
+  }
+  catch(err){
+    console.log("Failed to establish socket connection");
+    console.log(err);
+  }
+  
 })
 
 // view engine setup
