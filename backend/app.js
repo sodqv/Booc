@@ -13,6 +13,13 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var apiRouter = require("./routes/api");
 
+//Creates socket connection server
+const http = require('http');
+const {Server} = require("socket.io");
+const sharedsession = require("express-socket.io-session");
+const server = http.createServer();
+const io = new Server(server);
+
 var app = express();
 
 app.use(function(req, res, next){
@@ -52,6 +59,16 @@ app.use(session({
   store: store,
 }));
 
+//IO uses shared session
+io.use(sharedsession(session, {
+  autoSave: true,
+}));
+
+io.on('connection', (socket) => {
+  //socket.handshake.session = req.session
+  socket.handshake.session.socket = socket.id;
+})
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -70,6 +87,8 @@ app.use((req, res, next) => {
   next();
 });
 */
+
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -91,4 +110,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+module.exports = {app,io};

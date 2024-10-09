@@ -1,3 +1,4 @@
+const { sendToSocket } = require("../model/io_socket");
 const { //getCurrentUser:getCurrentUserModel,
         addFriend:addFriendModel,
         deleteFriend:deleteFriendModel } = require("../model/usersModel");
@@ -38,6 +39,8 @@ async function addFriend(req, res)
 
         if (result.status === 409)
         {
+            const emitted_obj = {Type:"Added friend", Cause:`${currentUser.username}#${currentUser.identifier}`,}
+            sendToSocket(getSocket(friendsUsername, friendIdentifier), emitted_obj);
             return res.status(409).send({ msg: "Friend already added" });
         }
 
