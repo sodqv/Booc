@@ -18,7 +18,20 @@ var app = express();
 const http = require('http');
 const {Server} = require("socket.io");
 const sharedsession = require("express-socket.io-session");
-const server = http.createServer(app);
+
+
+const corsconfig = {
+  origin: "http://localhost:3000",
+  credentials: true,
+}
+
+const server = http.createServer(app,{
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"],
+    credentials: true,
+  }
+});
 const io = new Server(server);
 
 app.use(function(req, res, next){
@@ -26,10 +39,7 @@ app.use(function(req, res, next){
   next();
 })
 
-const corsconfig = {
-  origin: "http://localhost:3000",
-  credentials: true,
-}
+
 
 app.options("*", cors(corsconfig))
 app.use(cors(corsconfig));
