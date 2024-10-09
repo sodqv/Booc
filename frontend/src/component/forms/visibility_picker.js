@@ -6,6 +6,14 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 
 export default function VisibilityPicker({ value, onChange }) {
+  
+  const radioStyles = (isChecked) => ({
+    color: isChecked ? 'default' : 'default',
+    '&.Mui-checked': {
+      color: '#D66536',
+    },
+  });
+  
   return (
     <FormControl>
       <FormLabel id="demo-row-radio-buttons-group-label"></FormLabel>
@@ -17,8 +25,8 @@ export default function VisibilityPicker({ value, onChange }) {
         name="row-radio-buttons-group"
       >
         
-        <FormControlLabel value="private" control={<Radio />} label="Private" />
-        <FormControlLabel value="public" control={<Radio />} label="Public" />
+        <FormControlLabel value="private" control={<Radio sx={radioStyles(value === 'private')} />} label="Private" />
+        <FormControlLabel value="public" control={<Radio sx={radioStyles(value === 'private')} />} label="Public" />
 
       </RadioGroup>
     </FormControl>
