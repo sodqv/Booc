@@ -99,7 +99,7 @@ const style = {
   
     return (
       <div>
-        <IconButton aria-label="delete" onClick={handleOpen} title="Delet friend" sx={{ color: '#d66536' }}>
+        <IconButton aria-label="delete" onClick={handleOpen} title="Delete friend" sx={{ color: '#d66536' }}>
           <DeleteIcon />
         </IconButton>
         <Modal

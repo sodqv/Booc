@@ -64,7 +64,7 @@ const style = {
   const handleDelete = async () => {
     try {
         //for debugging
-        console.log('Trying to delete friend:' + groupName);
+        console.log('Trying to leave group:' + groupName);
 
         const response = await leaveGroup(groupName);
 
@@ -90,7 +90,7 @@ const style = {
   
     return (
       <div>
-        <IconButton aria-label="delete" onClick={handleOpen} title="Delet friend" sx={{ color: '#d66536' }}>
+        <IconButton aria-label="delete" onClick={handleOpen} title="Leave group" sx={{ color: '#d66536' }}>
           <DeleteIcon />
         </IconButton>
         <Modal
