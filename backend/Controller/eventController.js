@@ -47,7 +47,7 @@ async function createEvent(req, res){
         //Send notification to all group members
         for(const {username, identifier} of invitePeople){
             const emitted_obj = {Type:"Create group", Cause:`${req.session.user.username}#${req.session.user.identifier}`,}
-            await sendToSocket((await getSocket(username, identifier)), emitted_obj);
+            await sendToSocket((await getSocket(username, identifier)), emitted_obj, req.io);
         }
         return res.status(201).send({result});                          // 201 Created
     }

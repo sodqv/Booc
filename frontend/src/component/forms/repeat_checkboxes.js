@@ -25,6 +25,12 @@ export default function RepeatCheckboxes({ value, onChange }) {
     }
   };
 
+  const checkboxStyles = (isChecked) => ({
+    color: isChecked ? 'default' : 'default',
+    '&.Mui-checked': {
+      color: '#D66536',
+    }
+  });
   
   return (
     <FormControl component="fieldset">
@@ -37,6 +43,7 @@ export default function RepeatCheckboxes({ value, onChange }) {
                     checked={value.includes('never')} 
                     value="never"
                     onChange={handleChange}
+                    sx={checkboxStyles(value.includes('never'))}
                   />}
           label="Never"
           labelPlacement="start"
@@ -51,6 +58,7 @@ export default function RepeatCheckboxes({ value, onChange }) {
                     checked={value.includes('daily')}
                     value="daily"
                     onChange={handleChange}
+                    sx={checkboxStyles(value.includes('never'))}
                   />}
           label="Daily"
           labelPlacement="start"
@@ -65,6 +73,7 @@ export default function RepeatCheckboxes({ value, onChange }) {
                     checked={value.includes('weekly')}
                     value="weekly"
                     onChange={handleChange}
+                    sx={checkboxStyles(value.includes('never'))}
                   />}
           label="Weekly"
           labelPlacement="start"
@@ -79,6 +88,7 @@ export default function RepeatCheckboxes({ value, onChange }) {
                     checked={value.includes('monthly')}
                     value="monthly"
                     onChange={handleChange}
+                    sx={checkboxStyles(value.includes('never'))}
                   />}
           label="Monthly"
           labelPlacement="start"
@@ -93,6 +103,7 @@ export default function RepeatCheckboxes({ value, onChange }) {
                     checked={value.includes('yearly')}
                     value="yearly"
                     onChange={handleChange}
+                    sx={checkboxStyles(value.includes('never'))}
                   />}
           label="Yearly"
           labelPlacement="start"

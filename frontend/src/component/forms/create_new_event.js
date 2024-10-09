@@ -282,10 +282,10 @@ export default function BasicModal() {
 
 
 
-            {/* Invite Friends */}
+            {/* Add people */}
             <Grid sx={{ display: 'grid', width: '40%', gridTemplateColumns: 'repeat(1, 1fr)'}}>
                 <Item>
-                    <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536', paddingBottom: '5px' }}>Invite Friends</Typography>
+                    <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536', paddingBottom: '5px' }}>Invite People</Typography>
                     <Selector 
                         value={formData.invitePeople}
                         onChange={(newInvitePeople) => handleInput('invitePeople', newInvitePeople)}
