@@ -19,6 +19,7 @@ import Selector from "./selector";
 
 import dayjs from 'dayjs';
 import {api} from '../../controllers/axiosTemplate';
+import { useRevalidator } from 'react-router';
 
 
 const style = {
@@ -55,6 +56,9 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function BasicModal() {
   const [open, setOpen] = React.useState(false);
+
+  const revalidator = useRevalidator();
+  const Revalidatecallback = () => revalidator.revalidate();
 
   const [formData, setFormData] = React.useState ({
     title: '',
@@ -113,6 +117,7 @@ export default function BasicModal() {
         if (response.status === 201)
         {
             alert('Event created successfully');
+            Revalidatecallback();
             handleClose();      //closes the create event form
         }
         else
