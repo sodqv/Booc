@@ -40,6 +40,10 @@ async function getAllGroups(req, res){
 async function createGroup(req, res){
     const {body : {groupName, members}} = req
     try{
+        if(!groupName || groupName == ""){
+            console.log("There was an attempt to create a group with an empty name");
+            return res.status(500).send({msg:"Failed to create group"});
+        }
         const owner = [{username:req.session.user.username, identifier:req.session.user.identifier}];
         const memberObjectArray = members.map(inviteToObject);
         var result = await createGroupModel(groupName, owner, memberObjectArray);
@@ -56,31 +60,41 @@ async function createGroup(req, res){
 
 //Update group
 async function updateGroup(req, res){
-    const {body : {currentGroupName, groupName, owners, members}} = req
     try{
-        
-        if(checkIfOwner(groupName, req.session.user.username, req.session.user.identifier) === null){
-        return res.status(403).send({msg:"User does not have the authority to update group"});
-        }
-    }
-    catch(err){
-        console.log("Failed to check if the user had authority to delete");
-        console.log(err);
-    }
+        const {body : {currentGroupName, groupName, owners, members}} = req
+        try{
+            if(!groupName || groupName == ""){
+                console.log("There was an attempt to update a group with an empty name");
+                return res.status(500).send({msg:"Failed to update"});
+            }
 
-    //Update group
-    try{
-        var result = await updateGroupModel(currentGroupName, groupName, owners, members);
-        if(result === null){
-            return res.status(500).send({msg:"Failed to update group"});
+            if(checkIfOwner(groupName, req.session.user.username, req.session.user.identifier) === null){
+            return res.status(403).send({msg:"User does not have the authority to update group"});
+            }
         }
-        return res.status(200).send({msg:"Updated group"});
+        catch(err){
+            console.log("Failed to check if the user had authority to delete");
+            console.log(err);
+        }
+
+        //Update group
+        try{
+            var result = await updateGroupModel(currentGroupName, groupName, owners, members);
+            if(result === null){
+                return res.status(500).send({msg:"Failed to update group"});
+            }
+            return res.status(200).send({msg:"Updated group"});
+        }
+        catch(err){
+            console.log("Failed to update");
+            throw err;
+        }
     }
     catch(err){
-        console.log("Failed to update");
         console.log(err);
         return res.status(500).send({msg:"Failed to update group"});
     }
+    
     
 }
 
