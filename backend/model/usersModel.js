@@ -232,6 +232,8 @@ async function deleteFriend(currentUserID, friendsUsername, friendIdentifier)
     startmongoose();
 
     try{
+
+        //remove the friend from the currently logged in user's friendlist
         const result = await users.updateOne(
             { _id: currentUserID },
             { $pull: {
@@ -242,12 +244,31 @@ async function deleteFriend(currentUserID, friendsUsername, friendIdentifier)
             }}
         );
     
-        if (result.modifiedCount > 0) {
-            return "Deleted";
-        }
-        else {
+        if (result.modifiedCount === 0) {
             return "Friend not found";
         }
+
+
+
+        //remove the currently logged in user from the friend's friendlist as well
+        const currentUser = await users.findById(currentUserID);
+        const deleteUserFromFriend = await users.updateOne(
+            { username: friendsUsername, identifier: friendIdentifier },
+            { $pull: { 
+                friendList: {
+                    username: currentUser.username,
+                    identifier: currentUser.identifier
+                }
+            }}
+        );
+
+        if (deleteUserFromFriend.modifiedCount === 0)
+        {
+            console.log("Error when removing current user from friend's friendlist");
+        }
+
+        return "Deleted";
+
     }
     catch (error) {
         console.log("Failed to delete friend", error);
