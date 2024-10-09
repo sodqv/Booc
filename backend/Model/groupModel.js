@@ -64,12 +64,10 @@ async function createGroup(groupName, owner, members){
 }  
 
 //Update group
-async function updateGroup(groupName, owners, members){
+async function updateGroup(currentGroupName, groupName, owners, members){
     startmongoose();
     try{
-        console.log(groupName);
-        const newGroup = await groups.findOneAndReplace({groupName}, {groupName, owners, members});
-        console.log(newGroup);
+        const newGroup = await groups.findOneAndReplace({groupName:currentGroupName}, {groupName, owners, members});
         await newGroup.save();
         return newGroup.toObject(); //success
     }

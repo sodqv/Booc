@@ -1,44 +1,43 @@
 import React from 'react';
 
 const styBtn = {
-    marginTop: '5px',
-    width: '48%',
-    height: '30px',
+    marginTop: '15px',
+    height: '35px',
     backgroundColor: '#d66536',
     color: 'white',
     fontWeight: 'bold',
     border: 'none',
     borderRadius: '3px',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    width: '100%'
 }
 
 const styDiv = {
     backgroundColor: 'rgba(255, 255, 255, 0.7)',
     textAlign: 'left',
     margin: '20px 0',
-    padding: '10px',
+    padding: '15px',
     borderRadius: '3px',
-    boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.2)'
+    border: '2px solid rgba(0,0,0,0.2)',
+    lineHeight: '30px' 
 }
 
-export function MeatingRequest() {
+export default function Notification() {
     return (
         <div style={styDiv}>
-            <p style={{ fontSize: '25px' }}>New meeting</p>
+            <p style={{ fontSize: '25px', marginBottom: '3px', fontWeight: 'bold' }}>New meeting</p>
             <p>Sandra invited you to 'Planning'</p>
-            <button style={{...styBtn, marginRight: '4%'}}>Accept</button>
-            <button style={{...styBtn}}>Decline</button>
+            <button style={{...styBtn}}>OK</button>
         </div>
     )    
 }
 
-export function FrienRequest() {
-    return (
-        <div style={styDiv}>
-            <p style={{ fontSize: '25px' }}>New friend</p>
-            <p>Sandra wants to add you as friend</p>
-            <button style={{...styBtn, marginRight: '4%'}}>Accept</button>
-            <button style={{...styBtn}}>Decline</button>
-        </div>
-    )    
-}
+// export function FrienRequest() {
+//     return (
+//         <div style={styDiv}>
+//             <p style={{ fontSize: '25px', marginBottom: '3px', fontWeight: 'bold' }}>New friend</p>
+//             <p>Sandra wants to add you as friend</p>
+//             <button style={{...styBtn}}>OK</button>
+//         </div>
+//     )    
+// }

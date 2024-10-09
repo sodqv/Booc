@@ -2,6 +2,30 @@ const {startmongoose} = require('./mongodbStarter.js');
 const users = require("./schemas/userSchema.js");
 const argon2 = require('argon2');
 
+//
+async function getUserWithUsername(username, identifier){
+    startmongoose();
+    const user = await users.findOne({
+        $and: [
+            {"username":username},
+            {"identifier":identifier}
+        ],
+    });
+
+    if(user === null){return null;}
+    const objUser = user.toObject();
+    //console.log( objUser);
+
+    if(typeof objUser === "undefined"){
+        return null;
+    }
+    
+    return objUser;
+}
+
+
+
+
 
 //Gets user with the same email and password
 async function getUser(email, password){
@@ -145,28 +169,6 @@ async function deleteUser(email, password){
 }
 
 
-/* 
-//Get current user
-async function getCurrentUser(_id)
-{
-    startmongoose();
-
-    const currentUser = await users.findOne({
-        _id:_id
-    });
-
-    if (currentUser === null)
-    {
-        return null;
-    }
-
-    const objCurrUser = currentUser.toObject();
-
-    return objCurrUser;
-}
-*/
-
-
 
 async function addFriend(currentUser, friendsUsername, friendIdentifier) 
 {
@@ -224,6 +226,62 @@ async function addFriend(currentUser, friendsUsername, friendIdentifier)
 
 
 
+//delete friend from friendlist
+async function deleteFriend(currentUserID, friendsUsername, friendIdentifier)
+{
+    startmongoose();
+
+    try{
+
+        //remove the friend from the currently logged in user's friendlist
+        const result = await users.updateOne(
+            { _id: currentUserID },
+            { $pull: {
+                friendList: {
+                    username: friendsUsername,
+                    identifier: friendIdentifier
+                }
+            }}
+        );
+    
+        if (result.modifiedCount === 0) {
+            return "Friend not found";
+        }
+        
+
+
+        //remove the currently logged in user from the friend's friendlist as well
+        const currentUser = await users.findById(currentUserID);
+
+        const deleteUserFromFriend = await users.updateOne(
+            { username: friendsUsername, identifier: friendIdentifier },
+            { $pull: { 
+                friendList: {
+                    username: currentUser.username,
+                    identifier: currentUser.identifier
+                }
+            }}
+        );
+
+        
+        if (deleteUserFromFriend.modifiedCount === 0)
+        {
+            console.log("Error when removing current user from friend's friendlist");
+        }
+
+
+        return "Deleted";
+    
+    }
+    catch (error) {
+        console.log("Failed to delete friend", error);
+        return null;
+    }
+}
+
+
+
+
 //Reset password
 //TO DO, will need access to a mailing service
 //For sending email: https://www.w3schools.com/nodejs/nodejs_email.asp
@@ -236,5 +294,7 @@ module.exports = {
     deleteUser,
     changeStartPage,
     //getCurrentUser,
+    getUserWithUsername,
     addFriend,
+    deleteFriend,
 }

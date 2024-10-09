@@ -28,7 +28,7 @@ div{
 .list > h2 {
     margin-bottom: 15px;
 }
-.list > button {
+/* .list > button {
     position: absolute;
     top: 5px;
     right: 0px;
@@ -38,13 +38,18 @@ div{
     height: 35px;
     width: 25px;
     background-color: #d66536;
-}
+} */
 
 /* Middle grid */
 .meatings {
     border-right: 2px solid rgba(0, 0, 0, 0.2);
     border-left: 2px solid rgba(0, 0, 0, 0.2);
     overflow: auto;
+}
+
+/* Right grid */
+.info > h2{
+    text-align: right;
 }
 
 /* Styling scrolbar */

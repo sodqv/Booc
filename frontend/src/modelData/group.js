@@ -44,7 +44,7 @@ export async function getGroup(){
 //Get all groups a person is in
 export async function getAllGroups(){
     const response = await CTRLgetAllGroups();
-    console.log(response);
+    return response;
     //Typical response: Array of groups:
     /*
     "groups": [
@@ -84,31 +84,47 @@ export async function createGroup(formData){
 }  
 
 //Update group
-export async function updateGroup(){
+export async function updateGroup(formData, user){
+    //Processes values from form
+    const currentGroupName = formData.currentGroupName;             //Group that is to be changed
+    if(!currentGroupName){console.log("No group chosen");return;}
+
+    var groupName = formData.groupName;                             //New group name
+    if(!currentGroupName || groupName === ""){groupName = currentGroupName;}            //If no new name is chosen then use the current group name
+
+
+    var invitePeople = formData.invitePeople.map((member) => {return {username:member.split("#")[0],identifier:member.split("#")[1]}}); //This will overwritte the current members
+
+    var newOwner = formData.newOwner;                                                   //Changes the owner
+    if(!newOwner){newOwner = [{username:user.username,  identifier:user.identifier}]};  //If no new owner is selected keep the current user as owner
+
+
     //Testing values
+    /*
     const groupName = "TestingClient";
     const owners = [{username:"bob", identifier:0}, {username:"Test5", identifier:0}]
     const members = [{username:"lisa", identifier:0},{username:"carl", identifier:1}]
-
-    const response = await CTRLupdateGroup(groupName,owners,members);
-    console.log(response);
+    */
+    const response = await CTRLupdateGroup(currentGroupName, groupName, newOwner, invitePeople); //For testing switch to (groupName,owners,members)
+    return response;
     //Typical response: Updated group
     
 }
 
 //Delete group
-export async function deleteGroup(){
+export async function deleteGroup(groupName){
     //Testing values
-    const groupName = "TestingClient";
+    //const groupName = "TestingClient";
+    console.log(groupName);
 
     const response = await CTRLdeleteGroup(groupName);
     console.log(response);
     //Typical response: "Deleted group"
 }
 
-export async function leaveGroup(inputGroupName) {
+export async function leaveGroup(groupName) {
     //Testing values
-    const groupName = "TestingClient";
+    //const groupName = "TestingClient";
 
     const response = await CTRLleaveGroup(groupName);
     console.log(response);
