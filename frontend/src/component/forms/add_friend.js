@@ -13,6 +13,7 @@ import FriendButtonDirectionStack from "./friend_button_stack";
 
 import { //getCurrentUser, 
   addFriend } from "../../modelData/friend.js";
+import { useRevalidator } from 'react-router';
 
 
 
@@ -48,6 +49,9 @@ const style = {
 
   export default function BasicFriendModal({ displayText }) {
     const [open, setOpen] = React.useState(false);
+
+    const revalidator = useRevalidator();
+    const Revalidatecallback = () => revalidator.revalidate();
 
 
     //the data that is set in the form
@@ -91,6 +95,7 @@ const style = {
         if (response === "Success")   //check the response from friend.js
         {
             alert('Friend Added');
+            Revalidatecallback(); //Re-renders friendlist to show new friend
             console.log('Friend was successfully added');                          
             handleClose();      //closes the form
         }

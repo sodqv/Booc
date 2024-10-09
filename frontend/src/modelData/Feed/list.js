@@ -5,6 +5,7 @@ import { getAllGroups } from '../group';
 import DeleteFriendModal from '../../component/forms/delete_friend';
 
 import { useLoaderData } from 'react-router-dom';
+import LeaveGroupBtn from '../../component/feed/deleteGroup';
 
 // list of curent users friends
 export function ListOfFriends() {
@@ -158,6 +159,12 @@ export function ListOfGroups() {
                   '&.Mui-checked': {color: '#d66536'}
                 }}
               />
+
+              <div style={{ float: 'right'}}>
+                  <LeaveGroupBtn 
+                    groupName={member.groupName}
+                  />
+              </div>
           </div>
         ))
       ) : (

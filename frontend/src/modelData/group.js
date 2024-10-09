@@ -127,6 +127,7 @@ export async function leaveGroup(groupName) {
     //const groupName = "TestingClient";
 
     const response = await CTRLleaveGroup(groupName);
-    console.log(response);
+    //console.log(response);
+    return response;
     //Typical response: "Left group"
 }

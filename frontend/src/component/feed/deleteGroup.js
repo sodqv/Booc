@@ -9,10 +9,11 @@ import { Typography } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-import DeleteButtonStack from "./delete_button_stack.js";
+import DeleteButtonStack from '../forms/delete_button_stack.js';
 import { useLoaderData, useRevalidator } from 'react-router';
 
 import { deleteFriend } from "../../modelData/friend.js";
+import { leaveGroup } from '../../modelData/group.js';
 
 
 
@@ -46,7 +47,7 @@ const style = {
   }));
 
 
-  export default function DeleteFriendModal({ displayText, friendsUsername, friendIdentifier }) {
+  export default function LeaveGroupBtn({ groupName }) {
     const [open, setOpen] = React.useState(false);
 
     const currentUser = useLoaderData();
@@ -62,38 +63,26 @@ const style = {
   //handle form submission
   const handleDelete = async () => {
     try {
-
         //for debugging
-        console.log('Trying to delete friend:', {
-            deleteFriendString: `${friendsUsername}#${friendIdentifier}`,
-            currentUserID: currentUser._id,
-        });
+        console.log('Trying to delete friend:' + groupName);
 
-    
-
-        const response = await deleteFriend({
-            deleteFriendString: `${friendsUsername}#${friendIdentifier}`,
-            currentUserID: currentUser._id
-        });
+        const response = await leaveGroup(groupName);
 
 
         if (response === "Success")
         {
-            alert('Friend Deleted');
-            Revalidatecallback(); //Causes re-render to update friendlist
-            console.log('Friend successfully deleted');                          
+            Revalidatecallback();
+            console.log('left Group', groupName);                          
             handleClose();     
         }
         else
         {
-            alert('Friend Deleted');  // when deleting a friend it throws error 500 for some reason, even though the friend is properly deleted from the friendlist in the database
-            console.log('Failed to delete friend');  
+            console.log('Failed to leave group');  
             handleClose();
         }
     }
     catch (error) {
-        console.error('Error when deleting friend:', error.response?.data || error.message);     // prints the error message in console log
-        alert('An error occurred while deleting the friend');
+        console.error('Error when leaving group:', error.response?.data || error.message);     // prints the error message in console log
     }
   };
 
@@ -115,10 +104,10 @@ const style = {
             <div style={{width: '100%', height: '100%', paddingLeft: '10px'}}>
   
   
-              {/* Header - Delete Friend */}
+              {/* Header - leave Group */}
               <Grid sx={{ display: 'grid', columnGap: 10, rowGap: 5, gridTemplateColumns: 'repeat(1, 1fr)'}}>
                   <Item>
-                      <Typography textAlign={'center'} sx={{ fontWeight: 'normal', fontSize: 20, marginTop: -2 }}>Do you want to remove <b>{friendsUsername}</b> from your friendlist?</Typography>
+                      <Typography textAlign={'center'} sx={{ fontWeight: 'normal', fontSize: 20, marginTop: -2 }}>Do you want to leave <b>{groupName}</b></Typography>
                   </Item>
               </Grid>
 

@@ -12,7 +12,7 @@ import ButtonDirectionStack from "./button_stack";
 import Selector from "./selector";
 import {getGroup, getAllGroups, createGroup, updateGroup, deleteGroup, leaveGroup} from "../../modelData/group.js";
 import Group_Selector from './group_selector.js';
-import { useLoaderData } from 'react-router';
+import { useLoaderData, useRevalidator } from 'react-router';
 import ButtonDirectionStackGroups from './button_stack_groups.js';
 
 
@@ -51,6 +51,9 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function ModifyGroupModal({displayText}) {
   const [open, setOpen] = React.useState(false);
   const user = useLoaderData();
+
+  const revalidator = useRevalidator();
+  const Revalidatecallback = () => revalidator.revalidate();
 
   //this is the data that is set in the form
   const [formData, setFormData] = React.useState ({
@@ -103,7 +106,8 @@ export default function ModifyGroupModal({displayText}) {
 
         if (response === "Success")
         {
-            console.log('Group successfully modified');                          
+            console.log('Group successfully modified');     
+            Revalidatecallback();                     
             handleClose();      //closes the create event form
         }
         else
@@ -126,10 +130,6 @@ export default function ModifyGroupModal({displayText}) {
     handleInput('invitePeople', groupData.members.map(({username,identifier}) => `${username}#${identifier}`));
   }
 
-  const leaveGroupFunc = async () => {
-    await leaveGroup(formData.currentGroupName);
-    handleClose();
-  }
 
   const deleteGroupFunc = async () => {
     await deleteGroup(formData.currentGroupName);
