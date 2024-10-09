@@ -39,8 +39,8 @@ async function addFriend(req, res)
 
         if (result.status === 409)
         {
-            const emitted_obj = {Type:"Added friend", Cause:`${currentUser.username}#${currentUser.identifier}`,}
-            sendToSocket(getSocket(friendsUsername, friendIdentifier), emitted_obj);
+            const emitted_obj = {Type:"Add friend", Cause:`${currentUser.username}#${currentUser.identifier}`,}
+            await sendToSocket((await getSocket(username, identifier)), emitted_obj);
             return res.status(409).send({ msg: "Friend already added" });
         }
 
@@ -68,6 +68,8 @@ async function deleteFriend(req, res)
         const result = await deleteFriendModel(currentUserID, friendsUsername, friendIdentifier);
         
         if (result === "Deleted") {
+            const emitted_obj = {Type:"Delete friend", Cause:`${currentUser.username}#${currentUser.identifier}`,}
+            await sendToSocket((await getSocket(username, identifier)), emitted_obj);
             return res.status(200).send({ msg: "Friend successfully deleted" });
             
         }

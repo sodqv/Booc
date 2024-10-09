@@ -20,6 +20,11 @@ async function createEvent(req, res){
 
     if (result)
     {
+        //Send notification to all group members
+        for(const {username, identifier} of invitePeople){
+            const emitted_obj = {Type:"Create group", Cause:`${req.session.user.username}#${req.session.user.identifier}`,}
+            await sendToSocket((await getSocket(username, identifier)), emitted_obj);
+        }
         return res.status(201).send({result});                          // 201 Created
     }
     else
@@ -54,8 +59,9 @@ async function deleteEvent(req, res) {
         console.log("Failed to check if user is the event creator", error);
         return res.status(500).send({ msg: "Failed to check if user is the event creator"});
     }
-
-
+    //Get event
+    //invited people:
+    
     //delete the event
     const result = await deleteEventModel(_id);
 
