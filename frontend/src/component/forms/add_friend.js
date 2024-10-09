@@ -119,7 +119,7 @@ const style = {
   
     return (
       <div>
-        <Button onClick={handleOpen} sx={{ width: '100%', padding: '8px', backgroundColor: '#d66536', color: '#f5ebe0' }}>
+        <Button onClick={handleOpen} title="Add friend" sx={{ width: '100%', padding: '8px', backgroundColor: '#d66536', color: '#f5ebe0' }}>
             {displayText}
         </Button>
         <Modal

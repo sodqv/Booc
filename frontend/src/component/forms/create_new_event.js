@@ -130,7 +130,7 @@ export default function BasicModal() {
 
   return (
     <div>
-      <Button onClick={handleOpen} sx={{ width: '100%', padding: '8px', backgroundColor: '#d66536', color: '#f5ebe0' }}>
+      <Button onClick={handleOpen} title="Create event" sx={{ width: '100%', padding: '8px', backgroundColor: '#d66536', color: '#f5ebe0' }}>
           Create New Event
       </Button>
       <Modal

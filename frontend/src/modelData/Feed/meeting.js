@@ -59,9 +59,12 @@ export default function Meeting() {
                                 | {new Date(meeting.date).toLocaleDateString(navigator.language, { month: 'long', day: 'numeric' })}
                             </span>
                             <span style={{ float: 'right' }}>
-                                <DeleteEventModal
+                                {meeting.createdBy.username === user.username ? (
+                                    <DeleteEventModal
                                     eventTitle={meeting.title}
-                                />
+                                    />
+                                ) : null}
+                                
                             </span>
                         </p>
                         <p style={{ fontSize: '20px' }}>

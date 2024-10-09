@@ -98,7 +98,7 @@ const style = {
   
     return (
       <div>
-        <IconButton aria-label="delete" onClick={handleOpen} sx={{ color: '#d66536' }}>
+        <IconButton aria-label="delete" onClick={handleOpen} title="Delet event" sx={{ color: '#d66536' }}>
           <DeleteIcon />
         </IconButton>
         <Modal

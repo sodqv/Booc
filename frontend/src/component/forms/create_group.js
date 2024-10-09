@@ -114,7 +114,7 @@ export default function GroupModal({displayText}) {
 
   return (
     <div>
-      <Button onClick={handleOpen} sx={{ width: '100%', padding: '8px', backgroundColor: '#d66536', color: '#f5ebe0' }}>
+      <Button onClick={handleOpen} title="Create group" sx={{ width: '100%', padding: '8px', backgroundColor: '#d66536', color: '#f5ebe0' }}>
           {displayText}
       </Button>
       <Modal
