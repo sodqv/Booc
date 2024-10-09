@@ -16,7 +16,7 @@ import ButtonDirectionStack from "./button_stack";
 import BasicDatePicker from "./date_picker";
 import BasicTimePicker from "./time_picker";
 import Selector from "./selector";
-import Group_Selector from "./group_selector";
+import GroupMemberSelector from "./groupMember_selector";
 
 import dayjs from 'dayjs';
 import {api} from '../../controllers/axiosTemplate';
@@ -72,6 +72,7 @@ export default function BasicModal() {
     //repeat: ['never'],
     visibility: 'private',
     invitePeople: [],
+    inviteGroup: [],
   });
 
 
@@ -86,6 +87,7 @@ export default function BasicModal() {
     //repeat: ['never'],
     visibility: 'private',
     invitePeople: [],
+    inviteGroup: [],
   };
 
 
@@ -104,11 +106,26 @@ export default function BasicModal() {
   }
 
 
+  const handleGroupSelect = (groupMembers) => {
+    const members = [...new Set([...formData.inviteGroup, ...groupMembers])];
+
+    setFormData({
+        ...formData,
+        inviteGroup: members,
+    });
+  };
+
+
+
   //handle form submission
   const handleSubmit = async () => {
     try {
-        //For some reason if i place a console.log() before the next line it will still behave as the map happened before it.
+
         formData.invitePeople = formData.invitePeople.map(((user) => user.split("#") ))
+
+        formData.inviteGroup = formData.inviteGroup.map(((member) => member.split('#') ))
+
+
         console.log('Form data:', formData);        //puts the new event in the console log in the browser
 
         
@@ -281,9 +298,11 @@ export default function BasicModal() {
             <Grid sx={{ display: 'grid', width: '40%', gridTemplateColumns: 'repeat(1, 1fr)'}}>
                 <Item>
                     <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536', paddingBottom: '5px' }}>Invite Members of Group</Typography>
-                    <Group_Selector 
-                        value={formData.inviteGroup}
-                        onChange={(newInviteGroup) => handleInput('invitePeople', newInviteGroup)}
+                    <GroupMemberSelector 
+                        onGroupSelect = {handleGroupSelect}
+                        handleSubmit = {handleSubmit}
+                        //value={formData.inviteGroup}
+                        //onChange={(newInviteGroup) => handleInput('invitePeople', newInviteGroup)}
                     />
                 </Item>
             </Grid>

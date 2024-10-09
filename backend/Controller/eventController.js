@@ -3,6 +3,7 @@ const eventModel = require('../model/eventModel');
 const {createEvent:createEventModel,
         deleteEventModel,
         checkIfCreator} = eventModel;
+const groupModel = require('../model/schemas/groupSchema');
 
 
 function inviteToObject(array){
@@ -12,11 +13,34 @@ function inviteToObject(array){
 //create event
 async function createEvent(req, res){
 
-    const { body: { title, date, fromTime, toTime, location, description, color, repeat, visibility, invitePeople } } = req;
+    const { body: { title, date, fromTime, toTime, location, description, color, repeat, visibility, invitePeople, inviteGroup } } = req;
+    
     const createdBy = req.session.user;
-    const mappedInvite = invitePeople.map(inviteToObject); //Transforms the [[]] to [{}]
 
-    const result = await createEventModel(title, date, fromTime, toTime, location, description, color, repeat, visibility, mappedInvite, createdBy);
+    const mappedInvite = invitePeople.map(inviteToObject); //Transforms the [[]] to [{}]
+    const mappedGroupInvite = inviteGroup.map(inviteToObject);
+
+    /* 
+    let groupMembers = [];
+
+    if (inviteGroup.length > 0)
+    {
+        for (let groupName of inviteGroup)
+        {
+            const group = await groupModel.findOne({ groupName });
+
+            if (group)
+            {
+                groupMembers = groupMembers.concat(group.members);
+            }
+        }
+    }
+    */
+
+    //const invites = [...mappedInvite, ...groupMembers];
+
+
+    const result = await createEventModel(title, date, fromTime, toTime, location, description, color, repeat, visibility, mappedInvite, mappedGroupInvite, createdBy);
 
     if (result)
     {

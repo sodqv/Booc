@@ -5,7 +5,7 @@ const {startmongoose} = require('./mongodbStarter');
 
 
 //create event
-async function createEvent(title, date, fromTime, toTime, location, description, color, repeat = 'never', visibility = 'private', invitePeople = [], createdBy)
+async function createEvent(title, date, fromTime, toTime, location, description, color, repeat = 'never', visibility = 'private', invitePeople = [], inviteGroup = [], createdBy)
 {
     startmongoose();                                        //initialize the mongoose connection
 
@@ -30,6 +30,7 @@ async function createEvent(title, date, fromTime, toTime, location, description,
             repeat,
             visibility,
             invitePeople,
+            inviteGroup,
             createdBy: currentUser    
         });
         
