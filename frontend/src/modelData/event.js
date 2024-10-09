@@ -6,3 +6,10 @@ export async function getEvents(userData) {
     //console.log("Full response:", response);
     return response;
 }
+
+
+export async function deleteEvent()
+{
+
+}
+

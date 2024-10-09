@@ -3,6 +3,7 @@ import { getEvents } from '../event';
 import { useLoaderData } from 'react-router-dom';
 // css
 import './meeting.css';
+import DeleteEventModal from '../../component/forms/delete_event';
 
 export default function Meeting() {
     // get curent user
@@ -53,7 +54,16 @@ export default function Meeting() {
                     onClick={() => toggleIsOpen(value)} 
                     style={{ border: `3px solid ${meeting.color}`, borderStyle: meeting.visibility === "private" ? 'dashed' : 'solid'}}
                     >
-                        <p style={{ fontSize: '20px', fontWeight: 'bold' }}>| {new Date(meeting.date).toLocaleDateString(navigator.language, { month: 'long', day: 'numeric' })}</p>
+                        <p>
+                            <span style={{ fontSize: '20px', fontWeight: 'bold' }}> 
+                                | {new Date(meeting.date).toLocaleDateString(navigator.language, { month: 'long', day: 'numeric' })}
+                            </span>
+                            <span style={{ float: 'right' }}>
+                                <DeleteEventModal
+                                    eventTitle={meeting.title}
+                                />
+                            </span>
+                        </p>
                         <p style={{ fontSize: '20px' }}>
                                 <span>
                                     <span>
