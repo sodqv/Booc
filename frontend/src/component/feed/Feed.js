@@ -9,7 +9,7 @@ import LetterAvatars from './avatar';
 // Self created
 import Meeting from '../../modelData/Feed/meeting';
 import Navbar from './navbar';
-import {MeatingRequest, FrienRequest} from '../../modelData/Feed/notification';
+import Notification from '../../modelData/Feed/notification';
 
 import BasicFriendModal from '../forms/add_friend';
 import GroupModal from '../forms/create_group';
@@ -53,15 +53,15 @@ function Feed() {
                 </div>
             </div>
 
-            <div className="meatings" >
+            <div className="meatings">
                 <h2>Events</h2>
                  <Meeting/>
             </div>
 
             <div className="info">
                 <h2>Notifications</h2>
-                <MeatingRequest/>
-                <FrienRequest/>
+                <Notification/>
+                <Notification/>
             </div>
         </div>
 

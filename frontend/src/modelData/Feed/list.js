@@ -6,8 +6,9 @@ import DeleteFriendModal from '../../component/forms/delete_friend';
 
 import { useLoaderData } from 'react-router-dom';
 
+// list of curent users friends
 export function ListOfFriends() {
-  const [checked, setChecked] = React.useState([0]); // Default checked
+  const [checked, setChecked] = React.useState([0]);
   const user = useLoaderData();
 
   const friendList = user.friendList;
@@ -39,8 +40,8 @@ export function ListOfFriends() {
               // margin: '0px 5px 10px 0px', 
               padding: '5px', 
               backgroundColor: 'rgba(255, 255, 255, 0.7)',
-              boxShadow: '3px',
-              borderRadius: '2px',
+              border: '2px solid rgba(0,0,0,0.2)',
+              borderRadius: '3px',
               height: '50px'
             }}
             key={value}
@@ -70,11 +71,13 @@ export function ListOfFriends() {
                 }}
               />
               <div style={{ float: 'right'}}>
-                <DeleteFriendModal 
-                  displayText={"x"} 
-                  friendsUsername={friend.username}
-                  friendIdentifier={friend.identifier}
-                />
+                {friend.username !== user.username && friend.identifier !== user.identifier ? (
+                  <DeleteFriendModal 
+                    displayText={"x"} 
+                    friendsUsername={friend.username}
+                    friendIdentifier={friend.identifier}
+                  />
+                ) : null}
               </div>
           </div>
         ))
@@ -85,6 +88,7 @@ export function ListOfFriends() {
   );
 }
 
+// list of curent users groups
 export function ListOfGroups() {
   // get curent user
   const user = useLoaderData();
@@ -115,10 +119,10 @@ export function ListOfGroups() {
 
     setChecked(newChecked);
   };
-
+  //console.log('Jag får: ' + groups.length + ' och ', groups)
   return (
     <div>
-      {groups.length > 0 ? (
+      {groups.length > 0 && groups !== "Failed to get groups info" ? (
         // loop through meetings and creates a div for each
         groups.map((member, value) => (
           <div className='listElement' 
@@ -128,6 +132,7 @@ export function ListOfGroups() {
               // margin: '0px 5px 10px 0px', 
               padding: '5px', 
               backgroundColor: 'rgba(255, 255, 255, 0.7)',
+              border: '2px solid rgba(0,0,0,0.2)',
               boxShadow: '3px',
               borderRadius: '2px',
               height: '50px'
