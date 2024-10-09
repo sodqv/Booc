@@ -112,8 +112,10 @@ export default function BasicModal() {
 
         
 
-        const response = await api.post('/api/newEvent', formData);  
+        //const response = await api.post('/api/newEvent', formData);  
+        const response = await api.post('/api/event', formData);
 
+        
         if (response.status === 201)
         {
             alert('Event created successfully');

@@ -18,3 +18,37 @@ export async function getEvents(username, identifier){
     // console.log("Jag är efter frontend och getEvents");
     return event;
 }
+
+
+
+export async function deleteEvent(_id)
+{
+  var ProccesedResponse = "";
+
+  await api.delete('/api/event', 
+    {
+      headers: {
+        "Access-Control-Allow-Origin": "http://localhost:6400",
+        "Access-Control-Allow-Credentials":"true",
+      },
+      data: {
+        _id:_id,
+      }
+    })
+    .then(function(response) {
+
+      if (typeof response.data?.msg === "undefined" || response.data?.msg === "Failed to delete event") {
+        throw new Error("Invalid response");
+      }
+
+      ProccesedResponse = "Success";
+    })
+    .catch(function(error) {
+      console.log(error);
+      ProccesedResponse = "Failed";
+    })
+
+    return ProccesedResponse;
+}
+
+

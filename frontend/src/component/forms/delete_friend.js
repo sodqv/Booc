@@ -116,7 +116,7 @@ const style = {
               {/* Header - Delete Friend */}
               <Grid sx={{ display: 'grid', columnGap: 10, rowGap: 5, gridTemplateColumns: 'repeat(1, 1fr)'}}>
                   <Item>
-                      <Typography textAlign={'center'} sx={{ fontWeight: 'normal', fontSize: 20, marginTop: -2 }}>Do you want to remove <b>{friendsUsername}</b> from your friendlist?</Typography>
+                      <Typography textAlign={'left'} sx={{ fontWeight: 'normal', fontSize: 20, marginTop: -2 }}>Do you want to remove <b>{friendsUsername}</b> from your friendlist?</Typography>
                   </Item>
               </Grid>
 
