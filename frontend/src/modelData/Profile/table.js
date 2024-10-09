@@ -9,6 +9,10 @@ import Paper from '@mui/material/Paper';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 
+import { useState, useEffect } from 'react';
+import { getEvents } from '../event';
+import { useLoaderData } from 'react-router-dom';
+
 dayjs.extend(isoWeek);
 
 const createWeekData = (startDate) => {
@@ -31,46 +35,198 @@ const styleCell = {
   fontSize: '11px'
 }
 
-export default function BasicTable({ selectedDate, onDateChange, fetchEventsForWeek }) {
+function getHour(num) {
+  var j = 0;
+    if ( num < 6 ) {
+      j = 0;
+    } else if ( num >= 6 && num < 8 ) {
+      j = 1;
+    } else if ( num >= 8 && num < 9) {
+      j = 2;
+    } else if ( num >= 9 && num < 10) {
+      j = 3;
+    } else if ( num >= 10 && num < 11) {
+      j = 4;
+    } else if ( num >= 11 && num < 12) {
+      j = 5;
+    } else if ( num >= 12 && num < 13) {
+      j = 6;
+    } else if ( num >= 13 && num < 14) {
+      j = 7;
+    } else if ( num >= 14 && num < 15) {
+      j = 8;
+    } else if ( num >= 15 && num < 16) {
+      j = 9;
+    } else if ( num >= 16 && num < 17) {
+      j = 10;
+    } else if ( num >= 17 && num < 18) {
+      j = 11;
+    } else if ( num >= 18 && num < 20) {
+      j = 12;
+    } else if ( num >= 20) {
+      j = 13;
+    }
+    return j;
+}
+
+function getStartMinute(num, id, title) {
+  id.style.backgroundImage = "linear-gradient(white, white)";
+  id.style.backgroundRepeat = "no-repeat";
   
+  if (num < 15) {
+    id.style.backgroundSize = "100% 0%";
+    id.textContent = `${title}`;
+    return 1;
+  } else if (num >= 15 && num < 30) {
+    id.style.backgroundSize = "100% 25%";
+  } else if (num >= 30 && num < 45) {
+    id.style.backgroundSize = "100% 50%";
+  } else if (num >= 45 && num < 60) {
+    id.style.backgroundSize = "100% 75%";
+  }
+  return 0;
+}
+
+function getEndMinute(num, id, color) {
+  id.style.backgroundImage = "linear-gradient(" + color + ", " + color + ")";
+  id.style.backgroundRepeat = "no-repeat";
+  
+  if (num < 15) {
+    id.style.backgroundSize = "100% 0%";
+  } else if (num >= 15 && num < 30) {
+    id.style.backgroundSize = "100% 25%";
+  } else if (num >= 30 && num < 45) {
+    id.style.backgroundSize = "100% 50%";
+  } else if (num >= 45 && num < 60) {
+    id.style.backgroundSize = "100% 75%";
+  }
+}
+
+export default function BasicTable({ selectedDate, onDateChange }) {
+
   const [weekData, setWeekData] = React.useState(createWeekData(selectedDate.startOf('isoWeek')));
-  
-  const [eventData, setEventData] = React.useState({});
 
   const startOfWeek = selectedDate.startOf('isoWeek');
 
   // Days in current week
   const daysOfWeek = Array.from({ length: 7 }, (_, index) =>
+    startOfWeek.add(index, 'day')
+  );
+
+  // Days in current week
+  const numberOfRow = Array.from({ length: 16 }, (_, index) =>
     startOfWeek.add(index, 'day').format('dddd D')
   );
+
+  var col = -1;
+  var row = -1;
 
   // Change week
   const changeWeek = (amount) => {
     const newDate = selectedDate.add(amount, 'week');
     onDateChange(newDate);
     setWeekData(createWeekData(newDate.startOf('isoWeek')));
+    populateTable();
+    
   };
 
-  const todayCellStyle = {
-    ...styleCell,
-    backgroundColor: '#D66536',
-    color: 'white',
-    fontSize: '15px',
-    fontWeight: 'bold',
-  }
 
   const date = new Date();
   
   const today = dayjs(date).format('dddd D');
 
- // Get events from database -- NEED HELP
- React.useEffect(() => {
-  // Fetch events for the current week from your database
-  const startOfWeekISO = startOfWeek.format('YYYY-MM-DD');
-  fetchEventsForWeek(startOfWeekISO).then(fetchedEvents => {
-    setEventData(fetchedEvents);
-  });
-}, [selectedDate]);
+
+
+
+
+
+
+
+
+  // get curent user
+  const user = useLoaderData();
+
+  // states
+  const [meetings, setMeeting] = useState([]);
+
+  // get events
+  useEffect(() => {
+      const fetchEvent = async () => {
+          const event = await getEvents(user);
+          //console.log('Fetched Events:', event);
+          setMeeting(event);
+      }
+      fetchEvent();
+  }, [user]);
+
+  // console.log("Det ger: ", meetings);
+
+  // Populate the table
+  function populateTable() {
+    console.log("Nu körs populate table: ", daysOfWeek);
+    const meetCell = document.getElementById("23");
+    console.log("ID: ", meetCell);
+
+    // Loop through meetings
+    meetings.map((meeting, value) => {
+      const meetDate = new Date(meeting.date).toLocaleDateString(navigator.language, { month: 'numeric', day: 'numeric' })
+      
+      for (var i = 0; i < daysOfWeek.length; i++) {
+        // Cheek if the meeting should be displayed
+        if ( daysOfWeek[i].format('D/M')  === meetDate) {
+          
+          // Set the meet and leav times
+          const meetHour = new Date(meeting.fromTime).toLocaleTimeString(navigator.language, { hour: '2-digit' });
+          const leaveHour = new Date(meeting.toTime).toLocaleTimeString(navigator.language, { hour: '2-digit' });
+
+          // Cords for meeting
+          const m = getHour(meetHour);
+          const l = getHour(leaveHour);
+          var titleWritten = 0;
+          for(var j = m; j <= l; j++) {
+            const showMId = `${j}${i}`;
+            const meetCell = document.getElementById(showMId);
+
+            if ( j === m) {
+              meetCell.style.backgroundColor = `${meeting.color}`;
+              meetCell.style.borderBottom = `3px solid ${meeting.color}`;
+
+              const meetMin = new Date(meeting.fromTime).toLocaleTimeString(navigator.language, { minute: '2-digit' });
+              titleWritten = getStartMinute(meetMin, meetCell, meeting.title);
+            } else if ( j === l) {
+              const leaveMin = new Date(meeting.toTime).toLocaleTimeString(navigator.language, { minute: '2-digit' })
+              getEndMinute(leaveMin, meetCell, meeting.color);
+            } else {
+              meetCell.style.backgroundColor = `${meeting.color}`;
+              meetCell.style.borderBottom = `3px solid ${meeting.color}`;
+              if (!titleWritten) {
+                meetCell.textContent = `${meeting.title}`;
+                titleWritten = 1;
+              }
+            }
+            meetCell.title = `${meeting.title}`;
+          }
+        }
+      }
+      
+    })
+    console.log("Det här finns: ", meetings);
+    // const cell = document.getElementById("23");
+    // cell.style.backgroundColor = 'green';
+  }
+
+  populateTable();
+
+  //const [meetings, setMeeting] = useState([]);
+
+  // get events
+  //useEffect(() => {const event = await populateTable(user);}, [user]);
+  
+
+
+
+
+  
 
   return (
     <div>
@@ -92,9 +248,6 @@ export default function BasicTable({ selectedDate, onDateChange, fetchEventsForW
                 variant="contained" 
                 onClick={() => changeWeek(-1)}
                 >
-                {/* <button style={{fontWeight: 'bold', border: 'transparent', background: '#D66536', fontSize: '20x', color: 'white', borderRadius: '14px'}} variant="contained" onClick={() => changeWeek(-1)}>
-                  {"<"}
-                </button> */}
                 {"<"}
               </TableCell>
 
@@ -105,7 +258,7 @@ export default function BasicTable({ selectedDate, onDateChange, fetchEventsForW
                     align="center" 
                     sx={today === day ? {...styleCell, backgroundColor: '#D66536', color: 'white', fontWeight: 'bold', fontSize: '15px'} : styleCellHead} 
                     key={fullDate}>
-                    {day}
+                    {day.format('dddd D')}
                   </TableCell>
                 );
               })}
@@ -124,9 +277,6 @@ export default function BasicTable({ selectedDate, onDateChange, fetchEventsForW
                 variant="contained" 
                 onClick={() => changeWeek(1)} 
               >
-                {/* <button style={{fontWeight: 'bold', border: 'transparent', background: '#D66536', fontSize: '200x', color: 'white', borderRadius: '14px'}} variant="contained" onClick={() => changeWeek(1)} >
-                  {">"}
-                </button> */}
                 {">"}
               </TableCell>
 
@@ -134,21 +284,32 @@ export default function BasicTable({ selectedDate, onDateChange, fetchEventsForW
           </TableHead>
 
           <TableBody>
-            <TableRow>
-              {daysOfWeek.map((day, index) => {
-                const fullDate = startOfWeek.add(index, 'day').format('YYYY-MM-DD');
-                return (
-                  <TableCell align="center" sx={styleCell} key={fullDate}>
-                    <ul style={{ padding: '0', listStyleType: 'none' }}>
-                      {(eventData[fullDate] || []).map((event, i) => (
-                        <li key={i}>{event}</li>
-                      ))}
-                    </ul>
-                  </TableCell>
-                );
-              })}
-            </TableRow>
+
+
+          {numberOfRow.map((day, index) => {
+            row++;
+            col = -1;
+            return (
+              <TableRow>
+                <TableCell align="center" sx={{...styleCell}}></TableCell>
+                  {daysOfWeek.map((day, index) => {
+                    const fullDate = startOfWeek.add(index, 'day').format('YYYY-MM-DD');
+                    col++; 
+                    const id = `${row}${col}`;
+                    return (
+                      <TableCell id={id} align="center" sx={{...styleCell, whiteSpace: 'pre', color: 'black', fontWeight: 'bold', fontSize: '15px'}} key={fullDate}>
+                        {" "}
+                      </TableCell>
+                    );
+                  })}
+                <TableCell align="center" sx={{...styleCell}}></TableCell>
+              </TableRow>
+            );
+          })}
+
+
           </TableBody>
+          
         </Table>
       </TableContainer>
     </div>
