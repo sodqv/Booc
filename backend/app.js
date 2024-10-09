@@ -13,17 +13,16 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var apiRouter = require("./routes/api");
 
+var app = express();
 //Creates socket connection server
 const http = require('http');
 const {Server} = require("socket.io");
 const sharedsession = require("express-socket.io-session");
-const server = http.createServer();
+const server = http.createServer(app);
 const io = new Server(server);
 
-var app = express();
-
 app.use(function(req, res, next){
-  //console.log(req.headers)
+  //console.log("Testing")
   next();
 })
 
@@ -59,27 +58,8 @@ app.use(session({
   store: store,
 }));
 
-//IO uses shared session
-io.use(sharedsession(session, {
-  autoSave: true,
-}));
 
-io.on('connection', (socket) => {
-  //socket.handshake.session = req.session
-  try{
-    socket.handshake.session.socket = socket.id;
-  }
-  catch(err){
-    console.log("Failed to establish socket connection");
-    console.log(err);
-  }
-  
-})
 
-app.use(function(req,res,next){
-  req.io = io;
-  next();
-});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -100,6 +80,25 @@ app.use((req, res, next) => {
 });
 */
 
+//IO uses shared session
+io.use(sharedsession(session, {
+  autoSave: true,
+}));
+
+io.on('connection', (socket) => {
+  //socket.handshake.session = req.session
+  socket.on('connect', function(socket){
+    try{
+    socket.handshake.session.socket = socket.id;
+  }
+  catch(err){
+    console.log("Failed to establish socket connection");
+    console.log(err);
+  }
+  })
+  
+  
+})
 
 
 app.use('/', indexRouter);
@@ -121,5 +120,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 module.exports = {app,io,server};
