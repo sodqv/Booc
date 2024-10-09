@@ -62,8 +62,7 @@ async function deleteFriend(req, res)
     const { currentUserID, friendsUsername, friendIdentifier } = req.body;
 
     try {
-        const result = deleteFriendModel(currentUserID, friendsUsername, friendIdentifier);
-
+        const result = await deleteFriendModel(currentUserID, friendsUsername, friendIdentifier);
         
         if (result === "Deleted") {
             return res.status(200).send({ msg: "Friend successfully deleted" });

@@ -79,14 +79,12 @@ const style = {
 
         if (response === "Success")
         {
-            alert('Friend Deleted');
             Revalidatecallback(); //Causes re-render to update friendlist
             console.log('Friend successfully deleted');                          
             handleClose();     
         }
         else
         {
-            alert('Friend Deleted');  // when deleting a friend it throws error 500 for some reason, even though the friend is properly deleted from the friendlist in the database
             console.log('Failed to delete friend');  
             handleClose();
         }
