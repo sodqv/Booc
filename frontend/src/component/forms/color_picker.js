@@ -14,9 +14,9 @@ export default function ColorPicker({ value, onChange }) {
     >
 
 
-      {/* Orange */}
+      {/* Pink */}
       <ToggleButton 
-            value="orange"
+            value="#FFA69E"
             sx = {{
                 width: 28,
                 height: 28,
@@ -31,13 +31,13 @@ export default function ColorPicker({ value, onChange }) {
                 '&:hover': {backgroundColor: 'transparent', border: 'none'},
                 '& .Mui-selected': {backgroundColor: 'transparent', border: 'none'},
               }}>
-        <CircleIcon sx = {{ color: 'orange' }}/>
+        <CircleIcon sx = {{ color: '#FFA69E' }}/>
       </ToggleButton>
 
 
-      {/* Red */}
+      {/* Orange */}
       <ToggleButton 
-            value="red"
+            value="#FCAF58"
             sx = {{
                 width: 28,
                 height: 28,
@@ -52,13 +52,13 @@ export default function ColorPicker({ value, onChange }) {
                 '&:hover': {backgroundColor: 'transparent', border: 'none'},
                 '&:Mui-selected': {backgroundColor: 'transparent', border: 'none'}
               }}>
-        <CircleIcon sx = {{ color: 'red' }}/>
+        <CircleIcon sx = {{ color: '#FCAF58' }}/>
       </ToggleButton>
 
 
       {/* Green */}
       <ToggleButton 
-            value="green"
+            value="#9DB17C"
             sx = {{
                 width: 28,
                 height: 28,
@@ -73,34 +73,13 @@ export default function ColorPicker({ value, onChange }) {
                 '&:hover': {backgroundColor: 'transparent', border: 'none'},
                 '&:Mui-selected': {backgroundColor: 'transparent', border: 'none'}
               }}>
-        <CircleIcon sx = {{ color: 'green' }}/>
-      </ToggleButton>
-
-
-      {/* Blue */}
-      <ToggleButton 
-            value="blue"
-            sx = {{
-                width: 28,
-                height: 28,
-                borderRadius: '50%',
-                border: 'none',
-                minWidth: 0,
-                padding: 0,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                backgroundColor: 'transparent',
-                '&:hover': {backgroundColor: 'transparent', border: 'none'},
-                '&:Mui-selected': {backgroundColor: 'transparent', border: 'none'}
-              }}>
-        <CircleIcon sx = {{ color: '#0000FF' }}/>
+        <CircleIcon sx = {{ color: '#9DB17C' }}/>
       </ToggleButton>
 
 
       {/* Purple */}
       <ToggleButton 
-            value="purple"
+            value="#C490D1"
             sx = {{
                 width: 28,
                 height: 28,
@@ -115,7 +94,28 @@ export default function ColorPicker({ value, onChange }) {
                 '&:hover': {backgroundColor: 'transparent', border: 'none'},
                 '&:Mui-selected': {backgroundColor: 'transparent', border: 'none'}
               }}>
-        <CircleIcon sx = {{ color: 'purple' }}/>
+        <CircleIcon sx = {{ color: '#C490D1' }}/>
+      </ToggleButton>
+
+
+      {/* Blue */}
+      <ToggleButton 
+            value="#48639C"
+            sx = {{
+                width: 28,
+                height: 28,
+                borderRadius: '50%',
+                border: 'none',
+                minWidth: 0,
+                padding: 0,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: 'transparent',
+                '&:hover': {backgroundColor: 'transparent', border: 'none'},
+                '&:Mui-selected': {backgroundColor: 'transparent', border: 'none'}
+              }}>
+        <CircleIcon sx = {{ color: '#48639C' }}/>
       </ToggleButton>
 
 
