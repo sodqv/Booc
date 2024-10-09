@@ -2,7 +2,16 @@ const { startMongodb } = require('./mongodbStarter.js');
 
 //Send to socket
 async function sendToSocket(socket_Id, sending_obj){
-    socket.to(socket_Id).emit(sending_obj);
+    try{
+        if(!socket_Id){throw Error("Socket does not exist")};
+        socket.to(socket_Id).emit(sending_obj);
+    }
+    catch(err){
+        console.log("Failed to send to socket: ", socket_Id);
+        console.log(err);
+        return;
+    }
+    
 }
 
 
