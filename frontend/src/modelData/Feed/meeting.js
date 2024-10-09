@@ -21,17 +21,20 @@ export default function Meeting() {
 
             //sorts the events in the feed by date and time
             event = event.sort((a, b) => {
-                const dateA = new Date(a.date).setHours(0, 0, 0, 0);
-                const dateB = new Date(b.date).setHours(0, 0, 0, 0);
+                const dateA = new Date(a.date).toLocaleDateString(navigator.language, {month: 'long', day: 'numeric'});
+                const dateB = new Date(b.date).toLocaleDateString(navigator.language, {month: 'long', day: 'numeric'});
 
                 if (dateA !== dateB) {
+                    // Sort by date
                     return dateA - dateB;
                 }
 
-                return new Date(a.fromTime) - new Date(b.fromTime);
+                const fromA = new Date(a.date).toLocaleDateString(navigator.language, { hour: '2-digit', minute: '2-digit' });
+                const fromB = new Date(b.date).toLocaleDateString(navigator.language, { hour: '2-digit', minute: '2-digit' });
+
+                // Sort by time
+                return fromA - fromB;
             });
-
-
             setMeeting(event);
         }
         fetchEvent();
