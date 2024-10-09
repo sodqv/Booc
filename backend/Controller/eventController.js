@@ -16,7 +16,7 @@ async function createEvent(req, res){
     const createdBy = req.session.user;
     const mappedInvite = invitePeople.map(inviteToObject); //Transforms the [[]] to [{}]
 
-    const result = await createEventModel.createEvent(title, date, fromTime, toTime, location, description, color, repeat, visibility, mappedInvite, createdBy);
+    const result = await createEventModel(title, date, fromTime, toTime, location, description, color, repeat, visibility, mappedInvite, createdBy);
 
     if (result)
     {
