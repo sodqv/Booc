@@ -106,12 +106,16 @@ export default function BasicTable({ selectedDate, onDateChange }) {
 
   const [weekData, setWeekData] = React.useState(createWeekData(selectedDate.startOf('isoWeek')));
 
+  const [daysOfWeek, setDaysOfWeek] = React.useState([]);
+
   const startOfWeek = selectedDate.startOf('isoWeek');
 
-  // Days in current week
-  const daysOfWeek = Array.from({ length: 7 }, (_, index) =>
-    startOfWeek.add(index, 'day')
-  );
+  useEffect(() => {
+    const newDaysOfWeek = Array.from({ length: 7 }, (_, index) =>
+      startOfWeek.add(index, 'day')
+    );
+    setDaysOfWeek(newDaysOfWeek);
+  }, [selectedDate]);
 
   // Days in current week
   const numberOfRow = Array.from({ length: 16 }, (_, index) =>
@@ -130,18 +134,9 @@ export default function BasicTable({ selectedDate, onDateChange }) {
     
   };
 
-
   const date = new Date();
   
-  const today = dayjs(date).format('dddd D');
-
-
-
-
-
-
-
-
+  const today = dayjs(date).format('YYYY-MM-DD');
 
   // get curent user
   const user = useLoaderData();
@@ -149,17 +144,26 @@ export default function BasicTable({ selectedDate, onDateChange }) {
   // states
   const [meetings, setMeeting] = useState([]);
 
+  //New
+  useEffect(() => {
+    const daysInWeek = Array.from({ length: 7 }, (_, index) =>
+      startOfWeek.add(index, 'day')
+    );
+    setDaysOfWeek(daysInWeek);
+  }, [selectedDate])
+
   // get events
   useEffect(() => {
       const fetchEvent = async () => {
           const event = await getEvents(user);
-          //console.log('Fetched Events:', event);
           setMeeting(event);
       }
       fetchEvent();
-  }, [user]);
+  }, [user, selectedDate]);
 
-  // console.log("Det ger: ", meetings);
+  useEffect(() => {
+    populateTable();
+  }, [daysOfWeek, meetings]);
 
   // Populate the table
   function populateTable() {
@@ -210,23 +214,9 @@ export default function BasicTable({ selectedDate, onDateChange }) {
       }
       
     })
-    console.log("Det här finns: ", meetings);
-    // const cell = document.getElementById("23");
-    // cell.style.backgroundColor = 'green';
   }
 
   populateTable();
-
-  //const [meetings, setMeeting] = useState([]);
-
-  // get events
-  //useEffect(() => {const event = await populateTable(user);}, [user]);
-  
-
-
-
-
-  
 
   return (
     <div>
@@ -253,10 +243,11 @@ export default function BasicTable({ selectedDate, onDateChange }) {
 
               {daysOfWeek.map((day, index) => {
                 const fullDate = startOfWeek.add(index, 'day').format('YYYY-MM-DD');
+                
                 return (
                   <TableCell 
                     align="center" 
-                    sx={today === day ? {...styleCell, backgroundColor: '#D66536', color: 'white', fontWeight: 'bold', fontSize: '15px'} : styleCellHead} 
+                    sx={today === day.format('YYYY-MM-DD') ? {...styleCell, backgroundColor: '#D66536', color: 'white', fontWeight: 'bold', fontSize: '15px'} : styleCellHead} 
                     key={fullDate}>
                     {day.format('dddd D')}
                   </TableCell>
@@ -285,7 +276,6 @@ export default function BasicTable({ selectedDate, onDateChange }) {
 
           <TableBody>
 
-
           {numberOfRow.map((day, index) => {
             row++;
             col = -1;
@@ -297,7 +287,7 @@ export default function BasicTable({ selectedDate, onDateChange }) {
                     col++; 
                     const id = `${row}${col}`;
                     return (
-                      <TableCell id={id} align="center" sx={{...styleCell, whiteSpace: 'pre', color: 'black', fontWeight: 'bold', fontSize: '15px'}} key={fullDate}>
+                      <TableCell id={id} align="center" sx={{...styleCell, whiteSpace: 'pre', color: 'white', fontWeight: 'bold', fontSize: '15px'}} key={fullDate}>
                         {" "}
                       </TableCell>
                     );
@@ -306,8 +296,6 @@ export default function BasicTable({ selectedDate, onDateChange }) {
               </TableRow>
             );
           })}
-
-
           </TableBody>
           
         </Table>
