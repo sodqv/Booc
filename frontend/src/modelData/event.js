@@ -1,4 +1,6 @@
-import { getEvents as getEventsCTRL } from "../controllers/eventController";
+import { getEvents as getEventsCTRL,
+        deleteEvent as deleteEventCTRL } from "../controllers/eventController";
+
 
 export async function getEvents(userData) {
 
@@ -8,8 +10,11 @@ export async function getEvents(userData) {
 }
 
 
-export async function deleteEvent()
+export async function deleteEvent(_id)
 {
+    console.log(_id);
 
+    const response = await deleteEventCTRL(_id);
+    console.log(response);
 }
 

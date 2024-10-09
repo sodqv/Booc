@@ -16,6 +16,8 @@ import { deleteEvent } from "../../modelData/event.js";
 
 
 
+
+
 const style = {
     position: 'absolute',
     top: '50%',
@@ -46,10 +48,10 @@ const style = {
   }));
 
 
-  export default function DeleteEventModal({ displayText, eventTitle }) {
+  export default function DeleteEventModal({ displayText, eventTitle, eventID }) {
     const [open, setOpen] = React.useState(false);
 
-    //const currentUser = useLoaderData();
+    const currentUser = useLoaderData();
 
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -58,41 +60,27 @@ const style = {
 
   //handle form submission
   const handleDelete = async () => {
-    /*try {
-
-         
-        //for debugging
-        console.log('Trying to delete friend:', {
-            deleteFriendString: `${friendsUsername}#${friendIdentifier}`,
-            currentUserID: currentUser._id,
-        });
-        */
     
-        /* 
-        const response = await deleteFriend({
-            deleteFriendString: `${friendsUsername}#${friendIdentifier}`,
-            currentUserID: currentUser._id
-        });
+    try {
 
+      const response = await deleteEvent(eventID);
 
-        if (response === "Success")
+      if (response === "Success")
         {
-            alert('Friend Deleted');
-            console.log('Friend successfully deleted');                          
-            handleClose();     
+            console.log('Event successfully deleted');                          
+            handleClose();      //closes the form
         }
         else
         {
-            alert('Friend Deleted');  // when deleting a friend it throws error 500 for some reason, even though the friend is properly deleted from the friendlist in the database
-            console.log('Failed to delete friend');  
-            handleClose();
+            console.log('Failed to delete event');
         }
     }
     catch (error) {
-        console.error('Error when deleting friend:', error.response?.data || error.message);     // prints the error message in console log
-        alert('An error occurred while deleting the friend');
-    }*/
-  };
+        console.error('Error when deleting event:', error.response?.data || error.message);     // prints the error message in console log
+        alert('An error occurred while deleting the event');
+    }
+};
+
 
 
   

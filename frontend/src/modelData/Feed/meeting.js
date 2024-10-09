@@ -64,7 +64,8 @@ export default function Meeting() {
                             <span style={{ float: 'right' }}>
                                 {meeting.createdBy.username === user.username ? (
                                     <DeleteEventModal
-                                    eventTitle={meeting.title}
+                                        eventTitle={meeting.title}
+                                        eventID={meeting._id}
                                     />
                                 ) : null}
                                 
