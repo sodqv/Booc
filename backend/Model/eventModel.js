@@ -46,24 +46,68 @@ async function createEvent(title, date, fromTime, toTime, location, description,
 
 
 
+async function checkIfCreator(_id, username, identifier)
+{
+    startmongoose();
+
+    const user = { username, identifier: String(identifier) };
+
+
+    console.log("Checking if the user is the event creator:", user);
+
+    const event = await events.findOne({
+        _id
+    });
+    if (!event) {
+        console.log(`Event with id ${_id} not found`);
+        return null;
+    }
+
+    /* 
+    const event = await events.findOne({
+        _id,
+        createdBy: user
+    });
+    */
+
+    console.log("Event found:", event);
+
+
+    if (event === null)
+    {
+        return null;
+    }
+
+    return 1;
+}
+
+
 
 //delete event
-async function deleteEvent(eventID){
+async function deleteEventModel(_id) 
+{
     startmongoose();
 
     try {
-        const event = await events.findById(eventID);
-        if (!event) return 0;
+        const deleted = (await events.deleteOne({
+            _id:_id
+        })).deletedCount;
 
-        await event.deleteOne();
-        return 1;
+        if (deleted) {
+            return "Deleted";
+        } else {
+            return null;
+        }
     }
     catch (error) {
-        console.error('Failed to delete event:', error);
-        return 0;
+        console.log('Failed to delete event:', error);
+        return null;
     }
-
 }
+
+
+
+
 
 // Get users events
 async function getEvents(username, identifier){
@@ -96,9 +140,12 @@ async function getEvents(username, identifier){
     }
 }
 
+
+
 module.exports = {
     createEvent,
-    deleteEvent,
+    checkIfCreator,
+    deleteEventModel,
     getEvents
 }
 
