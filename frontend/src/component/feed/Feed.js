@@ -1,6 +1,6 @@
 //import logo from './logo.svg';
 import './Feed.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 // MUI
 //import BasicTabs from './tabs';
 import BasicButtons from './button';
@@ -15,7 +15,37 @@ import BasicFriendModal from '../forms/add_friend';
 import GroupModal from '../forms/create_group';
 import ModifyGroupModal from '../forms/modify_group_form';
 
+import {io} from 'socket.io-client';
+const URL = process.env.NODE_ENV === 'production' ? undefined : 'http://localhost:6400';
+
+const socket = io("http://localhost:6400", {
+    withCredentials: true,
+    headers:{
+        "Access-Control-Allow-Origin": "http://localhost:6400",
+        "Access-Control-Allow-Credentials":"true",
+      }
+  });
+
 function Feed() {
+
+
+
+    useEffect(() => {
+        socket.connect();
+        socket.on('connect', function () {
+            console.log(`Connected to server`);
+        });
+
+        socket.on('sendingObj', function () {
+            console.log(`Resived`);
+        });
+    },[]);
+
+    function connect () {
+        console.log("In button");
+        socket.connect();
+    }
+
   return (
     <div style={{ height: '100vh', width: '100%', overflow: 'hidden'  }}>
         <Navbar page={'Feed'}/>
@@ -62,6 +92,7 @@ function Feed() {
                 <h2>Notifications</h2>
                 <Notification/>
                 <Notification/>
+                <button onClick={ connect }>Testing</button>
             </div>
         </div>
 

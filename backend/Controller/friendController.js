@@ -1,4 +1,4 @@
-const { sendToSocket } = require("../model/io_socket");
+const { sendToSocket, getSocket } = require("../model/io_socket");
 const { //getCurrentUser:getCurrentUserModel,
         addFriend:addFriendModel,
         deleteFriend:deleteFriendModel } = require("../model/usersModel");
@@ -40,7 +40,7 @@ async function addFriend(req, res)
         if (result.status === 409)
         {
             const emitted_obj = {Type:"Add friend", Cause:`${currentUser.username}#${currentUser.identifier}`,}
-            await sendToSocket((await getSocket(username, identifier)), emitted_obj, req.io);
+            await sendToSocket((await getSocket(username, identifier)), emitted_obj, req);
             return res.status(409).send({ msg: "Friend already added" });
         }
 
@@ -69,7 +69,7 @@ async function deleteFriend(req, res)
         
         if (result === "Deleted") {
             const emitted_obj = {Type:"Delete friend", Cause:`${currentUser.username}#${currentUser.identifier}`,}
-            await sendToSocket((await getSocket(username, identifier)), emitted_obj, req.io);
+            await sendToSocket((await getSocket(username, identifier)), emitted_obj, req);
             return res.status(200).send({ msg: "Friend successfully deleted" });
             
         }

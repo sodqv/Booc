@@ -25,14 +25,14 @@ const corsconfig = {
   credentials: true,
 }
 
-const server = http.createServer(app,{
+const server = http.createServer(app);
+global.io = new Server(server,{
   cors: {
     origin: "http://localhost:3000",
     methods: ["GET", "POST"],
     credentials: true,
   }
 });
-const io = new Server(server);
 
 app.use(function(req, res, next){
   //console.log("Testing")
@@ -68,7 +68,7 @@ app.use(session({
   store: store,
 }));
 
-
+global.io.engine.use(session);
 
 
 // view engine setup
@@ -91,25 +91,33 @@ app.use((req, res, next) => {
 */
 
 //IO uses shared session
-io.use(sharedsession(session, {
-  autoSave: true,
-}));
+// io.use(sharedsession(session, {
+//   autoSave: true,
+// }));
 
-io.on('connection', (socket) => {
-  //socket.handshake.session = req.session
+global.io.on('connection', (socket) => {
   socket.on('connect', function(socket){
-    try{
-    socket.handshake.session.socket = socket.id;
+    console.log("Connection");
+  try{
+    const sessionId = socket.request.session.id;
+    console.log("You get ", sessionId);
+    // the session ID is used as a room
+    socket.join(sessionId);
   }
   catch(err){
     console.log("Failed to establish socket connection");
     console.log(err);
   }
   })
+
   
-  
+
 })
 
+// app.use(function(rec, res, next) {
+//   console.log(rec.session);
+//   next();
+// })
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -131,5 +139,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+module.exports = {app,server};
 
-module.exports = {app,io,server};
+

@@ -1,17 +1,18 @@
 const { startMongodb } = require('./mongodbStarter.js');
+const { io } = require('../app.js');
 
 //Send to socket
-async function sendToSocket(socket_Id, sending_obj, io){
+async function sendToSocket(socket_id, sending_obj, req){
     try{
-        if(!socket_Id){throw Error("Socket does not exist")};
-        io.to(socket_Id).emit(sending_obj);
+        const socket = req.app.get(`socketio`);
+        if(!socket_id){throw Error("Socket does not exist")};
+        global.io.to(socket_id).emit("sendingObj", sending_obj);
     }
     catch(err){
-        console.log("Failed to send to socket: ", socket_Id);
+        console.log("Failed to send to socket: ", socket_id);
         console.log(err);
         return;
     }
-    
 }
 
 
@@ -36,14 +37,12 @@ async function getSocket(username, identifier) {
             //"session": {"user":{"identifier":identifier}}
         }).toArray());
         //console.log("findUser", findUser);
-        const foundUser = findUser[0].session.user
+        const foundUser = findUser[0]._id;
         console.log("Found username: ", foundUser);
 
         if(!foundUser || foundUser == null){return "Failed to find session"};
-        console.log("found socket_id:", foundUser.socket_Id, " For user: " + foundUser.username + "#" + foundUser.identifier);
-        if(!foundUser.socket_Id){return "Failed to find socket"}
-        console.log("Failed to find socket");
-        return foundUser.session.user.socket_Id; 
+        console.log("found socket_id:", foundUser);
+        return foundUser; 
     }
     catch(err){
         console.log(err);
@@ -51,9 +50,6 @@ async function getSocket(username, identifier) {
     }
     
 }
-
-
-
 
 
 module.exports = {sendToSocket, getSocket}

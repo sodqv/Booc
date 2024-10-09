@@ -3,11 +3,13 @@ const eventModel = require('../model/eventModel');
 const {createEvent:createEventModel,
         deleteEventModel,
         checkIfCreator} = eventModel;
+        
 
 
 function inviteToObject(array){
     return {username:array[0], identifier:array[1]};
 }
+const { sendToSocket, getSocket } = require("../model/io_socket");
 
 //create event
 async function createEvent(req, res){
@@ -23,7 +25,7 @@ async function createEvent(req, res){
         //Send notification to all group members
         for(const {username, identifier} of invitePeople){
             const emitted_obj = {Type:"Create group", Cause:`${req.session.user.username}#${req.session.user.identifier}`,}
-            await sendToSocket((await getSocket(username, identifier)), emitted_obj, req.io);
+            await sendToSocket((await getSocket(username, identifier)), emitted_obj, req);
         }
         return res.status(201).send({result});                          // 201 Created
     }

@@ -7,6 +7,7 @@ const {getGroup:getGroupModel,
     checkIfOwner} =  require("../model/groupModel");
 const { sendToSocket, getSocket } = require("../model/io_socket");
 
+
 function inviteToObject(array){
     return {username:array[0], identifier:array[1]};
 }
@@ -55,7 +56,7 @@ async function createGroup(req, res){
         //Send notification to all group members
         for(const {username, identifier} of members){
             const emitted_obj = {Type:"Create group", Cause:`${owner.username}#${owner.identifier}`,}
-            await sendToSocket((await getSocket(username, identifier)), emitted_obj, req.io);
+            await sendToSocket((await getSocket(username, identifier)), emitted_obj, req);
         }
         
 
@@ -96,7 +97,7 @@ async function updateGroup(req, res){
             //Send notification to all group members
             for(const {username, identifier} of members){
                 const emitted_obj = {Type:"Update group", Cause:`${req.session.user.username}#${req.session.user.identifier}`,}
-                await sendToSocket((await getSocket(username, identifier)), emitted_obj, req.io);
+                await sendToSocket((await getSocket(username, identifier)), emitted_obj, req);
             }
 
             return res.status(200).send({msg:"Updated group"});
@@ -141,7 +142,7 @@ async function deleteGroup(req, res){
     //Send notification to all group members
     for(const {username, identifier} of members){
         const emitted_obj = {Type:"Delete group", Cause:`${req.session.user.username}#${req.session.user.identifier}`,}
-        await sendToSocket((await getSocket(username, identifier)), emitted_obj, req.io);
+        await sendToSocket((await getSocket(username, identifier)), emitted_obj, req);
     }
 
     return res.status(200).send({msg:"Deleted group"});
@@ -165,7 +166,7 @@ async function leaveGroup(req, res) {
         //Send notification to all group members
         for(const {username, identifier} of members){
             const emitted_obj = {Type:"Left group", Cause:`${req.session.user.username}#${ req.session.user.identifier}`,}
-            await sendToSocket((await getSocket(username, identifier)), emitted_obj, req.io);
+            await sendToSocket((await getSocket(username, identifier)), emitted_obj, req);
         }
         
         return res.status(200).send({msg:"Left group"});
