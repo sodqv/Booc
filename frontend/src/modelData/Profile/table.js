@@ -37,9 +37,9 @@ const styleCell = {
 
 function getHour(num) {
   var j = 0;
-    if ( num < 6 ) {
+    if ( num < 7 ) {
       j = 0;
-    } else if ( num >= 6 && num < 8 ) {
+    } else if ( num >= 7 && num < 8 ) {
       j = 1;
     } else if ( num >= 8 && num < 9) {
       j = 2;
@@ -61,10 +61,14 @@ function getHour(num) {
       j = 10;
     } else if ( num >= 17 && num < 18) {
       j = 11;
-    } else if ( num >= 18 && num < 20) {
+    } else if ( num >= 18 && num < 19) {
       j = 12;
-    } else if ( num >= 20) {
+    } else if ( num >= 19 && num < 20) {
       j = 13;
+    } else if ( num >= 20 && num < 21) {
+      j = 14;
+    } else if ( num >= 21) {
+      j = 15;
     }
     return j;
 }
@@ -73,32 +77,65 @@ function getStartMinute(num, id, title) {
   id.style.backgroundImage = "linear-gradient(white, white)";
   id.style.backgroundRepeat = "no-repeat";
   
-  if (num < 15) {
+  if (num < 5) {
     id.style.backgroundSize = "100% 0%";
     id.textContent = `${title}`;
     return 1;
-  } else if (num >= 15 && num < 30) {
+  } else if (num >= 5 && num < 10) {
+    id.style.backgroundSize = "100% 8%";
+  } else if (num >= 10 && num < 15) {
+    id.style.backgroundSize = "100% 16%";
+  } else if (num >= 15 && num < 20) {
     id.style.backgroundSize = "100% 25%";
-  } else if (num >= 30 && num < 45) {
+  } else if (num >= 20 && num < 25) {
+    id.style.backgroundSize = "100% 33%";
+  } else if (num >= 25 && num < 30) {
+    id.style.backgroundSize = "100% 41%";
+  } else if (num >= 30 && num < 35) {
     id.style.backgroundSize = "100% 50%";
-  } else if (num >= 45 && num < 60) {
+  } else if (num >= 35 && num < 40) {
+    id.style.backgroundSize = "100% 58%";
+  } else if (num >= 40 && num < 45) {
+    id.style.backgroundSize = "100% 66%";
+  } else if (num >= 45 && num < 50) {
     id.style.backgroundSize = "100% 75%";
+  } else if (num >= 50 && num < 55) {
+    id.style.backgroundSize = "100% 83%";
+  } else if (num >= 55 && num < 60) {
+    id.style.backgroundSize = "100% 91%";
   }
+
   return 0;
 }
 
 function getEndMinute(num, id, color) {
   id.style.backgroundImage = "linear-gradient(" + color + ", " + color + ")";
   id.style.backgroundRepeat = "no-repeat";
-  
-  if (num < 15) {
+
+  if (num < 5) {
     id.style.backgroundSize = "100% 0%";
-  } else if (num >= 15 && num < 30) {
+  } else if (num >= 5 && num < 10) {
+    id.style.backgroundSize = "100% 8%";
+  } else if (num >= 10 && num < 15) {
+    id.style.backgroundSize = "100% 16%";
+  } else if (num >= 15 && num < 20) {
     id.style.backgroundSize = "100% 25%";
-  } else if (num >= 30 && num < 45) {
+  } else if (num >= 20 && num < 25) {
+    id.style.backgroundSize = "100% 33%";
+  } else if (num >= 25 && num < 30) {
+    id.style.backgroundSize = "100% 41%";
+  } else if (num >= 30 && num < 35) {
     id.style.backgroundSize = "100% 50%";
-  } else if (num >= 45 && num < 60) {
+  } else if (num >= 35 && num < 40) {
+    id.style.backgroundSize = "100% 58%";
+  } else if (num >= 40 && num < 45) {
+    id.style.backgroundSize = "100% 66%";
+  } else if (num >= 45 && num < 50) {
     id.style.backgroundSize = "100% 75%";
+  } else if (num >= 50 && num < 55) {
+    id.style.backgroundSize = "100% 83%";
+  } else if (num >= 55 && num < 60) {
+    id.style.backgroundSize = "100% 91%";
   }
 }
 
@@ -167,10 +204,6 @@ export default function BasicTable({ selectedDate, onDateChange }) {
 
   // Populate the table
   function populateTable() {
-    console.log("Nu körs populate table: ", daysOfWeek);
-    const meetCell = document.getElementById("23");
-    console.log("ID: ", meetCell);
-
     // Loop through meetings
     meetings.map((meeting, value) => {
       const meetDate = new Date(meeting.date).toLocaleDateString(navigator.language, { month: 'numeric', day: 'numeric' })

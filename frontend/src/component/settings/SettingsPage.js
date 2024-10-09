@@ -87,7 +87,7 @@ export default function SettingsPage(){
                                             style: { 
                                                 backgroundColor: 'white', 
                                                 color: 'gray', 
-                                                borderRadius: '5px' 
+                                                borderRadius: '4px' 
                                             } 
                                         }}
                                         //error={failedToChangePassword}
@@ -104,7 +104,8 @@ export default function SettingsPage(){
                                             style: { 
                                                 backgroundColor: 'white', 
                                                 color: 'gray', 
-                                                borderRadius: '5px' 
+                                                borderRadius: '4px',
+                                                marginTop: '1px' 
                                             } 
                                         }}
                                         //error={failedToChangePassword}

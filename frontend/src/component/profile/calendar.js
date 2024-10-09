@@ -16,23 +16,31 @@ export default function BasicDateCalendar({ selectedDate, onDateChange }) {
         calendarWeekNumberText: (weekNumber) => `${weekNumber}.`,
       }}
     >
-        <DateCalendar displayWeekNumber
+      <DateCalendar 
+        displayWeekNumber
+        value={selectedDate}
+        onChange={(newDate) => onDateChange(dayjs(newDate))}
+        sx={{
+          width: '100%',
+          height: '290px',
+          backgroundColor: 'rgba(255, 255, 255, 0.7)',
+          borderRadius: '8px',
+          boxShadow: 3,
 
-          value={selectedDate}
-          onChange={(newDate) => onDateChange(dayjs(newDate))}
+          '& .MuiPickersDay-root': {
+            fontSize: '10px', 
 
-          sx={{
-            width: '100%',
-            height: '290px',
-            backgroundColor: 'rgba(255, 255, 255, 0.7)',
-            borderRadius: '8px',
-            boxShadow: 3,
             
-            '& .MuiPickersDay-root': {
-              fontSize: '10px', 
+            '&.Mui-selected': {
+              backgroundColor: '#D66536 !important', 
+              color: 'white !important', 
+              '&:hover': {
+                backgroundColor: '#D66536 !important',
+              },
             },
-          }}
-        />
+          },
+        }}
+      />
     </LocalizationProvider>
   );
 }

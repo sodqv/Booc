@@ -221,7 +221,17 @@ export default function ModifyGroupModal({displayText}) {
             <Grid sx={{ display: 'grid', width: '100%', gridTemplateColumns: 'repeat(1, 1fr)', paddingBottom: '15px'}}>
                 <Item>
                     <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
-                        <Button onClick={deleteGroupFunc} sx={{ borderColor: 'black', color: 'red', fontSize: '12px'}}>Delete Group</Button>
+                        <Button 
+                          onClick={deleteGroupFunc} 
+                          sx={{ 
+                            backgroundColor: '#A41623', 
+                            color: 'white', 
+                            borderColor: 'transparent',
+                            '&:hover': {
+                              backgroundColor: '#A41623'},
+                          }}>
+                          Delete Group
+                        </Button>
                     </Box>
                 </Item>
             </Grid>
