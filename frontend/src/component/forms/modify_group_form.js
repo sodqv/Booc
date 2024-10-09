@@ -133,6 +133,7 @@ export default function ModifyGroupModal({displayText}) {
 
   const deleteGroupFunc = async () => {
     await deleteGroup(formData.currentGroupName);
+    Revalidatecallback();
     handleClose();
   }
 
