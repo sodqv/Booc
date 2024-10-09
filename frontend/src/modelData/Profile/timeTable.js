@@ -11,8 +11,8 @@ function createData(time) {
   }
   
   const rows = [
-    createData('04:00'),
     createData('06:00'),
+    createData('07:00'),
     createData('08:00'),
     createData('09:00'),
     createData('10:00'),
@@ -24,7 +24,9 @@ function createData(time) {
     createData('16:00'),
     createData('17:00'),
     createData('18:00'),
+    createData('19:00'),
     createData('20:00'),
+    createData('21:00'),
     createData('22:00')
   ];
   
