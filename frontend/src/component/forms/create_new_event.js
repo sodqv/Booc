@@ -68,7 +68,7 @@ export default function BasicModal() {
     location: '',
     description: '',
     color: '#0000FF',       // default color blue
-    repeat: ['never'],
+    //repeat: ['never'],
     visibility: 'private',
     invitePeople: [],
   });
@@ -82,7 +82,7 @@ export default function BasicModal() {
     location: '',
     description: '',
     color: '#0000FF',      
-    repeat: ['never'],
+    //repeat: ['never'],
     visibility: 'private',
     invitePeople: [],
   };
@@ -237,8 +237,8 @@ export default function BasicModal() {
             </Grid>
 
 
-
-            {/* Repeat */}
+            {/* Repeat 
+             
             <Grid sx={{ display: 'grid', width: '100%', gridTemplateColumns: 'repeat(1, 1fr)'}}>
                 <Item>
                     <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536' }}>Repeat</Typography>
@@ -248,7 +248,7 @@ export default function BasicModal() {
                     />
                 </Item>
             </Grid>
-
+            */}
 
 
             {/* Visibility */}
