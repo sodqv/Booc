@@ -16,7 +16,6 @@ import ButtonDirectionStack from "./button_stack";
 import BasicDatePicker from "./date_picker";
 import BasicTimePicker from "./time_picker";
 import Selector from "./selector";
-import Group_Selector from "./group_selector";
 
 import dayjs from 'dayjs';
 import {api} from '../../controllers/axiosTemplate';
@@ -265,25 +264,13 @@ export default function BasicModal() {
 
 
 
-            {/* Invite Friends */}
+            {/* Add people */}
             <Grid sx={{ display: 'grid', width: '40%', gridTemplateColumns: 'repeat(1, 1fr)'}}>
                 <Item>
-                    <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536', paddingBottom: '5px' }}>Invite Friends</Typography>
+                    <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536', paddingBottom: '5px' }}>Invite People</Typography>
                     <Selector 
                         value={formData.invitePeople}
                         onChange={(newInvitePeople) => handleInput('invitePeople', newInvitePeople)}
-                    />
-                </Item>
-            </Grid>
-
-
-            {/* Invite Group */}
-            <Grid sx={{ display: 'grid', width: '40%', gridTemplateColumns: 'repeat(1, 1fr)'}}>
-                <Item>
-                    <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536', paddingBottom: '5px' }}>Invite Members of Group</Typography>
-                    <Group_Selector 
-                        value={formData.inviteGroup}
-                        onChange={(newInviteGroup) => handleInput('invitePeople', newInviteGroup)}
                     />
                 </Item>
             </Grid>
