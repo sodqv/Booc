@@ -26,13 +26,19 @@ async function getSocket(username, identifier) {
         //Gets session with username and identfier
         console.log("Trying to find socketID for", username, identifier);
         //const userToFind = {username:username, identifier:identifier};
-        foundUser = await col.find({
-            "session":{"user":{"username":username}}, 
-            "session":{"user":{"identifier":identifier}}
-        });
+        const foundUser = (await col.find({
+            $and: [
+                {"session.user.username":username},
+                //{"session.user.identifier":identifier}
+            ]
+            
+            //"session": {"user":{"username":username}}, 
+            //"session": {"user":{"identifier":identifier}}
+        }).toArray())[0].session.user;
+        console.log("Found username: ", foundUser);
 
         if(!foundUser || foundUser == null){return "Failed to find session"};
-        console.log("found socket_id:", foundUser.session.user.socket_Id, "\n For user: ". username + "#" + identifier);
+        console.log("found socket_id:", foundUser.socket_Id, "\n For user: " + foundUser.username + "#" + foundUser.identifier);
         return foundUser.session.user.socket_Id; 
     }
     catch(err){
