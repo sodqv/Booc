@@ -17,6 +17,7 @@ import ModifyGroupModal from '../forms/modify_group_form';
 
 import {io} from 'socket.io-client';
 import { useRevalidator } from 'react-router';
+import { getAllGroups } from '../../modelData/group';
 const URL = process.env.NODE_ENV === 'production' ? undefined : 'http://localhost:6401';
 
 const socket = io("http://localhost:6401", {
@@ -30,10 +31,16 @@ const socket = io("http://localhost:6401", {
 function Feed() {
     const revalidator = useRevalidator();
     const Revalidatecallback = () => revalidator.revalidate();
-
+    const [groups, setGroups] = React.useState([]);
 
     useEffect(() => {
         console.log("Connected to server by socket");
+
+        async function getGroups(){
+            const groupGot = (await getAllGroups());
+            console.log(groupGot);
+            setGroups(groupGot);
+        }
 
         socket.on('connect', function () {
             console.log(`Connected to server`);
@@ -44,9 +51,11 @@ function Feed() {
             Revalidatecallback();
         });
 
-        return(
-            socket.off('sendingObj')
-        )
+        getGroups();
+
+        return () => {
+            socket.off('sendingObj');
+        }
     },[]);
 
     function connect () {
@@ -85,9 +94,11 @@ function Feed() {
                             <div style={{ float: 'right' }}>
                                 <GroupModal displayText={"+"}/> 
                             </div>
+                            {groups.length > 0 ? 
                             <div style={{ float: 'right', marginRight: '5px'}}>
                                 <ModifyGroupModal displayText={"✎"}/>
                             </div>
+                            : <div/>}
                         </div>
                     </div>
                     <div style={{ height: 'calc((100vh - 90px)/2 - 61px)', overflow: 'auto' }}>

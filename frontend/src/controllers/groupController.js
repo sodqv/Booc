@@ -164,6 +164,7 @@ export async function leaveGroup(groupName){
       })
       .then(function(response){
         //Test for failed login
+        console.log("Controller: ",response)
         if(typeof response.data?.msg === "undefined" || response.data?.msg === "Failed to leave group"){
           throw new Error("Invalid response");
         }

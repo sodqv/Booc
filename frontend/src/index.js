@@ -47,6 +47,7 @@ const router = createBrowserRouter([
   {
     path: "/Feed",
     element: <Feed />,
+    errorElement: <Feed />,
     loader: AuthLoader,
   },
   {

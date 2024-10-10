@@ -55,6 +55,8 @@ export default function ModifyGroupModal({displayText}) {
   const revalidator = useRevalidator();
   const Revalidatecallback = () => revalidator.revalidate();
 
+  
+
   //this is the data that is set in the form
   const [formData, setFormData] = React.useState ({
     currentGroupName: '',
@@ -103,6 +105,7 @@ export default function ModifyGroupModal({displayText}) {
         //console.log('Form data:', formData);                                //puts the submitted data in the console log in the browser
         console.log("Recived formData",formData);
         const response = await updateGroup(formData, user);
+        console.log(response);
 
         if (response === "Success")
         {
@@ -139,121 +142,126 @@ export default function ModifyGroupModal({displayText}) {
 
 
 
+  try{
+    return (
+      <div>
+        <Button onClick={handleOpen} title="Edit group" sx={{ width: '100%', padding: '8px', backgroundColor: '#d66536', color: '#f5ebe0' }}>
+            {displayText}
+        </Button>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
 
-  return (
-    <div>
-      <Button onClick={handleOpen} title="Edit group" sx={{ width: '100%', padding: '8px', backgroundColor: '#d66536', color: '#f5ebe0' }}>
-          {displayText}
-      </Button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-
-        <Box sx={style}>
-          <div style={{width: '100%', height: '100%', paddingLeft: '10px'}}>
-
-
-            {/* Header - Modify Group */}
-            <Grid sx={{ display: 'grid', columnGap: 10, rowGap: 5, gridTemplateColumns: 'repeat(1, 1fr)'}}>
-                <Item>
-                    <Typography textAlign={'center'} sx={{ fontWeight: 'bold', fontSize: 20, marginTop: -2 }}>Modify Group</Typography>
-                </Item>
-            </Grid>
-
-            {/* Group Name */}
-            <Grid sx={{ display: 'grid', width: '90%', gridTemplateColumns: 'repeat(1, 1fr)'}}>
-                <Item>
-                    <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536' }}>Select group</Typography>
-                    <Group_Selector 
-                        value={formData.currentGroupName} 
-                        onChange={async (currentGroupName) => {
-                          //Sets the current group name
-                          handleInput('currentGroupName', currentGroupName[0]);
-                          //Sets invited members list to that groups current members
-                          updateInvitedPeople(currentGroupName[0]);
-                        }} 
-                    />
-                </Item>
-            </Grid>
-
-            {/* Group Name */}
-            <Grid sx={{ display: 'grid', width: '90%', gridTemplateColumns: 'repeat(1, 1fr)'}}>
-                <Item>
-                    <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536' }}>Change Group Name</Typography>
-                    <BasicTextField 
-                        value={formData.groupName} 
-                        onChange={(newGroupName) => handleInput('groupName', newGroupName.target.value)} 
-                    />
-                </Item>
-            </Grid>
+          <Box sx={style}>
+            <div style={{width: '100%', height: '100%', paddingLeft: '10px'}}>
 
 
+              {/* Header - Modify Group */}
+              <Grid sx={{ display: 'grid', columnGap: 10, rowGap: 5, gridTemplateColumns: 'repeat(1, 1fr)'}}>
+                  <Item>
+                      <Typography textAlign={'center'} sx={{ fontWeight: 'bold', fontSize: 20, marginTop: -2 }}>Modify Group</Typography>
+                  </Item>
+              </Grid>
 
-            {/* Add people */}
-            <Grid sx={{ display: 'grid', width: '90%', gridTemplateColumns: 'repeat(1, 1fr)'}}>
-                <Item>
-                    <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536', paddingBottom: '5px' }}>Change Group Members</Typography>
-                    <Selector 
-                        value={formData.invitePeople}
-                        onChange={(newInvitePeople) => handleInput('invitePeople', newInvitePeople)}
-                    />
-                </Item>
-            </Grid>
+              {/* Group Name */}
+              <Grid sx={{ display: 'grid', width: '90%', gridTemplateColumns: 'repeat(1, 1fr)'}}>
+                  <Item>
+                      <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536' }}>Select group</Typography>
+                      <Group_Selector 
+                          value={formData.currentGroupName} 
+                          onChange={async (currentGroupName) => {
+                            //Sets the current group name
+                            handleInput('currentGroupName', currentGroupName[0]);
+                            //Sets invited members list to that groups current members
+                            updateInvitedPeople(currentGroupName[0]);
+                          }} 
+                      />
+                  </Item>
+              </Grid>
 
-
-            {/* Owner */}
-            <Grid sx={{ display: 'grid', width: '90%', gridTemplateColumns: 'repeat(1, 1fr)'}}>
-                <Item>
-                    <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536' }}>Change Owner</Typography>
-                    <Typography sx = {{ textAlign: 'left', fontSize: '12px', color: '#d66536' }}>Write the Username and Identifier of the new Group Owner, separated by #. Example: username#identifier</Typography>
-                    <BasicTextField 
-                        value={formData.newOwner} 
-                        onChange={(changedOwner) => handleInput('newOwner', changedOwner.target.value)} 
-                    />
-                </Item>
-            </Grid>
-
-
-            {/* Button - Delete Group */}
-            <Grid sx={{ display: 'grid', width: '100%', gridTemplateColumns: 'repeat(1, 1fr)', paddingBottom: '15px'}}>
-                <Item>
-                    <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
-                        <Button 
-                          onClick={deleteGroupFunc} 
-                          sx={{ 
-                            backgroundColor: '#A41623', 
-                            color: 'white', 
-                            borderColor: 'transparent',
-                            '&:hover': {
-                              backgroundColor: '#A41623'},
-                          }}>
-                          Delete Group
-                        </Button>
-                    </Box>
-                </Item>
-            </Grid>
+              {/* Group Name */}
+              <Grid sx={{ display: 'grid', width: '90%', gridTemplateColumns: 'repeat(1, 1fr)'}}>
+                  <Item>
+                      <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536' }}>Change Group Name</Typography>
+                      <BasicTextField 
+                          value={formData.groupName} 
+                          onChange={(newGroupName) => handleInput('groupName', newGroupName.target.value)} 
+                      />
+                  </Item>
+              </Grid>
 
 
 
+              {/* Add people */}
+              <Grid sx={{ display: 'grid', width: '90%', gridTemplateColumns: 'repeat(1, 1fr)'}}>
+                  <Item>
+                      <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536', paddingBottom: '5px' }}>Change Group Members</Typography>
+                      <Selector 
+                          value={formData.invitePeople}
+                          onChange={(newInvitePeople) => handleInput('invitePeople', newInvitePeople)}
+                      />
+                  </Item>
+              </Grid>
 
-            {/* Buttons - Cancel and Create */}
-            <Grid sx={{ display: 'grid', width: '100%', gridTemplateColumns: 'repeat(1, 1fr)', paddingBottom: '15px'}}>
-                <Item>
-                    <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
-                        <ButtonDirectionStackGroups handleClose={handleClose} handleSubmit={handleSubmit} />
-                    </Box>
-                </Item>
-            </Grid>
+
+              {/* Owner */}
+              <Grid sx={{ display: 'grid', width: '90%', gridTemplateColumns: 'repeat(1, 1fr)'}}>
+                  <Item>
+                      <Typography sx = {{ textAlign: 'left', fontWeight: 'bold', color: '#d66536' }}>Change Owner</Typography>
+                      <Typography sx = {{ textAlign: 'left', fontSize: '12px', color: '#d66536' }}>Write the Username and Identifier of the new Group Owner, separated by #. Example: username#identifier</Typography>
+                      <BasicTextField 
+                          value={formData.newOwner} 
+                          onChange={(changedOwner) => handleInput('newOwner', changedOwner.target.value)} 
+                      />
+                  </Item>
+              </Grid>
+
+
+              {/* Button - Delete Group */}
+              <Grid sx={{ display: 'grid', width: '100%', gridTemplateColumns: 'repeat(1, 1fr)', paddingBottom: '15px'}}>
+                  <Item>
+                      <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
+                          <Button 
+                            onClick={deleteGroupFunc} 
+                            sx={{ 
+                              backgroundColor: '#A41623', 
+                              color: 'white', 
+                              borderColor: 'transparent',
+                              '&:hover': {
+                                backgroundColor: '#A41623'},
+                            }}>
+                            Delete Group
+                          </Button>
+                      </Box>
+                  </Item>
+              </Grid>
 
 
 
-          </div>
-        </Box>
-      </Modal>
-    </div>
-  );
+
+              {/* Buttons - Cancel and Create */}
+              <Grid sx={{ display: 'grid', width: '100%', gridTemplateColumns: 'repeat(1, 1fr)', paddingBottom: '15px'}}>
+                  <Item>
+                      <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
+                          <ButtonDirectionStackGroups handleClose={handleClose} handleSubmit={handleSubmit} />
+                      </Box>
+                  </Item>
+              </Grid>
+
+
+
+            </div>
+          </Box>
+        </Modal>
+      </div>
+    );
+  }
+  catch{
+    return <div/>
+  }
+  
 }
 

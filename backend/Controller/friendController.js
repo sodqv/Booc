@@ -24,8 +24,8 @@ async function addFriend(req, res)
     const { friendsUsername, friendIdentifier } = req.body;      // the username and identifier inputted by the user
     const currentUser = req.session.user;                        // retrieve the currently logged in user
 
-    console.log('Request body:', req.body);                     //logs what data is sent
-    console.log('Currently logged in user:', currentUser);      //logs the current user
+    //console.log('Request body:', req.body);                     //logs what data is sent
+    //console.log('Currently logged in user:', currentUser);      //logs the current user
 
 
     try {

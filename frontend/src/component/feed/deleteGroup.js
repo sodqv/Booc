@@ -69,7 +69,7 @@ const style = {
         const response = await leaveGroup(groupName);
 
 
-        if (response === "Success")
+        if (response === "Success" || response === "Left group")
         {
             Revalidatecallback();
             console.log('left Group', groupName);                          

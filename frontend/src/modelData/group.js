@@ -43,7 +43,10 @@ export async function getGroup(){
 
 //Get all groups a person is in
 export async function getAllGroups(){
-    const response = await CTRLgetAllGroups();
+    var response = await CTRLgetAllGroups();
+    if(!response || response == "Failed to get groups"){
+        return [];
+    }
     return response;
     //Typical response: Array of groups:
     /*
@@ -94,10 +97,12 @@ export async function updateGroup(formData, user){
 
 
     var invitePeople = formData.invitePeople.map((member) => {return {username:member.split("#")[0],identifier:member.split("#")[1]}}); //This will overwritte the current members
+    
 
-    var newOwner = formData.newOwner;                                                   //Changes the owner
-    if(!newOwner){newOwner = [{username:user.username,  identifier:user.identifier}]};  //If no new owner is selected keep the current user as owner
-
+    var newOwner = [{username:formData.newOwner.split("#")[0],identifier:formData.newOwner.split("#")[1]}];                                              //Changes the owner
+    console.log("Owner", newOwner)
+    if(!newOwner || !(newOwner[0])?.identifier|| !(newOwner[0]?.username)){newOwner = [{username:user.username,  identifier:user.identifier}]};  //If no new owner is selected keep the current user as owner
+    console.log("Owner: ", newOwner);
 
     //Testing values
     /*

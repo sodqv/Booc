@@ -20,12 +20,14 @@ const MenuProps = {
 };
 
 export default function Group_Selector({ value, onChange }) {
-    const [groups, setGroups] = React.useState([]);
+    const [groups, setGroups] = React.useState([{groupName:"default"}]);
   //const [personName, setPersonName] = React.useState([]);
 
   React.useEffect(() => {
     async function getGroups(){
-        setGroups((await getAllGroups()));
+        const groupGot = (await getAllGroups());
+        console.log(groupGot);
+        setGroups(groupGot);
     }
 
     getGroups();

@@ -64,11 +64,17 @@ async function createGroup(groupName, owner, members){
 }  
 
 //Update group
-async function updateGroup(currentGroupName, groupName, owners, members){
+async function updateGroup(currentGroupName, groupName, owners, members, previous_owner){
     startmongoose();
     try{
         const newGroup = await groups.findOneAndReplace({groupName:currentGroupName}, {groupName, owners, members});
+
+        //Removes previous owner from member list
+        await groups.findOneAndReplace({groupName}, {$pull:{members: [previous_owner]}} );
+
+
         await newGroup.save();
+        console.log("Updated",newGroup);
         return newGroup.toObject(); //success
     }
     catch(err){
@@ -105,7 +111,7 @@ async function checkIfOwner(groupName, username, identifier) {
 
     //Checks if the user is a owner of the group
     const user = {username, identifier};
-    console.log(user);
+    console.log(user, " Attempted to change group", groupName);
     const group = await groups.findOne({
         $and: [
             {groupName},
@@ -113,7 +119,7 @@ async function checkIfOwner(groupName, username, identifier) {
         ]
     });
     console.log(group);
-    if(group === null){return null;}
+    if(!group || group == null){return null;}
     return 1; //Found group where user is owner
     
 }
