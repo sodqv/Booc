@@ -113,10 +113,12 @@ function Feed() {
             </div>
 
             <div className="info">
-                <h2>Notifications</h2>
-                <Notification/>
-                <Notification/>
+                
+                
                 {
+                    //<h2>Notifications</h2>
+                    //<Notification/>
+                    //<Notification/>
                     //<button onClick={ connect }>Connect</button>
                     //<button onClick={ disconnect }>disconnect</button>
 
