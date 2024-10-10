@@ -150,10 +150,11 @@ async function deleteGroup(req, res){
     }
 
     //Send notification to all group members
-    for(const {username, identifier} of members){
-        const emitted_obj = {Type:"Delete group", Cause:`${req.session.user.username}#${req.session.user.identifier}`,}
-        await sendToSocket((await getSocket(username, identifier)), emitted_obj, req);
-    }
+    //for(const {username, identifier} of members){
+    //    const emitted_obj = {Type:"Delete group", Cause:`${req.session.user.username}#${req.session.user.identifier}`,}
+    //    await sendToSocket((await getSocket(username, identifier)), emitted_obj, req);
+    //}
+    sendToSocket(null, null, req) //-------------------------------------------------------------------------------------------------------Delete this when sendToSocket works
 
     return res.status(200).send({msg:"Deleted group"});
 }
