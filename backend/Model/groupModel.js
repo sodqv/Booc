@@ -70,7 +70,13 @@ async function updateGroup(currentGroupName, groupName, owners, members, previou
         const newGroup = await groups.findOneAndReplace({groupName:currentGroupName}, {groupName, owners, members});
 
         //Removes previous owner from member list
-        await groups.findOneAndReplace({groupName}, {$pull:{members: [previous_owner]}} );
+        try{
+            await groups.findOneAndReplace({groupName}, {$pull:{members: [previous_owner]}} );
+        }
+        catch(err){
+            console.log("Attampted to remove owner from members");
+        }
+        
 
 
         await newGroup.save();

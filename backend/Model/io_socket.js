@@ -5,9 +5,9 @@ const { io } = require('../app.js');
 async function sendToSocket(socket_id, sending_obj, req){
     try{
         const socket = req.app.io;
-        if(!socket_id){throw Error("Socket does not exist")};
+        //if(!socket_id){throw Error("Socket does not exist")}; -----------------------------Remove this at the same time as the one below
         //socket.to(socket_id).emit("sendingObj", sending_obj);
-        socket.emit("sendingObj", sending_obj);
+        socket.emit("sendingObj", sending_obj); //---------------------------------------------Remove this
         console.log("Emited");
     }
     catch(err){
@@ -20,6 +20,8 @@ async function sendToSocket(socket_id, sending_obj, req){
 
 //Get socket id for user using username, identifier
 async function getSocket(username, identifier) {
+    return null; //-------------------------------------------------------Remove and fix this
+
     try{
        const client = startMongodb();
         await client.connect();
