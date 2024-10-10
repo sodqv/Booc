@@ -165,7 +165,7 @@ async function leaveGroup(groupName, username, identifier) {
 
         //Deletes group if no owners
         const groupData = await getGroup(groupName);
-        if(!Array.isArray(groupData.owners) || !groupData.owners.length){
+        if(!Array.isArray(groupData.owners) || !(groupData.owners.length)){
             console.log("No owners detected of '" + groupName + "' deleting group.");
             deleteGroup(groupName);
         }

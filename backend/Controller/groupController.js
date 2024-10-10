@@ -141,7 +141,7 @@ async function deleteGroup(req, res){
     }
     
     //Get group
-    var members = getGroupModel(groupName).members;
+    var members = await getGroupModel(groupName).members;
 
     //delete group
     var result = await deleteGroupModel(groupName);
@@ -167,11 +167,18 @@ async function leaveGroup(req, res) {
             return res.status(500).send({msg:"Failed leave group"});
         }
         
-        //delete group
-        var result = await deleteGroupModel(groupName);
-        if(result === null){
-            return res.status(200).send({msg:"Left group"});
+        //delete group if empty
+        const groupState = (await getGroupModel(groupName))?.owners[0];
+        console.log("Group state:", groupState);
+        if(!(groupState?.username) || !(groupState?.identifier)){
+            var result = await deleteGroupModel(groupName);
+            if(result === null){
+                sendToSocket(null, null, req) //-------------------------------------------------------------------------------------------------------Delete this when sendToSocket works
+                return res.status(200).send({msg:"Left group"});
+            }
         }
+        
+        sendToSocket(null, null, req) //-------------------------------------------------------------------------------------------------------Delete this when sendToSocket works
 
         /*
         var members = getGroup(groupName).members;
