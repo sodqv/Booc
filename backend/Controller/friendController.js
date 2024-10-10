@@ -39,8 +39,6 @@ async function addFriend(req, res)
 
         if (result.status === 409)
         {
-            const emitted_obj = {Type:"Add friend", Cause:`${currentUser.username}#${currentUser.identifier}`,}
-            await sendToSocket((await getSocket(username, identifier)), emitted_obj, req);
             return res.status(409).send({ msg: "Friend already added" });
         }
 
@@ -49,6 +47,9 @@ async function addFriend(req, res)
             return res.status(500).send({ msg: "Failed to add friend" });
         }
 
+        //const emitted_obj = {Type:"Add friend", Cause:`${currentUser.username}#${currentUser.identifier}`,}
+        //await sendToSocket((await getSocket(username, identifier)), emitted_obj, req);
+        sendToSocket(null, null, req) //-------------------------------------------------------------------------------------------------------Delete this when sendToSocket works
         return res.status(200).send({ msg: "Added friend" });
     }
     catch (error) {
