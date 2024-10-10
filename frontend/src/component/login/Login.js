@@ -88,8 +88,8 @@ export default function Login_page(){
                                 id = "password"
                                 //error={failedLogin}
                                 autoComplete="current-password"/>
-                            
-                            <Link to=''>Reset password </Link>
+                            {/*
+                            <Link to=''>Reset password </Link>*/}
                         </div>
                         <div className='PageButtons'>
                             <button className='leftButton' type='button' onClick={changeToSignUpPage}>← Sign up</button>
