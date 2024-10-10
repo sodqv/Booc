@@ -63,13 +63,14 @@ async function addFriend(req, res)
 async function deleteFriend(req, res)
 {
     const { currentUserID, friendsUsername, friendIdentifier } = req.body;
+    const currentUser = req.session.user;       
 
     try {
         const result = await deleteFriendModel(currentUserID, friendsUsername, friendIdentifier);
         
         if (result === "Deleted") {
             const emitted_obj = {Type:"Delete friend", Cause:`${currentUser.username}#${currentUser.identifier}`,}
-            await sendToSocket((await getSocket(username, identifier)), emitted_obj, req);
+            await sendToSocket((await getSocket(friendsUsername, friendIdentifier)), emitted_obj, req);
             return res.status(200).send({ msg: "Friend successfully deleted" });
             
         }

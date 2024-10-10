@@ -10,7 +10,7 @@ async function getCurrentUser(req, res){
 
         //Updates user session before returning it
         const databaseUser = await usersModel.getUserWithUsername(req.session.user.username, req.session.user.identifier);
-        req.session.user = {...databaseUser, password:req.session.user.password, socket:req.session.socket};
+        req.session.user = {id:req.session.id, ...databaseUser, password:req.session.user.password, socket:req.session.socket};
 
         //Returns user session
         if(!req.session.user){
@@ -34,7 +34,7 @@ async function createUser(req, res){
     }
     //console.log(result);
     if(typeof result !== "undefined"){
-        req.session.user = {...result, password:password, socket:req.session.socket};
+        req.session.user = {id:req.session.id, ...result, password:password, socket:req.session.socket};
         return res.status(200).send({msg:"Created user"});
     }
     else{

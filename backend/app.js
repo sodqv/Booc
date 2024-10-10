@@ -17,7 +17,6 @@ var app = express();
 //Creates socket connection server
 const http = require('http');
 const {Server} = require("socket.io");
-const sharedsession = require("express-socket.io-session");
 
 
 const corsconfig = {
@@ -26,13 +25,14 @@ const corsconfig = {
 }
 
 const server = http.createServer(app);
-global.io = new Server(server,{
+io = new Server(server,{
   cors: {
     origin: "http://localhost:3000",
-    methods: ["GET", "POST"],
     credentials: true,
   }
 });
+
+app.io = io;
 
 app.use(function(req, res, next){
   //console.log("Testing")
@@ -68,8 +68,28 @@ app.use(session({
   store: store,
 }));
 
-global.io.engine.use(session);
+io.engine.use(session);
 
+io.on('connection', (socket) => {
+  console.log("Connection 1");
+
+  socket.on('connect', function(socket){
+    console.log("Connection 2");
+  try{
+    const sessionId = socket.request.session.id;
+    console.log("You get ", sessionId);
+    // the session ID is used as a room
+    socket.join(sessionId);
+  }
+  catch(err){
+    console.log("Failed to establish socket connection");
+    console.log(err);
+  }
+  })
+
+  
+
+})
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -95,24 +115,7 @@ app.use((req, res, next) => {
 //   autoSave: true,
 // }));
 
-global.io.on('connection', (socket) => {
-  socket.on('connect', function(socket){
-    console.log("Connection");
-  try{
-    const sessionId = socket.request.session.id;
-    console.log("You get ", sessionId);
-    // the session ID is used as a room
-    socket.join(sessionId);
-  }
-  catch(err){
-    console.log("Failed to establish socket connection");
-    console.log(err);
-  }
-  })
 
-  
-
-})
 
 // app.use(function(rec, res, next) {
 //   console.log(rec.session);
@@ -139,6 +142,8 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = {app,server};
+
+server.listen(6400)
+module.exports = {app,io};
 
 

@@ -4,9 +4,11 @@ const { io } = require('../app.js');
 //Send to socket
 async function sendToSocket(socket_id, sending_obj, req){
     try{
-        const socket = req.app.get(`socketio`);
+        const socket = req.app.io;
         if(!socket_id){throw Error("Socket does not exist")};
-        global.io.to(socket_id).emit("sendingObj", sending_obj);
+        //socket.to(socket_id).emit("sendingObj", sending_obj);
+        socket.emit("sendingObj", sending_obj);
+        console.log("Emited");
     }
     catch(err){
         console.log("Failed to send to socket: ", socket_id);
@@ -37,7 +39,8 @@ async function getSocket(username, identifier) {
             //"session": {"user":{"identifier":identifier}}
         }).toArray());
         //console.log("findUser", findUser);
-        const foundUser = findUser[0]._id;
+        //console.log("Found username: ", findUser[0]);
+        const foundUser = findUser[0].session.user.id;
         console.log("Found username: ", foundUser);
 
         if(!foundUser || foundUser == null){return "Failed to find session"};

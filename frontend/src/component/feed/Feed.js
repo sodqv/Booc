@@ -16,34 +16,47 @@ import GroupModal from '../forms/create_group';
 import ModifyGroupModal from '../forms/modify_group_form';
 
 import {io} from 'socket.io-client';
-const URL = process.env.NODE_ENV === 'production' ? undefined : 'http://localhost:6400';
+import { useRevalidator } from 'react-router';
+const URL = process.env.NODE_ENV === 'production' ? undefined : 'http://localhost:6401';
 
-const socket = io("http://localhost:6400", {
+const socket = io("http://localhost:6401", {
     withCredentials: true,
     headers:{
-        "Access-Control-Allow-Origin": "http://localhost:6400",
+        "Access-Control-Allow-Origin": "http://localhost:6401",
         "Access-Control-Allow-Credentials":"true",
       }
   });
 
 function Feed() {
-
+    const revalidator = useRevalidator();
+    const Revalidatecallback = () => revalidator.revalidate();
 
 
     useEffect(() => {
-        socket.connect();
+        console.log("Connected to server by socket");
+
         socket.on('connect', function () {
             console.log(`Connected to server`);
         });
 
         socket.on('sendingObj', function () {
-            console.log(`Resived`);
+            console.log(`Recived`);
+            Revalidatecallback();
         });
+
+        return(
+            socket.off('sendingObj')
+        )
     },[]);
 
     function connect () {
-        console.log("In button");
+        console.log("connected");
         socket.connect();
+    }
+
+    function disconnect(){
+        console.log("disconnected");
+        socket.disconnect();
     }
 
   return (
@@ -92,7 +105,12 @@ function Feed() {
                 <h2>Notifications</h2>
                 <Notification/>
                 <Notification/>
-                <button onClick={ connect }>Testing</button>
+                {
+                    //<button onClick={ connect }>Connect</button>
+                    //<button onClick={ disconnect }>disconnect</button>
+
+                }
+                
             </div>
         </div>
 
