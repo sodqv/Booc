@@ -10,7 +10,7 @@ import {login as loginModel} from '../../modelData/auth.js'
 export function authenticatedLoader(){
     //Gets current users email and password and authenticates it
     //Gets email and password (first checks if they exist)
-
+    alert("Failed to sign up")
     //await authentication from api
     //const response = Auth(email, password);
 
@@ -27,7 +27,7 @@ export async function loginAction({request}){
     const response  = await loginModel(email, password);
     if(response === "invalid"){
         //Set MUI prop for error to true
-
+        alert("Failed to login")
         return null;
     }
     else{
