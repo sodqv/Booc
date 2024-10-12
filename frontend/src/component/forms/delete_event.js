@@ -10,7 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 import DeleteButtonStack from "./delete_button_stack.js";
-import { useLoaderData } from 'react-router';
+import { useLoaderData, useRevalidator } from 'react-router';
 
 import { deleteEvent } from "../../modelData/event.js";
 
@@ -50,6 +50,8 @@ const style = {
 
   export default function DeleteEventModal({ displayText, eventTitle, eventID }) {
     const [open, setOpen] = React.useState(false);
+    const revalidator = useRevalidator();
+    const Revalidatecallback = () => revalidator.revalidate();
 
     const currentUser = useLoaderData();
 
@@ -67,7 +69,8 @@ const style = {
 
       if (response === "Success")
         {
-            console.log('Event successfully deleted');                          
+            console.log('Event successfully deleted'); 
+            Revalidatecallback();                         
             handleClose();      //closes the form
         }
         else

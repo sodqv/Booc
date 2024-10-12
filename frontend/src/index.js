@@ -42,17 +42,19 @@ const router = createBrowserRouter([
   {
     path: "/Profile",
     element: <Profile />,
+    errorElement: <ErrorPage />,
     loader: AuthLoader,
   },
   {
     path: "/Feed",
     element: <Feed />,
-    errorElement: <Feed />,
+    errorElement: <ErrorPage />,
     loader: AuthLoader,
   },
   {
     path: "/Settings",
     element: <SettingsPage/>,
+    errorElement: <ErrorPage />,
     loader: AuthLoader,
     action: changePasswordAction,
   }
