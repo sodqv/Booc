@@ -36,7 +36,7 @@ DB_PASSWORD = place password here
 SESSION_SECRET= place your session secret here
 
     -If you want to connect to a database other than the one setup by use change the following in backend:  
-    in app.js change line 33 to your connection string  
+    in app.js change line 49 to your connection string  (uri:)
     in ./model/mongodbStarter.js change line 7 to your connection string  
     observe that this connection string should preferably set its user with process.env.DB_USERNAME, and process.env.DB_PASSWORD to avoid leaking the connection string.  
     The connection string also decides which database in the cluster is used to so set it to an appropriate name. (This is the /Booc? part of the connection string where booc is the database name).  
