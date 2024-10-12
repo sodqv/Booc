@@ -30,7 +30,7 @@ Starting server
 1. Clone repository
 2. Go into "Backend" folder.
 3. Open cmd in current directory and enter "npm ci". (This requires node.js)
-4. Create an .env file (in the backend directory) and enter your username and password for the mongodb in the format:  
+4. Create an .env file (in the backend directory) and enter your username and password for the mongodb connection string in the format:  
 DB_USERNAME = place username here  
 DB_PASSWORD = place password here  
 SESSION_SECRET= place your session secret here
