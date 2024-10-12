@@ -8,8 +8,8 @@ export default function DeleteButtonStack( { handleClose, handleDelete } ) {
   return (
     <div>
       <Stack direction="row" spacing={2}>
-        <BasicButtons label = "Cancel" sx={{ backgroundColor: 'lightgray', borderColor: 'black', color: 'black' }} onClick={handleClose} />
-        <BasicButtons label = "Delete" sx={{ backgroundColor: 'lightblue', borderColor: 'black', color: 'black' }} onClick={handleDelete} />
+        <BasicButtons label = "Cancel" sx={{ backgroundColor: 'gray', borderColor: 'gray', color: 'white' }} onClick={handleClose} />
+        <BasicButtons label = "Delete" sx={{ backgroundColor: '#D66536', borderColor: '#D66536', color: 'white' }} onClick={handleDelete} />
       </Stack>
     </div>
   );

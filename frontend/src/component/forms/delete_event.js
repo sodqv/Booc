@@ -76,6 +76,7 @@ const style = {
         else
         {
             console.log('Failed to delete event');
+            handleClose();      //closes the form
         }
     }
     catch (error) {
